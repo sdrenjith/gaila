@@ -61,6 +61,6 @@ export async function submitLead(_: LeadActionState, formData: FormData): Promis
 
   return {
     ok: true,
-    message: "Thanks. Your enquiry has been sent to Krew Marketing.",
+    message: "Thanks. Your enquiry has been sent to Gaila.",
   };
 }

@@ -24,10 +24,10 @@ type AmbientVideoBandProps = {
  * later without coupling to the live page seed.
  */
 export function AmbientVideoBand({
-  eyebrow = "Krew · In Motion",
-  title = "Brand stories built to be felt, not skimmed.",
-  body = "We craft cinematic campaigns for forward-thinking Dubai brands — strategy, design, and motion in one operation.",
-  ctaLabel = "See the work",
+  eyebrow = "Gaila · Events",
+  title = "Experiences built to be remembered, not rushed.",
+  body = "We design and deliver corporate events, conferences, and celebrations for ambitious Dubai brands — planning, production, and guest experience in one team.",
+  ctaLabel = "See our work",
   ctaHref = "/case-studies",
   videoSrc = AMBIENT_VIDEOS.motionClip,
   poster,

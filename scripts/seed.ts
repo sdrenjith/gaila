@@ -83,14 +83,11 @@ async function seed() {
   await connectDB();
 
   const defaultSettings = new SiteSettings().toObject();
-  const { googleReviews, ...siteSettingsBase } = defaultSettings;
+  const { _id: _settingsId, ...settingsPayload } = defaultSettings;
   await SiteSettings.updateOne(
     {},
     {
-      $setOnInsert: siteSettingsBase,
-      $set: {
-        googleReviews,
-      },
+      $set: settingsPayload,
     },
     { upsert: true },
   );
@@ -102,7 +99,7 @@ async function seed() {
         location: "header",
         title: "Header Menu",
         items: headerMenuItems,
-        cta: { label: "Book a strategy call", href: "tel:+971502827279", visible: true },
+        cta: { label: "Plan your event", href: "/contact", visible: true },
       },
     },
     { upsert: true },
@@ -133,7 +130,7 @@ async function seed() {
     {
       title: "Services",
       slug: "services",
-      description: "Legacy services migrated from the original content library.",
+      description: "Event services managed through the Gaila CMS.",
       status: "published",
       stories: services.map((item, index) => ({
         id: `legacy-${item.slug}`,
@@ -150,7 +147,7 @@ async function seed() {
     {
       title: "Case Studies",
       slug: "case-studies",
-      description: "Legacy case studies migrated from the original content library.",
+      description: "Event case studies managed through the Gaila CMS.",
       status: "published",
       stories: caseStudies.map((item, index) => ({
         id: `legacy-${item.slug}`,
@@ -167,7 +164,7 @@ async function seed() {
     {
       title: "Blog",
       slug: "insights",
-      description: "Legacy insight posts migrated from the original content library.",
+      description: "Event insights and articles managed through the Gaila CMS.",
       status: "published",
       stories: blogPosts.map((item, index) => ({
         id: `legacy-${item.slug}`,
@@ -184,7 +181,7 @@ async function seed() {
   ];
 
   for (const category of seededCategories) {
-    await Category.updateOne({ slug: category.slug }, { $setOnInsert: category }, { upsert: true });
+    await Category.updateOne({ slug: category.slug }, { $set: category }, { upsert: true });
   }
 
   await upsertHomeHeroAsset();

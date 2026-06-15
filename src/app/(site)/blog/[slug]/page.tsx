@@ -118,9 +118,9 @@ export default async function BlogDetail({ params }: Props) {
         )}
 
         <EditorialCta
-          title="Want this kind of thinking on your account?"
-          subtitle="Book a 30-minute strategy call. We&rsquo;ll come back with the three changes that would move the needle this quarter."
-          ctaLabel="Book a strategy call"
+          title="Planning an event in Dubai?"
+          subtitle="Tell us about your occasion, guest profile, and timeline. We&rsquo;ll share practical guidance from our latest UAE programmes."
+          ctaLabel="Plan your event"
           ctaHref="/contact"
           variant="dark"
         />

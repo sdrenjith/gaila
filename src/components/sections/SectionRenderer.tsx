@@ -86,9 +86,9 @@ async function renderSectionInner(section: PageSection, siteSettings: SiteSettin
           poster={getString(settings, "poster", "")}
           image={getString(settings, "image", "")}
           imageAlt={getString(settings, "imageAlt", section.title || "")}
-          ctaLabel={getString(settings, "ctaLabel", "Book a strategy call")}
+          ctaLabel={getString(settings, "ctaLabel", "Plan your event")}
           ctaHref={getString(settings, "ctaHref", "/contact")}
-          secondaryCtaLabel={getString(settings, "secondaryCtaLabel", "Book a strategy call")}
+          secondaryCtaLabel={getString(settings, "secondaryCtaLabel", "Request a proposal")}
           secondaryCtaHref={getString(settings, "secondaryCtaHref", "tel:+971502827279")}
           categories={categories}
           rotatingTitles={rotatingTitles}

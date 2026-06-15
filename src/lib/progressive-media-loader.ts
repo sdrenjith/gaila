@@ -2,7 +2,7 @@
 
 import type { SectionMediaAsset } from "@/lib/section-assets";
 
-const HERO_MEDIA_STARTED = "krew:hero-media-started";
+const HERO_MEDIA_STARTED = "gaila:hero-media-started";
 const IMAGE_CONCURRENCY = 3;
 const VIDEO_METADATA_TIMEOUT_MS = 45_000;
 const VIDEO_BUFFER_TIMEOUT_MS = 120_000;

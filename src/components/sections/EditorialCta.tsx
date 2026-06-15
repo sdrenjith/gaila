@@ -199,7 +199,7 @@ export function EditorialCta({
           isDark ? "text-white/[0.05]" : "text-[var(--ink)]/[0.05]"
         }`}
       >
-        Krew Marketing
+        Gaila
       </motion.span>
 
       <div className="relative mx-auto flex max-w-[1480px] flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">

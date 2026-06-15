@@ -3,12 +3,15 @@ import { seoSchema } from "./schemas/seo";
 
 const siteSettingsSchema = new Schema(
   {
-    siteName: { type: String, default: "Krew Marketing" },
-    tagline: { type: String, default: "A Dubai digital marketing agency for brands that report on revenue." },
-    logoText: { type: String, default: "Krew" },
-    logo: { type: String, default: "/krew-logo.webp" },
+    siteName: { type: String, default: "Gaila" },
+    tagline: {
+      type: String,
+      default: "A Dubai event management team for brands that expect flawless execution.",
+    },
+    logoText: { type: String, default: "Gaila" },
+    logo: { type: String, default: "/gaila-logo.webp" },
     contact: {
-      email: { type: String, default: "aju@krewmarketing.ae" },
+      email: { type: String, default: "info@gaila.ae" },
       phone: { type: String, default: "+971 50 282 7279" },
       address: {
         type: String,
@@ -18,23 +21,23 @@ const siteSettingsSchema = new Schema(
       whatsapp: { type: String, default: "+971502827279" },
     },
     social: {
-      instagram: { type: String, default: "https://instagram.com/krewmarketing.ae" },
-      linkedin: { type: String, default: "https://www.linkedin.com/company/krew-marketing" },
-      facebook: { type: String, default: "https://www.facebook.com/krewmarketing.ae" },
-      x: { type: String, default: "https://x.com/krewmarketing" },
+      instagram: { type: String, default: "https://instagram.com/gaila.ae" },
+      linkedin: { type: String, default: "https://www.linkedin.com/company/gaila" },
+      facebook: { type: String, default: "https://www.facebook.com/gaila.ae" },
+      x: { type: String, default: "https://x.com/gaila" },
     },
     seoDefaults: {
       type: seoSchema,
       default: () => ({
-        title: "Krew Marketing | Digital Marketing Agency in Dubai",
+        title: "Gaila | Event Management Company in Dubai",
         description:
-          "Krew Marketing is a Dubai digital marketing agency for SEO, performance marketing, social, content, web design, and analytics across the UAE.",
+          "Gaila is a Dubai event management company for corporate events, conferences, weddings, galas, and experiential activations across the UAE.",
         keywords: [
-          "Dubai digital marketing agency",
-          "SEO Dubai",
-          "PPC Dubai",
-          "performance marketing UAE",
-          "web design Dubai",
+          "event management Dubai",
+          "corporate events UAE",
+          "conference planning Dubai",
+          "wedding planners Dubai",
+          "event production UAE",
         ],
       }),
     },
@@ -42,15 +45,15 @@ const siteSettingsSchema = new Schema(
       description: {
         type: String,
         default:
-          "Krew Marketing is a senior, performance-led digital marketing agency in Downtown Dubai. We help UAE brands turn search, social, and paid media into measurable revenue.",
+          "Gaila is a senior event management team in Dubai. We plan, design, and deliver corporate events, conferences, weddings, and brand experiences with precision across the UAE.",
       },
       copyright: {
         type: String,
-        default: "© 2026 Krew Marketing FZ-LLC · DED Trade Licence 1187462 · All rights reserved.",
+        default: "© 2026 Gaila FZ-LLC · DED Trade Licence 1187462 · All rights reserved.",
       },
       tagline: {
         type: String,
-        default: "Built in Dubai · Made for the world",
+        default: "Built in Dubai · Made for memorable moments",
       },
     },
     googleReviews: {
@@ -68,7 +71,7 @@ const siteSettingsSchema = new Schema(
           author: "Lina Mathew",
           rating: 5,
           review:
-            "We came to Krew with a flat pipeline and walked out with a proper system. SEO, landing pages, and tracking were fixed in the first month and qualified leads were up by the second.",
+            "Gaila ran our annual leadership summit end to end — venue, production, catering, and guest experience. Flawless on the day and genuinely calm under pressure.",
           location: "Dubai Marina",
           postedAt: "3 weeks ago",
         },
@@ -76,7 +79,7 @@ const siteSettingsSchema = new Schema(
           author: "Omar Rashid",
           rating: 5,
           review:
-            "Senior team, no account-handler theatrics. Weekly reporting actually answers the question we care about — what is producing revenue this week.",
+            "Senior team, no hand-offs. Weekly run-of-show updates, clear budgets, and a production crew that solved problems before we noticed them.",
           location: "Business Bay",
           postedAt: "1 month ago",
         },
@@ -84,7 +87,7 @@ const siteSettingsSchema = new Schema(
           author: "Sara Al Ali",
           rating: 5,
           review:
-            "They understood the Dubai market immediately. The Arabic and English split in our paid search, the creative direction, and the landing pages all felt premium and intentional.",
+            "They understood our bilingual guest list immediately. Arabic and English signage, MC coordination, and a registration flow that felt premium from arrival to close.",
           location: "Jumeirah 1",
           postedAt: "2 months ago",
         },
@@ -92,7 +95,7 @@ const siteSettingsSchema = new Schema(
           author: "Hassan Al Qassimi",
           rating: 5,
           review:
-            "Bilingual campaigns done properly. Their Arabic and English creative direction lifted our paid search conversion 42% within the first 60 days.",
+            "Our product launch needed theatre, not just a stage. Gaila delivered creative direction, AV, and an experiential walk-through that guests still talk about.",
           location: "Downtown Dubai",
           postedAt: "5 weeks ago",
         },
@@ -100,7 +103,7 @@ const siteSettingsSchema = new Schema(
           author: "Priya Nair",
           rating: 5,
           review:
-            "We hired Krew for a website rebuild and extended into SEO and PPC the next quarter. Fast turnaround, clear process, dashboards everyone on the leadership team actually reads.",
+            "We hired Gaila for a corporate gala and extended into our conference series the next quarter. Fast turnaround, clear process, and a team leadership actually trusts on event day.",
           location: "Dubai Internet City",
           postedAt: "6 weeks ago",
         },
@@ -108,7 +111,7 @@ const siteSettingsSchema = new Schema(
           author: "Khalid bin Sulaiman",
           rating: 5,
           review:
-            "Honest agency — they told us what not to spend on, which is rare in this market. The result is a leaner stack and a 23% increase in qualified pipeline in the first quarter.",
+            "Honest planners — they told us what not to overspend on, which is rare in this market. The result was a sharper event and a smoother guest journey throughout the evening.",
           location: "Jumeirah Lake Towers",
           postedAt: "2 months ago",
         },

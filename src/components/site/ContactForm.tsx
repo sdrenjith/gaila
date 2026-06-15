@@ -31,12 +31,13 @@ export function ContactForm() {
           Service
           <select name="service" className={fieldClass}>
             <option value="">Choose a service</option>
-            <option>SEO &amp; AI Search</option>
-            <option>Performance Marketing</option>
-            <option>Social Media</option>
-            <option>Video Production</option>
-            <option>Brand &amp; Creative</option>
-            <option>Full Funnel Strategy</option>
+            <option>Corporate Events</option>
+            <option>Conferences &amp; Summits</option>
+            <option>Weddings &amp; Celebrations</option>
+            <option>Event Production &amp; AV</option>
+            <option>Creative Direction &amp; Décor</option>
+            <option>Venue Sourcing &amp; Logistics</option>
+            <option>Full Event Management</option>
           </select>
         </label>
       </div>
@@ -50,7 +51,7 @@ export function ContactForm() {
           name="message"
           required
           rows={5}
-          placeholder="Tell us what you want to grow…"
+          placeholder="Tell us about your event — date, guest count, venue, and goals…"
           className={`${fieldClass} resize-y`}
         />
       </label>

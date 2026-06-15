@@ -116,17 +116,17 @@ export default async function ServiceDetail({ params }: Props) {
 
       {related.length > 0 && (
         <ServicesEditorial
-          eyebrow="More from Krew"
+          eyebrow="More from Gaila"
           title="Other services we run from the same studio."
           items={related}
         />
       )}
 
       <EditorialCta
-        title="Book a strategy call"
-        subtitle="Tell us your goal and timeline. We&rsquo;ll come back with a practical plan in the first call."
-        ctaLabel="Book a strategy call"
-        ctaHref="tel:+971502827279"
+        title="Plan your event with Gaila"
+        subtitle="Share your brief and timeline. We&rsquo;ll come back with a practical proposal and a clear run-of-show outline."
+        ctaLabel="Request a proposal"
+        ctaHref="/contact"
         variant="dark"
       />
     </article>

@@ -56,7 +56,7 @@ export function HeroAnimated({
     (sum, line) => sum + line.split(" ").filter(Boolean).length,
     0,
   );
-  const ctaLabel = primary.ctaLabel || "Book a strategy call";
+  const ctaLabel = primary.ctaLabel || "Plan your event";
   const ctaHref = primary.ctaHref || "/contact";
 
   const eyebrowDuration = 0.5;

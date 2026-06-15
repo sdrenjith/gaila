@@ -29,7 +29,7 @@ function getDistributedLimiter(): Ratelimit | null {
   distributedLimiter = new Ratelimit({
     redis: new Redis({ url, token }),
     limiter: Ratelimit.slidingWindow(MAX_REQUESTS, `${WINDOW_MS} ms`),
-    prefix: "krew:lead",
+    prefix: "gaila:lead",
   });
   return distributedLimiter;
 }

@@ -25,7 +25,7 @@ export function AdminShell({
           <Link href="/admin" className="mb-8 flex items-center gap-3 px-2">
             <SiteLogo logo={logo} logoText={logoText} siteName={siteName} variant="admin" />
             <span className="leading-tight">
-              <span className="block font-display text-lg tracking-[-0.01em] text-stone-950">Krew CMS</span>
+              <span className="block font-display text-lg tracking-[-0.01em] text-stone-950">Gaila CMS</span>
               <span className="text-[10px] uppercase tracking-[0.32em] text-stone-400">Dynamic website</span>
             </span>
           </Link>
@@ -57,7 +57,7 @@ export function AdminShell({
           <header className="sticky top-0 z-20 flex items-center justify-between border-b border-stone-200 bg-white px-5 py-3 lg:hidden">
             <Link href="/admin" className="flex items-center gap-2">
               <SiteLogo logo={logo} logoText={logoText} siteName={siteName} variant="admin-compact" />
-              <span className="font-semibold">Krew CMS</span>
+              <span className="font-semibold">Gaila CMS</span>
             </Link>
             <div className="flex items-center gap-2">
               <Link href="/" className="rounded-full border border-stone-300 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-stone-700">

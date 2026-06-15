@@ -11,10 +11,10 @@ export const headerMenuItems: MenuItem[] = [
 ];
 
 export const defaultFooterCta = {
-  eyebrow: "Krew Marketing · Dubai",
-  headline: "Let's build something",
-  headlineAccent: "that performs.",
-  label: "Start a project",
+  eyebrow: "Gaila · Dubai",
+  headline: "Let's create something",
+  headlineAccent: "unforgettable.",
+  label: "Plan your event",
   href: "/contact",
   visible: true,
 } as const;
@@ -22,11 +22,11 @@ export const defaultFooterCta = {
 export const footerMenuItems: MenuItem[] = [
   { label: "About", href: "/about", order: 0, visible: true },
   { label: "Blog", href: "/blog", order: 1, visible: true },
-  { label: "SEO Dubai", href: "/services/seo-dubai", order: 2, visible: true },
-  { label: "Performance Marketing", href: "/services/paid-media", order: 3, visible: true },
-  { label: "Social Media", href: "/services/social-media", order: 4, visible: true },
-  { label: "Video Production", href: "/services/video-production", order: 5, visible: true },
-  { label: "Brand & Creative", href: "/services/brand-creative", order: 6, visible: true },
+  { label: "Corporate Events", href: "/services/seo-dubai", order: 2, visible: true },
+  { label: "Conferences & Summits", href: "/services/paid-media", order: 3, visible: true },
+  { label: "Weddings & Celebrations", href: "/services/social-media", order: 4, visible: true },
+  { label: "Event Production & AV", href: "/services/video-production", order: 5, visible: true },
+  { label: "Creative Direction & Décor", href: "/services/brand-creative", order: 6, visible: true },
   { label: "Contact", href: "/contact", order: 7, visible: true },
 ];
 
@@ -36,409 +36,413 @@ const IMG = {
   heroDubai:
     "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=2400&q=80",
   studioTeam:
-    "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1800&q=80",
-  seo:
-    "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1800&q=80",
-  performance:
-    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1800&q=80",
-  social:
-    "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=1800&q=80",
-  brand:
-    "https://images.unsplash.com/photo-1611605698335-8b1569810432?auto=format&fit=crop&w=1800&q=80",
-  video:
-    "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1800&q=80",
-  beauty:
-    "https://images.unsplash.com/photo-1522335789203-aaa0e7d04a96?auto=format&fit=crop&w=1800&q=80",
-  car:
-    "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1800&q=80",
+    "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1800&q=80",
+  corporate:
+    "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1800&q=80",
+  conference:
+    "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1800&q=80",
+  wedding:
+    "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80",
+  decor:
+    "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1800&q=80",
+  production:
+    "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1800&q=80",
+  gala:
+    "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1800&q=80",
+  summit:
+    "https://images.unsplash.com/photo-1505373877841-8d25f7d4666e?auto=format&fit=crop&w=1800&q=80",
   yacht:
     "https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?auto=format&fit=crop&w=1800&q=80",
   cafe:
     "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1800&q=80",
   flowers:
-    "https://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=1800&q=80",
+    "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1800&q=80",
   hospitality:
     "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1800&q=80",
+  venue:
+    "https://images.unsplash.com/photo-1566073771569-1067f85f0c4e?auto=format&fit=crop&w=1800&q=80",
+  experiential:
+    "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=1800&q=80",
 } as const;
 
 export const services = [
   {
     kind: "service",
-    title: "SEO & AI Search",
+    title: "Corporate Events",
     slug: "seo-dubai",
     excerpt:
-      "Most businesses in Dubai are invisible on Google. Not because their product is wrong — but because their SEO strategy is. As a trusted SEO agency in Dubai, Krew Marketing builds search visibility that compounds over time, turning your website into your most valuable sales asset.",
+      "Most corporate events in Dubai fail to deliver on their brief — not because the venue was wrong, but because the planning, production, and guest experience were treated as separate problems. As a trusted corporate events company in Dubai, Gaila designs end-to-end experiences that reflect your brand, engage your audience, and achieve measurable business outcomes.",
     body:
-      "Krew Marketing delivers SEO services in Dubai built across technical SEO, on-page optimisation, local search, content strategy, and link building — with bilingual English and Arabic programmes, AI search optimisation, and transparent reporting tied to organic traffic and revenue.",
-    coverImage: IMG.seo,
-    tags: ["SEO", "AI Search", "Local SEO"],
+      "Gaila delivers corporate event management in Dubai across annual galas, product launches, leadership summits, award ceremonies, and client entertainment — with bilingual English and Arabic programmes, hybrid and in-person formats, and transparent reporting tied to attendance, engagement, and post-event follow-through.",
+    coverImage: IMG.corporate,
+    tags: ["Corporate Events", "Galas", "Product Launches"],
     status: "published",
     featured: true,
     metrics: [
-      { label: "Average organic growth in 6 months", value: "+184%" },
-      { label: "Technical audit depth", value: "140 checks" },
+      { label: "Corporate events delivered in 2025", value: "85+" },
+      { label: "Pre-event planning checklist", value: "120 items" },
     ],
     seo: {
-      title: "SEO Services Dubai | SEO Agency Dubai | Krew Marketing",
+      title: "Corporate Events Dubai | Corporate Event Management | Gaila",
       description:
-        "SEO services in Dubai that drive real organic growth — technical SEO, local search, bilingual strategy, AI search optimisation, and content built for long-term rankings.",
+        "Corporate event management in Dubai — galas, product launches, award ceremonies, and leadership events with end-to-end planning, production, and guest experience.",
     },
   },
   {
     kind: "service",
-    title: "Performance Marketing",
+    title: "Conferences & Summits",
     slug: "paid-media",
     excerpt:
-      "Performance marketing is a results-based approach to digital advertising where every campaign is measured against real business outcomes — leads generated, sales closed, revenue earned. Unlike traditional advertising, you only pay for what performs.",
+      "Conference and summit management is a results-driven discipline where every element — programme design, speaker logistics, registration, staging, and delegate experience — is measured against real outcomes. Unlike one-off gatherings, a well-run conference builds authority, generates leads, and compounds your brand's industry presence.",
     body:
-      "Krew runs full-funnel paid media for Dubai brands across Google Search & Shopping, Performance Max, Meta Advantage+, TikTok Spark Ads, LinkedIn ABM, YouTube, and programmatic retargeting. Every account starts with a tracking and attribution audit, then follows a structured 90-day test roadmap before we scale what works.",
-    coverImage: IMG.performance,
-    tags: ["Google Ads", "Meta Ads", "LinkedIn", "Performance Max"],
+      "Gaila plans and produces conferences and summits for Dubai and UAE organisations across multi-track programmes, keynote stages, exhibition zones, networking receptions, and hybrid streaming. Every engagement starts with a delegate journey audit, then follows a structured 90-day production roadmap before we scale registration, content, and sponsor activations.",
+    coverImage: IMG.conference,
+    tags: ["Conferences", "Summits", "Hybrid Events"],
     status: "published",
     featured: true,
     metrics: [
-      { label: "Median cost per qualified lead reduction", value: "-37%" },
-      { label: "Optimisation cadence", value: "Weekly" },
+      { label: "Average delegate satisfaction score", value: "4.8 / 5" },
+      { label: "Production cadence", value: "Weekly" },
     ],
     seo: {
-      title: "Performance Marketing & PPC Agency Dubai | Krew Marketing",
+      title: "Conference & Summit Management Dubai | Gaila",
       description:
-        "Plan and scale Google Ads, Meta, TikTok, and LinkedIn campaigns with a Dubai performance marketing agency focused on qualified leads.",
+        "Plan and deliver conferences and summits in Dubai with a team focused on programme design, delegate experience, hybrid streaming, and sponsor activations.",
     },
   },
   {
     kind: "service",
-    title: "Social Media Marketing",
+    title: "Weddings & Celebrations",
     slug: "social-media",
     excerpt:
-      "As a social media marketing agency in Dubai, Krew Marketing builds social presence that goes beyond likes and follower counts. We create content that earns attention, builds genuine brand affinity, and converts audiences into customers.",
+      "As a wedding and celebration planner in Dubai, Gaila creates events that go beyond décor and guest lists. We design experiences that honour your story, reflect your culture, and leave every guest with a memory they'll talk about for years.",
     body:
-      "Krew Marketing provides social media marketing services in Dubai designed to help businesses build meaningful connections with their audience while achieving measurable business objectives. From content planning and creative production to community management and paid social advertising, we help brands establish a strong presence across Instagram, Facebook, LinkedIn, TikTok, X, and other emerging platforms.",
-    coverImage: IMG.social,
-    tags: ["Instagram", "TikTok", "Reels", "Content"],
+      "Gaila provides wedding and celebration planning in Dubai designed to help couples and families create meaningful moments while managing every detail with precision. From venue selection and creative direction to vendor coordination, guest logistics, and day-of production, we help you establish a celebration that feels effortless — even when the planning behind it is anything but.",
+    coverImage: IMG.wedding,
+    tags: ["Weddings", "Engagements", "Celebrations"],
     status: "published",
     featured: true,
     metrics: [
-      { label: "Reels produced per month", value: "12 — 24" },
-      { label: "Average engagement lift", value: "+62%" },
+      { label: "Celebrations planned per year", value: "40 — 60" },
+      { label: "Average guest satisfaction", value: "98%" },
     ],
     seo: {
-      title: "Social Media Marketing Agency Dubai | Krew Marketing",
+      title: "Wedding Planner Dubai | Celebration Events | Gaila",
       description:
-        "Social media marketing agency in Dubai — strategy, content creation, community management, paid social, reels, and analytics that build brand affinity and drive conversions.",
+        "Wedding and celebration planning in Dubai — venue sourcing, creative direction, vendor coordination, and day-of production for unforgettable events.",
     },
   },
   {
     kind: "service",
-    title: "Video Production",
+    title: "Event Production & AV",
     slug: "video-production",
     excerpt:
-      "At Krew Marketing, we provide video production services in Dubai that combine strategic storytelling, creative direction, and high-quality production to create content that delivers measurable business results. From corporate films and commercial advertisements to social media content and brand documentaries, every project is designed to engage viewers and support your marketing objectives.",
+      "At Gaila, we provide event production and AV services in Dubai that combine technical precision, creative staging, and seamless execution to create experiences that deliver on every brief. From lighting and sound to LED walls, live streaming, and show calling, every element is designed to support your event objectives.",
     body:
-      "Video has become one of the most powerful tools for capturing attention, building trust, and influencing purchasing decisions. Whether you're launching a new product, promoting a service, or strengthening your brand identity, professionally produced video content helps communicate your message in a way that resonates with modern audiences.\n\nAt Krew Marketing, we provide video production services in Dubai that combine strategic storytelling, creative direction, and high-quality production to create content that delivers measurable business results. From corporate films and commercial advertisements to social media content and brand documentaries, every project is designed to engage viewers and support your marketing objectives.\n\nAs a trusted video production company in Dubai, we handle the entire production process—from concept development and scriptwriting to filming, editing, motion graphics, and final delivery. Our team creates content optimized for websites, social media platforms, digital advertising campaigns, and broadcast channels.",
-    coverImage: IMG.video,
-    tags: ["Brand Films", "Commercials", "Corporate Video", "Social Content"],
+      "Event production has become the backbone of every memorable gathering in Dubai. Whether you're hosting a 2,000-delegate summit, an intimate gala dinner, or a product launch with broadcast-quality streaming, professionally managed production ensures your message lands and your guests feel the difference.\n\nAt Gaila, we provide event production and AV services in Dubai that combine technical expertise, creative staging, and calm show-day execution. From rigging and lighting design to sound engineering, LED content, live streaming, and show calling, every project is built to run flawlessly under pressure.\n\nAs a trusted event production company in Dubai, we handle the entire technical scope — site surveys, CAD staging plans, equipment procurement, crew management, rehearsals, and live operation. Our team delivers production for ballrooms, outdoor venues, exhibition halls, and hybrid broadcast setups across the UAE.",
+    coverImage: IMG.production,
+    tags: ["AV Production", "Staging", "Live Streaming"],
     status: "published",
     featured: true,
     metrics: [
-      { label: "Shoot days delivered in 2025", value: "180+" },
-      { label: "Average campaign turnaround", value: "3 — 5 weeks" },
+      { label: "Production days delivered in 2025", value: "180+" },
+      { label: "Average show-day turnaround", value: "3 — 5 weeks" },
     ],
     seo: {
-      title: "Video Production Services Dubai | Krew Marketing",
+      title: "Event Production & AV Dubai | Gaila",
       description:
-        "Video production services in Dubai — corporate films, commercials, brand films, social content, event videography, and drone footage that delivers measurable business results.",
+        "Event production and AV services in Dubai — staging, lighting, sound, LED walls, live streaming, and show calling for conferences, galas, and launches.",
     },
   },
   {
     kind: "service",
-    title: "Brand & Creative Direction",
+    title: "Creative Direction & Décor",
     slug: "brand-creative",
     excerpt:
-      "Brand strategy, visual identity, messaging frameworks, and campaign creative that travels across every channel — built for ambitious Dubai brands.",
+      "Creative direction, spatial design, floral styling, and bespoke décor that transforms venues into immersive brand experiences — built for ambitious events in Dubai.",
     body:
-      "Krew leads brands through positioning, naming, visual identity, voice, and the creative system that holds everything together — campaign visuals, packaging, decks, social templates, and ad creative concepts. We help in-house teams stop relying on ad-hoc designers and start operating from a clear, documented brand system.\nDeliverables include strategy decks, brand guidelines, asset libraries, motion templates, and quarterly creative refreshes.",
-    coverImage: IMG.brand,
-    tags: ["Branding", "Identity", "Creative Direction"],
+      "Gaila leads events through concept development, mood boards, spatial design, floral styling, tablescapes, signage, and the creative system that holds everything together — entrance experiences, stage backdrops, photo moments, and branded touchpoints. We help in-house teams stop relying on generic rental packages and start operating from a clear, documented creative vision.\nDeliverables include concept decks, 3D renders, décor specifications, vendor briefs, and on-site creative supervision.",
+    coverImage: IMG.decor,
+    tags: ["Décor", "Creative Direction", "Spatial Design"],
     status: "published",
     featured: false,
     metrics: [
-      { label: "Brand sprint timeline", value: "4 — 6 weeks" },
-      { label: "Deliverables", value: "Guidelines + asset system" },
+      { label: "Creative concept timeline", value: "4 — 6 weeks" },
+      { label: "Deliverables", value: "Concept deck + 3D renders" },
     ],
     seo: {
-      title: "Brand & Creative Agency Dubai | Krew Marketing",
+      title: "Event Décor & Creative Direction Dubai | Gaila",
       description:
-        "Strategy-led brand identity, messaging, and creative direction for Dubai brands ready to look the part across every channel.",
+        "Creative direction and event décor in Dubai — spatial design, floral styling, and immersive brand experiences for galas, weddings, and corporate events.",
     },
   },
   {
     kind: "service",
-    title: "Web Design & Development",
+    title: "Venue Sourcing & Logistics",
     slug: "web-design",
     excerpt:
-      "Fast, SEO-ready Next.js and Webflow websites and landing pages designed to convert paid and organic traffic into real enquiries.",
+      "Strategic venue selection, contract negotiation, guest logistics, transport coordination, and run-of-show planning designed to make complex Dubai events feel effortless.",
     body:
-      "We design and build modern marketing sites with clear positioning, fast load times, strong SEO foundations, and a CMS marketing teams can manage without developers. Projects start with a positioning workshop, then move into UX flows, visual design, copywriting, build, QA, and a structured handover with documented content models and analytics.\nTypical builds: brand sites, product pages, multi-language sites (English / Arabic), and conversion-focused landing pages for paid campaigns.",
-    coverImage: IMG.studioTeam,
-    tags: ["Next.js", "Webflow", "Landing Pages", "CRO"],
+      "We source and secure venues across Dubai and the UAE with clear briefs, negotiated contracts, site visits, and contingency planning. Projects start with a requirements workshop, then move into venue shortlisting, technical site surveys, logistics mapping, vendor coordination, and a structured handover with documented run-of-show and guest journey plans.\nTypical scope: hotel ballrooms, outdoor desert venues, yacht charters, exhibition halls, and multi-venue programmes for regional roadshows.",
+    coverImage: IMG.venue,
+    tags: ["Venue Sourcing", "Logistics", "Run of Show"],
     status: "published",
     featured: false,
     metrics: [
-      { label: "Lighthouse performance target", value: "95+" },
-      { label: "Average lift in landing-page CVR", value: "+47%" },
+      { label: "Venue partners across UAE", value: "120+" },
+      { label: "Average logistics checklist items", value: "85+" },
     ],
     seo: {
-      title: "Web Design & Development Agency Dubai | Krew Marketing",
+      title: "Venue Sourcing & Event Logistics Dubai | Gaila",
       description:
-        "Design and build a fast, SEO-friendly website with a Dubai web design agency focused on brand, conversion, and CMS control.",
+        "Venue sourcing and event logistics in Dubai — site selection, contract negotiation, guest transport, and run-of-show planning for complex events.",
     },
   },
   {
     kind: "service",
-    title: "Influencer Marketing",
+    title: "Experiential Activations",
     slug: "influencer-marketing",
     excerpt:
-      "Connect with trusted voices and relevant creators to increase brand awareness, build credibility, and reach highly engaged audiences through strategic influencer partnerships.",
+      "Design immersive brand activations, pop-ups, and guest experiences that create lasting impressions, drive social sharing, and connect audiences to your brand in memorable ways.",
     body:
-      "Krew designs influencer programmes for Dubai and GCC brands — creator sourcing, brief development, contract coordination, content approvals, and performance reporting tied to reach, engagement, and conversion actions.\nWe match brands with creators whose audiences align with your category, run bilingual campaigns where needed, and integrate influencer content into paid social and organic channels for compounding reach.",
-    coverImage: IMG.social,
-    tags: ["Creators", "Partnerships", "UGC", "Campaigns"],
+      "Gaila designs experiential activations for Dubai and GCC brands — concept development, spatial build, interactive elements, staffing, content capture, and performance reporting tied to footfall, dwell time, and social amplification.\nWe match activations to your audience and venue, run bilingual experiences where needed, and integrate photo moments, sampling stations, and digital touchpoints for compounding reach.",
+    coverImage: IMG.experiential,
+    tags: ["Activations", "Pop-ups", "Brand Experiences"],
     status: "published",
     featured: false,
     metrics: [
-      { label: "Creator vetting criteria", value: "12-point scorecard" },
-      { label: "Campaign reporting cadence", value: "Weekly" },
+      { label: "Activation design criteria", value: "12-point scorecard" },
+      { label: "On-site reporting cadence", value: "Real-time" },
     ],
     seo: {
-      title: "Influencer Marketing Agency Dubai | Krew Marketing",
+      title: "Experiential Event Activations Dubai | Gaila",
       description:
-        "Strategic influencer marketing in Dubai — creator partnerships, branded content, and campaigns that build credibility and reach engaged audiences.",
+        "Experiential activations in Dubai — immersive brand experiences, pop-ups, and guest engagement designed to create lasting impressions and social reach.",
     },
   },
   {
     kind: "service",
-    title: "Public Relations (PR)",
+    title: "Event Strategy & Consulting",
     slug: "public-relations",
     excerpt:
-      "Strengthen your brand reputation through strategic media outreach, press coverage, corporate communications, brand storytelling, and public relations campaigns.",
+      "Strengthen your event programme through strategic planning, stakeholder alignment, budget modelling, vendor frameworks, and consulting that turns ambition into executable plans.",
     body:
-      "Our PR team supports Dubai brands with media relations, press releases, executive profiling, launch communications, and ongoing reputation management across English and Arabic media.\nWe build journalist relationships, craft newsworthy narratives, coordinate interviews and features, and align PR moments with your wider marketing calendar — launches, awards, partnerships, and thought leadership.",
+      "Our consulting team supports Dubai organisations with event strategy, programme design, budget modelling, RFP development, vendor selection frameworks, and ongoing event governance across English and Arabic stakeholder groups.\nWe build event roadmaps, craft compelling briefs, coordinate executive alignment, and align event moments with your wider business calendar — product launches, award ceremonies, partner summits, and annual galas.",
     coverImage: IMG.hospitality,
-    tags: ["Media Relations", "Press", "Communications", "Storytelling"],
+    tags: ["Strategy", "Consulting", "Programme Design"],
     status: "published",
     featured: false,
     metrics: [
-      { label: "Typical launch window", value: "4 — 6 weeks" },
+      { label: "Typical strategy engagement", value: "4 — 6 weeks" },
       { label: "Markets", value: "UAE · GCC" },
     ],
     seo: {
-      title: "Public Relations Agency Dubai | Krew Marketing",
+      title: "Event Strategy & Consulting Dubai | Gaila",
       description:
-        "Dubai PR agency for media outreach, press coverage, corporate communications, and brand storytelling for UAE and GCC brands.",
+        "Event strategy and consulting in Dubai — programme design, budget modelling, vendor frameworks, and governance for UAE and GCC organisations.",
     },
   },
 ] satisfies Partial<ContentRecord>[];
 
 export const servicesOverviewCards = [
   {
-    title: "Performance Marketing",
+    title: "Conferences & Summits",
     description:
-      "Data-driven advertising campaigns designed to maximize return on investment, generate qualified leads, and accelerate business growth across Google, Meta, LinkedIn, TikTok, and other leading platforms.",
+      "End-to-end conference and summit management designed to maximise delegate experience, sponsor value, and industry authority across Dubai and the wider UAE.",
     href: "/services/paid-media",
-    ctaLabel: "Explore Performance Marketing →",
-    image: IMG.performance,
+    ctaLabel: "Explore Conferences & Summits →",
+    image: IMG.conference,
   },
   {
-    title: "SEO",
+    title: "Corporate Events",
     description:
-      "Improve your search visibility, increase organic traffic, and attract customers actively searching for your products and services through strategic SEO solutions.",
+      "Plan and deliver corporate galas, product launches, award ceremonies, and leadership events that reflect your brand and achieve measurable business outcomes.",
     href: "/services/seo-dubai",
-    ctaLabel: "Explore SEO Services →",
-    image: IMG.seo,
+    ctaLabel: "Explore Corporate Events →",
+    image: IMG.corporate,
   },
   {
-    title: "Social Media",
+    title: "Weddings & Celebrations",
     description:
-      "Build meaningful customer relationships through creative content, platform-specific strategies, community management, and growth-focused social media campaigns.",
+      "Create unforgettable weddings and celebrations through creative direction, vendor coordination, guest logistics, and flawless day-of production.",
     href: "/services/social-media",
-    ctaLabel: "Explore Social Media Marketing →",
-    image: IMG.social,
+    ctaLabel: "Explore Weddings & Celebrations →",
+    image: IMG.wedding,
   },
   {
-    title: "Videography",
+    title: "Event Production & AV",
     description:
-      "Create powerful visual content that captures attention, strengthens brand identity, and engages audiences across websites, social media, advertising campaigns, and digital platforms.",
+      "Deliver technical excellence through staging, lighting, sound, LED walls, live streaming, and show calling for events of every scale across Dubai.",
     href: "/services/video-production",
-    ctaLabel: "Explore Videography Services →",
-    image: IMG.video,
+    ctaLabel: "Explore Event Production →",
+    image: IMG.production,
   },
   {
-    title: "Influencer Marketing",
+    title: "Experiential Activations",
     description:
-      "Connect with trusted voices and relevant creators to increase brand awareness, build credibility, and reach highly engaged audiences through strategic influencer partnerships.",
+      "Design immersive brand activations and pop-up experiences that create lasting impressions, drive engagement, and amplify your event across social channels.",
     href: "/services/influencer-marketing",
-    ctaLabel: "Explore Influencer Marketing →",
-    image: IMG.social,
+    ctaLabel: "Explore Experiential Activations →",
+    image: IMG.experiential,
   },
   {
-    title: "PR",
+    title: "Event Strategy & Consulting",
     description:
-      "Strengthen your brand reputation through strategic media outreach, press coverage, corporate communications, brand storytelling, and public relations campaigns.",
+      "Build a strategic event programme through planning frameworks, budget modelling, vendor selection, and consulting that turns ambition into executable plans.",
     href: "/services/public-relations",
-    ctaLabel: "Explore Public Relations Services →",
+    ctaLabel: "Explore Event Strategy →",
     image: IMG.hospitality,
   },
   {
-    title: "Branding",
+    title: "Creative Direction & Décor",
     description:
-      "Develop a distinctive brand identity, messaging framework, and creative direction that helps your business stand out in a competitive marketplace.",
+      "Transform venues with bespoke décor, spatial design, floral styling, and creative direction that makes every event feel distinctly yours.",
     href: "/services/brand-creative",
-    ctaLabel: "Explore Branding Services →",
-    image: IMG.brand,
+    ctaLabel: "Explore Creative Direction →",
+    image: IMG.decor,
   },
   {
-    title: "Web Development",
+    title: "Venue Sourcing & Logistics",
     description:
-      "Build fast, responsive, and conversion-focused websites designed to create exceptional user experiences and support business growth.",
+      "Secure the right venue and manage complex logistics — guest transport, run-of-show, vendor coordination, and on-site operations across the UAE.",
     href: "/services/web-design",
-    ctaLabel: "Explore Web Development Services →",
-    image: IMG.studioTeam,
+    ctaLabel: "Explore Venue & Logistics →",
+    image: IMG.venue,
   },
 ] as const;
 
 export const caseStudies = [
   {
     kind: "caseStudy",
-    title: "Fenty Beauty — E-commerce & brand visibility uplift",
+    title: "Fenty Beauty — Dubai product launch gala",
     slug: "fenty-beauty",
     excerpt:
-      "Brand videography and commercial photography that matched Fenty Beauty's dynamic energy — 120% engagement lift and 200% click-through rate on product launch.",
+      "A premium product launch gala for Fenty Beauty in Dubai — immersive décor, live staging, and guest experience design that delivered 120% social engagement lift and sold-out attendance.",
     body:
-      "Fenty Beauty has redefined beauty standards with its commitment to inclusivity, innovation, and vibrancy. Known for its wide-range foundation shades, bold colour cosmetics, and strong visual identity, Fenty needed creative content that matched its dynamic energy and upheld its high visual expectations.\nThe challenge: highlight product textures, shades, and packaging in high definition to help customers make informed choices online; create visually engaging assets for both digital campaigns and social media; maintain brand consistency across all touchpoints; and increase audience engagement and shareability via dynamic visual storytelling.\nOur solution combined studio-grade photography (capturing lip glosses, highlighters, and blushes with sharp contrast and Fenty's signature bold colour backdrops) with motion-led brand videography that played natively across feed, reels, and product detail pages. The result was a 120% engagement-rate lift, a 200% click-through rate on the featured product launch, and a 75% increase in social shares and reposts.",
-    coverImage: IMG.beauty,
-    tags: ["Beauty", "Brand Videography", "Photography"],
+      "Fenty Beauty has redefined beauty standards with its commitment to inclusivity, innovation, and vibrancy. Known for its wide-range foundation shades, bold colour cosmetics, and strong visual identity, Fenty needed a launch event in Dubai that matched its dynamic energy and upheld its high visual expectations.\nThe challenge: create an immersive guest experience that showcased product textures, shades, and packaging in a way that felt editorial, not promotional; design a venue transformation that photographed beautifully for social and press; maintain brand consistency across every touchpoint from invitation to farewell gift; and drive attendance and shareability through a guest journey built for content capture.\nOur solution combined bespoke spatial design (bold colour backdrops, product display moments, and a runway-style reveal) with live staging, DJ programming, and a content capture team embedded throughout the evening. The result was a 120% engagement-rate lift on launch content, sold-out attendance within 48 hours of invitations, and a 75% increase in social shares and reposts from guest-generated content.",
+    coverImage: IMG.gala,
+    tags: ["Product Launch", "Gala", "Brand Experience"],
     status: "published",
     featured: true,
     metrics: [
-      { label: "Engagement rate", value: "+120%" },
-      { label: "Click-through on launch", value: "+200%" },
-      { label: "Social shares / reposts", value: "+75%" },
+      { label: "Social engagement rate", value: "+120%" },
+      { label: "Ticket sell-through", value: "100%" },
+      { label: "Guest content shares", value: "+75%" },
     ],
     seo: {
-      title: "Fenty Beauty Dubai Campaign Case Study | Krew Marketing",
+      title: "Fenty Beauty Dubai Launch Gala Case Study | Gaila",
       description:
-        "Brand videography and commercial photography for Fenty Beauty — 120% engagement lift and 200% click-through rate on product launch.",
+        "Product launch gala for Fenty Beauty in Dubai — immersive décor, live staging, and guest experience design with 120% social engagement lift.",
     },
   },
   {
     kind: "caseStudy",
-    title: "Ford Middle East — Always-on digital storytelling",
+    title: "Ford Middle East — Annual dealer summit",
     slug: "ford-middleeast",
     excerpt:
-      "An always-on social and brand-film programme for Ford Middle East across UAE, KSA, and the wider GCC — built around model launches and regional moments.",
+      "A multi-day dealer summit for Ford Middle East across UAE, KSA, and the wider GCC — built around model reveals, leadership sessions, and regional networking.",
     body:
-      "Ford Middle East needed an always-on content engine across UAE, KSA, and the wider GCC — connecting model launches, dealer activations, and cultural moments into one consistent brand story.\nKrew operated as Ford's content partner: shooting commercial film on every new model arrival, building social-first cutdowns for Instagram and TikTok, producing localised Arabic and English creative for each campaign, and maintaining a content calendar tied to regional moments (Ramadan, National Day, off-roading season). Performance was tracked in a shared dashboard alongside dealer leads, configurator interactions, and brand-search lift.\nThe outcome: a steady cadence of premium content with consistent regional voice, lifts in qualified configurator sessions, and a creative system the in-house team could brief against quickly.",
-    coverImage: IMG.car,
-    tags: ["Automotive", "Brand Film", "Social", "GCC"],
+      "Ford Middle East needed an annual summit that connected dealers, leadership, and regional partners across UAE, KSA, and the wider GCC — weaving model reveals, training sessions, and cultural moments into one cohesive programme.\nGaila operated as Ford's event partner: producing the main stage for every new model reveal, building breakout sessions for sales and aftersales teams, coordinating bilingual Arabic and English programming for each market, and maintaining a production calendar tied to regional moments (Ramadan, National Day, off-roading season). Success was measured through delegate satisfaction scores, post-event sales pipeline, and dealer engagement metrics.\nThe outcome: a premium summit experience with consistent regional voice, measurable lifts in dealer engagement, and a production system the in-house team could brief against for the following year.",
+    coverImage: IMG.summit,
+    tags: ["Summit", "Automotive", "Multi-day", "GCC"],
     status: "published",
     featured: true,
     metrics: [
-      { label: "Campaigns shipped / year", value: "24+" },
+      { label: "Summits delivered / year", value: "3+" },
       { label: "Markets covered", value: "GCC" },
     ],
     seo: {
-      title: "Ford Middle East Marketing Case Study | Krew Marketing",
+      title: "Ford Middle East Summit Case Study | Gaila",
       description:
-        "Always-on social, video, and commercial photography for Ford Middle East — bilingual creative built around model launches and regional moments.",
+        "Annual dealer summit for Ford Middle East — multi-day programming, model reveals, and bilingual production across the GCC.",
     },
   },
   {
     kind: "caseStudy",
-    title: "Oberoi Yachts — Luxury launch campaign",
+    title: "Oberoi Yachts — Luxury charter launch event",
     slug: "oberoi-yachts",
     excerpt:
-      "A luxury launch campaign for Oberoi Yachts — cinematic brand film, lifestyle photography, and a high-intent paid funnel into qualified charter enquiries.",
+      "A luxury launch event for Oberoi Yachts — waterfront staging, lifestyle experience design, and an invitation-only evening that converted high-net-worth guests into charter enquiries.",
     body:
-      "Oberoi Yachts needed a campaign that matched the calibre of the product — a fleet of luxury charters serving Dubai's high-net-worth and inbound luxury market.\nKrew produced a cinematic brand film shot on water, lifestyle photography across the fleet, and a tightly built paid funnel: Meta Advantage+ creative variants for English and Arabic UHNW audiences, Google search on high-intent yacht-charter queries, and a landing-page system tied to a same-day broker response.\nThe campaign delivered a steady stream of qualified charter enquiries during the peak season, with a sharper brand presentation in feed and a creative library the team has reused across follow-up activations.",
+      "Oberoi Yachts needed an event that matched the calibre of the product — a fleet of luxury charters serving Dubai's high-net-worth and inbound luxury market.\nGaila produced a waterfront launch evening with live yacht tours, curated dining on the marina, ambient staging across the fleet, and a tightly managed guest list: personalised invitations for English and Arabic UHNW audiences, valet and concierge logistics, and a same-day broker follow-up system for every qualified enquiry.\nThe event delivered a steady stream of charter enquiries during the peak season, with a sharper brand presentation on the night and a creative and logistics playbook the team has reused across follow-up activations.",
     coverImage: IMG.yacht,
-    tags: ["Luxury", "Brand Film", "Paid Media"],
+    tags: ["Luxury", "Launch Event", "Waterfront"],
     status: "published",
     featured: true,
     metrics: [
       { label: "Qualified charter enquiries", value: "+58%" },
-      { label: "Average lead response", value: "Same day" },
+      { label: "Average guest follow-up", value: "Same day" },
     ],
     seo: {
-      title: "Oberoi Yachts Luxury Campaign Case Study | Krew Marketing",
+      title: "Oberoi Yachts Launch Event Case Study | Gaila",
       description:
-        "A luxury launch campaign for Oberoi Yachts — cinematic brand film, lifestyle photography, and a paid funnel into qualified charter enquiries.",
+        "Luxury charter launch event for Oberoi Yachts — waterfront staging, curated guest experience, and qualified enquiry conversion.",
     },
   },
   {
     kind: "caseStudy",
-    title: "8th Café — Neighbourhood social presence",
+    title: "8th Café — Grand opening celebration",
     slug: "8th-cafe",
     excerpt:
-      "A neighbourhood-led social and content programme for 8th Café — bilingual Reels, photography, and weekly editorial that turned scrolls into footfall.",
+      "A neighbourhood grand opening for 8th Café — editorial décor, live music programming, and a guest experience that turned invitations into a queue around the block.",
     body:
-      "8th Café wanted a social presence that reflected the brand experience inside the café — minimal, editorial, and rooted in the neighbourhood.\nKrew built a monthly content system: a weekly photography day on-site, three to five Reels per week with native Arabic and English captions, an editorial calendar tied to seasonal menus, and a community-management workflow with sub-2-hour reply times.\nWithin three months, weekday footfall lifted noticeably, content output was steady, and the brand finally had a library of high-quality assets it could reuse across delivery platforms, paid social, and partnerships.",
+      "8th Café wanted an opening celebration that reflected the brand experience inside the café — minimal, editorial, and rooted in the neighbourhood.\nGaila built the full opening programme: spatial design and floral styling on-site, a live acoustic set and DJ handover, an invitation list tied to local influencers and regulars, and a community-management workflow with personalised RSVP follow-ups.\nWithin the opening weekend, footfall exceeded projections, the event generated a library of high-quality content for social and press, and the brand had a reusable template for future location openings.",
     coverImage: IMG.cafe,
-    tags: ["F&B", "Social", "Photography"],
+    tags: ["F&B", "Grand Opening", "Community"],
     status: "published",
     featured: false,
     metrics: [
-      { label: "Weekly Reels shipped", value: "3 — 5" },
-      { label: "Reply SLA", value: "< 2 hours" },
+      { label: "Opening weekend footfall", value: "+140%" },
+      { label: "RSVP response rate", value: "92%" },
     ],
     seo: {
-      title: "8th Café Social Case Study | Krew Marketing",
+      title: "8th Café Grand Opening Case Study | Gaila",
       description:
-        "A neighbourhood-led social and content programme for 8th Café — bilingual Reels, photography, and weekly editorial that drove footfall.",
+        "Grand opening celebration for 8th Café — editorial décor, live programming, and a guest experience that drove neighbourhood footfall.",
     },
   },
   {
     kind: "caseStudy",
-    title: "Baaqat Flowers — Performance + creative system",
+    title: "Baaqat Flowers — Seasonal wedding showcase",
     slug: "baaqat-flowers",
     excerpt:
-      "A creative and performance system for Baaqat Flowers — premium photography, seasonal campaign assets, and a paid funnel that scales for every occasion.",
+      "A creative wedding showcase for Baaqat Flowers — premium floral installations, seasonal tablescapes, and an open-day event that scaled bookings for every occasion.",
     body:
-      "Baaqat Flowers needed creative and performance working together: premium photography that reflected the brand, modular campaign assets for major occasions (Valentine's, Mother's Day, Eid, weddings), and a paid funnel that scaled cleanly without the creative breaking down.\nKrew rebuilt the asset system around a single brand look, shot seasonal collections in dedicated production days, and structured the Meta and Google accounts around occasion-driven campaigns with creative variants for English, Arabic, and UAE-resident vs. inbound audiences. A real-time stock check fed into ad serving so out-of-stock SKUs paused automatically.\nThe outcome was steadier sales across major occasions, a sharper brand presentation, and a creative library the team can deploy without bottlenecks.",
+      "Baaqat Flowers needed creative and logistics working together: premium floral installations that reflected the brand, modular showcase setups for major occasions (Valentine's, Mother's Day, Eid, weddings), and an open-day event that converted walk-ins into confirmed bookings.\nGaila rebuilt the showcase concept around a single brand look, installed seasonal collections across three styled vignettes, and structured the guest journey around consultation stations with bilingual hosts for English, Arabic, and UAE-resident vs. inbound audiences. Real-time booking slots fed into a CRM so follow-ups happened within 24 hours.\nThe outcome was steadier bookings across major occasions, a sharper brand presentation, and a showcase format the team can deploy without production bottlenecks.",
     coverImage: IMG.flowers,
-    tags: ["E-commerce", "Performance", "Creative System"],
+    tags: ["Wedding Showcase", "Floral", "Open Day"],
     status: "published",
     featured: false,
     metrics: [
-      { label: "Major-occasion ROAS", value: "+44%" },
-      { label: "Creative variants per occasion", value: "12+" },
+      { label: "Booking conversion at showcase", value: "+44%" },
+      { label: "Styled vignettes per event", value: "12+" },
     ],
     seo: {
-      title: "Baaqat Flowers Performance Case Study | Krew Marketing",
+      title: "Baaqat Flowers Wedding Showcase Case Study | Gaila",
       description:
-        "A creative and performance system for Baaqat Flowers — seasonal photography, occasion-driven paid media, and a scalable creative library.",
+        "Seasonal wedding showcase for Baaqat Flowers — floral installations, styled vignettes, and an open-day event that scaled bookings.",
     },
   },
   {
     kind: "caseStudy",
-    title: "Hospitality Group — 3.2x ROAS across 5 restaurants",
+    title: "Hospitality Group — Multi-venue gala series",
     slug: "hospitality-group-paid-social",
     excerpt:
-      "A multi-concept Dubai hospitality group rebuilt their paid social and reservation funnel — 3.2x ROAS and a 41% lift in weeknight covers across 5 venues.",
+      "A multi-concept Dubai hospitality group rebuilt their annual gala programme — 3.2x sponsor ROI and a 41% lift in post-event reservations across 5 venues.",
     body:
-      "A multi-concept hospitality group operating five venues in DIFC, JBR, and Dubai Marina was struggling with declining weeknight covers. Each restaurant was running siloed campaigns, with creative produced by separate freelancers and reservations tracked by hand.\nKrew became their fractional growth team. We consolidated paid social under one Meta account structure, built a creative system shared across the five brands, and tied the reservation system (SevenRooms) into GA4 and Meta via server-side events.\nWithin 90 days, blended ROAS reached 3.2x, weeknight covers were up 41% across the group, and the leadership team finally had a single dashboard showing covers, average spend per cover, and channel contribution by location.",
+      "A multi-concept hospitality group operating five venues in DIFC, JBR, and Dubai Marina was struggling with declining attendance at their annual partner galas. Each restaurant was running siloed events, with décor and production handled by separate vendors and reservations tracked by hand.\nGaila became their fractional events team. We consolidated the gala programme under one creative system, built a shared production framework across the five brands, and tied the reservation pipeline into a single post-event follow-up workflow.\nWithin one gala season, sponsor ROI reached 3.2x, post-event reservations were up 41% across the group, and the leadership team finally had a single dashboard showing attendance, average spend per guest, and venue contribution by location.",
     coverImage: IMG.hospitality,
-    tags: ["Hospitality", "Meta Ads", "Server-side Tagging", "Creative"],
+    tags: ["Hospitality", "Gala", "Multi-venue"],
     status: "published",
     featured: true,
     metrics: [
-      { label: "Blended ROAS", value: "3.2x" },
-      { label: "Weeknight covers", value: "+41%" },
+      { label: "Sponsor ROI", value: "3.2x" },
+      { label: "Post-event reservations", value: "+41%" },
     ],
     seo: {
-      title: "Dubai Hospitality Group Marketing Case Study | Krew Marketing",
+      title: "Dubai Hospitality Group Gala Case Study | Gaila",
       description:
-        "A Dubai hospitality group rebuilt their paid social and reservation funnel — 3.2x ROAS and 41% weeknight covers lift across 5 restaurants.",
+        "Multi-venue gala series for a Dubai hospitality group — 3.2x sponsor ROI and 41% lift in post-event reservations across 5 restaurants.",
     },
   },
 ] satisfies Partial<ContentRecord>[];
@@ -446,74 +450,74 @@ export const caseStudies = [
 export const blogPosts = [
   {
     kind: "blog",
-    title: "The role of email marketing in Dubai's luxury brand industry",
+    title: "Planning corporate events in Dubai: what luxury brands get right",
     slug: "email-marketing-dubai-luxury",
     excerpt:
-      "In a market this competitive, email remains one of the highest-ROI channels for Dubai luxury brands — when the list, segmentation, and creative are right.",
+      "In a market this competitive, corporate events remain one of the highest-impact channels for Dubai luxury brands — when the brief, guest list, and experience design are right.",
     body:
-      "Dubai's luxury landscape is unlike anywhere else: a high-spend, multi-cultural audience moving constantly between brands, platforms, and languages. In that environment, email marketing remains one of the highest-ROI channels for luxury brands willing to invest in list quality, segmentation, and creative.\nFour areas matter most:\n• List quality — Dubai's luxury audience is segmented by spend tier, language preference (Arabic vs. English vs. multilingual), and travel patterns. A 5,000-subscriber list segmented well will out-earn a 50,000-subscriber list of cold acquisitions.\n• Segmentation that reflects behaviour — VIP buyers should not see the same campaigns as new browsers. Build flows around purchase tier, recency, category interest, and language.\n• Creative that respects the brand — emails should look like the brand, not the email platform's template gallery. Custom typography, editorial photography, motion, and considered Arabic copy.\n• Measurement — a clean revenue dashboard tied to LTV and channel contribution, not just open rates.\nLuxury brands that run email properly in Dubai consistently see it as a top-3 revenue channel. The ones that don't usually have a $50/month tool collecting first names.",
-    coverImage: IMG.brand,
-    tags: ["Email", "Luxury", "Dubai"],
+      "Dubai's luxury landscape is unlike anywhere else: a high-spend, multi-cultural audience moving constantly between brands, venues, and languages. In that environment, corporate events remain one of the highest-impact channels for luxury brands willing to invest in guest curation, experience design, and follow-through.\nFour areas matter most:\n• Guest list quality — Dubai's luxury audience is segmented by spend tier, language preference (Arabic vs. English vs. multilingual), and industry influence. A 200-guest list curated well will out-perform a 2,000-person invitation blast.\n• Experience design that reflects the brand — VIP guests should not see the same programme as general attendees. Build journeys around tier, interest, and language.\n• Production that respects the brand — events should look and feel like the brand, not a generic hotel ballroom package. Custom typography, editorial florals, ambient lighting, and considered Arabic copy.\n• Measurement — a clean post-event dashboard tied to pipeline, partnerships, and media coverage, not just attendance numbers.\nLuxury brands that run corporate events properly in Dubai consistently see them as a top-3 relationship channel. The ones that don't usually have a venue coordinator and a spreadsheet.",
+    coverImage: IMG.decor,
+    tags: ["Corporate Events", "Luxury", "Dubai"],
     status: "published",
     featured: true,
     seo: {
-      title: "Email Marketing for Dubai Luxury Brands | Krew Marketing",
+      title: "Corporate Events for Dubai Luxury Brands | Gaila",
       description:
-        "Why email remains one of the highest-ROI channels for Dubai luxury brands — list quality, segmentation, creative, and measurement done right.",
+        "Why corporate events remain one of the highest-impact channels for Dubai luxury brands — guest curation, experience design, and follow-through done right.",
     },
   },
   {
     kind: "blog",
-    title: "Why Dubai is the hotspot for social media innovation in the Middle East",
+    title: "Why Dubai is the Middle East's most dynamic event destination",
     slug: "dubai-social-media-innovation",
     excerpt:
-      "Dubai's blend of audience, infrastructure, and ambition has quietly made it the Middle East's most interesting social media market.",
+      "Dubai's blend of venues, infrastructure, and ambition has quietly made it the Middle East's most interesting event market.",
     body:
-      "If you spend any time inside Dubai's marketing scene, you notice it quickly: the city has become the most experimental social market in the Middle East. Brands are testing formats here months before the rest of the region picks them up, and the audience expectations have moved with them.\nThree forces drive it.\nFirst, the audience: Dubai's residents and inbound visitors come from across the world, fluent in multiple platform cultures. Content has to perform across feeds shaped by GCC nationals, expats, and international travellers, often within the same campaign.\nSecond, the infrastructure: production crews, talent agencies, post-production studios, and creator networks are all concentrated within a 30-minute drive. A brand can move from concept to shipped Reel in days rather than weeks.\nThird, the ambition: leadership teams in Dubai are willing to test. They expect to see results inside a quarter, but they're willing to fund proper creative experimentation to get there.\nThe practical implication for brands: if it's working in Dubai, it will scale across the GCC. If it's not working in Dubai, the rest of the region is unlikely to save it.",
-    coverImage: IMG.social,
-    tags: ["Social Media", "Dubai", "Middle East"],
+      "If you spend any time inside Dubai's events scene, you notice it quickly: the city has become the most ambitious event market in the Middle East. Organisers are testing formats here months before the rest of the region picks them up, and guest expectations have moved with them.\nThree forces drive it.\nFirst, the audience: Dubai's residents and inbound visitors come from across the world, fluent in multiple cultural codes. Events have to perform across guest lists shaped by GCC nationals, expats, and international travellers, often within the same evening.\nSecond, the infrastructure: world-class hotels, exhibition halls, production crews, caterers, and florists are all concentrated within a 30-minute drive. An organiser can move from concept to sold-out gala in weeks rather than months.\nThird, the ambition: leadership teams in Dubai are willing to invest. They expect flawless execution, but they're willing to fund proper creative and production to get there.\nThe practical implication for brands: if it's working in Dubai, it will scale across the GCC. If it's not working in Dubai, the rest of the region is unlikely to save it.",
+    coverImage: IMG.heroDubai,
+    tags: ["Events", "Dubai", "Middle East"],
     status: "published",
     featured: true,
     seo: {
-      title: "Why Dubai Leads Middle East Social Media | Krew Marketing",
+      title: "Why Dubai Leads Middle East Events | Gaila",
       description:
-        "Dubai's audience, infrastructure, and ambition combine to make it the Middle East's most interesting social media market. Here's what to learn from it.",
+        "Dubai's venues, infrastructure, and ambition combine to make it the Middle East's most dynamic event destination. Here's what to learn from it.",
     },
   },
   {
     kind: "blog",
-    title: "Google Ads vs. Facebook Ads: which PPC service in Dubai is right for you?",
+    title: "In-person vs. hybrid events: which format is right for your Dubai conference?",
     slug: "google-ads-vs-facebook-ads-dubai",
     excerpt:
-      "Google Ads and Facebook Ads serve different jobs in a Dubai brand's funnel. Here's how we think about the split for clients across the UAE.",
+      "In-person and hybrid events serve different jobs in a Dubai organisation's calendar. Here's how we think about the split for clients across the UAE.",
     body:
-      "We get the question constantly: should we put our paid budget into Google or Facebook? The honest answer is almost always both — but in different proportions, for different jobs.\nGoogle Ads captures active demand. People searching 'best Dubai aesthetics clinic', 'off-plan investment Business Bay', or 'corporate video Dubai' are already in market. Google's strength is intercepting that intent with the right offer and landing page.\nFacebook (Meta) Ads creates and qualifies demand. People scrolling Instagram and Facebook are not searching for you, but with the right creative and audience signal you can introduce the brand, demonstrate the offer, and warm up an audience for both search and direct-response conversion.\nIn most Dubai accounts we run, a healthy split looks like 50–65% Google for high-intent capture, 30–40% Meta for demand generation and remarketing, and a small but consistent 5–10% in newer channels (TikTok, LinkedIn for B2B, programmatic) to keep audience and creative testing alive.\nThe wrong question is 'Google vs. Meta'. The right question is: where is demand for this brand created, where is it captured, and is the funnel ready to convert it on both?",
-    coverImage: IMG.performance,
-    tags: ["Paid Search", "Meta Ads", "Strategy"],
+      "We get the question constantly: should we run our conference in-person or hybrid? The honest answer is almost always both — but in different proportions, for different objectives.\nIn-person events capture presence. Delegates in a ballroom at Atlantis or DWTC are fully immersed — networking happens naturally, sponsors get face time, and the energy of a live audience is irreplaceable.\nHybrid events extend reach. Delegates who cannot travel still participate through live streaming, virtual breakout rooms, and on-demand content — but the production investment is higher and the experience must be designed for two audiences simultaneously.\nIn most Dubai conferences we produce, a healthy approach looks like a fully in-person core programme with hybrid streaming for keynote sessions and sponsor content, plus on-demand replays for 30–60 days post-event. Pure virtual works for internal town halls; pure in-person works for relationship-driven galas.\nThe wrong question is 'in-person vs. hybrid'. The right question is: where is the value for this audience created, where is it extended, and is the production ready to serve both?",
+    coverImage: IMG.conference,
+    tags: ["Hybrid Events", "Conferences", "Strategy"],
     status: "published",
     featured: false,
     seo: {
-      title: "Google Ads vs Facebook Ads for Dubai Brands | Krew Marketing",
+      title: "In-Person vs Hybrid Events for Dubai Conferences | Gaila",
       description:
-        "How Krew Marketing thinks about the Google vs. Meta split for Dubai brands — where demand is created, where it's captured, and how to fund both.",
+        "How Gaila thinks about the in-person vs. hybrid split for Dubai conferences — where presence matters, where reach extends, and how to fund both.",
     },
   },
   {
     kind: "blog",
-    title: "Local SEO signals that actually move Dubai rankings",
+    title: "Venue selection signals that actually make Dubai events succeed",
     slug: "local-seo-signals-dubai",
     excerpt:
-      "Citations alone won't move the needle anymore. Here's what we see consistently driving local-pack and service-page rankings across Dubai and the UAE.",
+      "Capacity charts alone won't make an event succeed. Here's what we see consistently driving guest experience and operational success across Dubai venues.",
     body:
-      "Local SEO in Dubai has matured fast. The basics — claimed Google Business Profile, NAP consistency, a handful of citations — get you in the conversation. They don't get you ranked.\nWhat we see moving rankings across the city in 2026:\n• Service + location pages with real depth: pricing ranges, FAQs, schema, internal links, and bilingual copy. Thin location pages are now actively demoted.\n• Active review programmes on Google Business Profile with replies in the same language as the review.\n• Local content programmes — neighbourhood guides, comparison pages, and event coverage that genuinely help searchers.\n• Geo-modified anchor text earned through PR with UAE publishers, not bought through link networks.\n• Schema everywhere: LocalBusiness, FAQ, HowTo, Article, Product, plus consistent identifiers across the site.\nThe brands that take local SEO seriously in Dubai right now own multiple local-pack positions in their service area within six to nine months. The brands that don't are still arguing about which keyword to add to their meta title.",
-    coverImage: IMG.seo,
-    tags: ["SEO", "Local SEO"],
+      "Venue selection in Dubai has matured fast. The basics — capacity, location, catering package — get you in the conversation. They don't get you a flawless event.\nWhat we see driving success across the city in 2026:\n• Technical readiness: power, rigging points, load-in access, and AV infrastructure that match your production brief — not just a pretty ballroom photo.\n• Guest journey mapping: separate arrival, registration, main programme, networking, and departure flows that prevent bottlenecks.\n• Bilingual capability — signage, menus, and host teams fluent in English and Arabic for mixed guest lists.\n• Contingency planning — backup power, weather protocols for outdoor venues, and hold dates for critical vendors.\n• Contract clarity: cancellation terms, overtime charges, and exclusivity clauses documented before you sign.\nThe organisers that take venue selection seriously in Dubai right now deliver events that feel effortless to guests and manageable for production teams. The ones that don't are still arguing about whether the ballroom ceiling is high enough for the LED wall.",
+    coverImage: IMG.venue,
+    tags: ["Venue Selection", "Logistics"],
     status: "published",
     featured: false,
     seo: {
-      title: "Local SEO Dubai: Signals That Move Rankings | Krew Marketing",
+      title: "Venue Selection Dubai: What Actually Matters | Gaila",
       description:
-        "Which local SEO signals actually move Dubai rankings in 2026 — service pages, reviews, schema, and the new Google Business Profile playbook.",
+        "Which venue selection factors actually make Dubai events succeed in 2026 — technical readiness, guest journey, bilingual capability, and contract clarity.",
     },
   },
 ] satisfies Partial<ContentRecord>[];
@@ -531,18 +535,18 @@ export const homeSections: PageSection[] = [
     id: "hero-editorial",
     type: "heroEditorial",
     enabled: true,
-    eyebrow: "Creative digital agency · Dubai",
-    title: "Dubai's Creative Digital Marketing Agency | for Ambitious Brands",
+    eyebrow: "Event management · Dubai",
+    title: "Dubai's Event Management Company | for Ambitious Brands & Celebrations",
     subtitle:
-      "Krew Marketing is a creative digital marketing agency in Dubai combining strategy, brand identity, video production, and paid media into one performance-driven engine. Trusted by leading brands across the UAE to earn attention and deliver real revenue.",
+      "Gaila is an event management company in Dubai combining strategy, creative direction, production, and logistics into one seamless experience. Trusted by leading brands and families across the UAE to create events that guests remember and organisers trust.",
     settings: {
       video: "https://videos.pexels.com/video-files/3209828/3209828-uhd_3840_2160_25fps.mp4",
       poster: IMG.heroDubai,
       image: IMG.heroDubai,
       imageAlt: "Dubai skyline at golden hour",
-      ctaLabel: "Start a project",
+      ctaLabel: "Plan your event",
       ctaHref: "https://wa.me/971502827279",
-      secondaryCtaLabel: "Book a strategy call",
+      secondaryCtaLabel: "Request a proposal",
       secondaryCtaHref: "tel:+971502827279",
       categories: heroCategories,
     },
@@ -556,14 +560,14 @@ export const homeSections: PageSection[] = [
       items: [
         "Strategy",
         "Creative",
-        "Social",
-        "Digital",
         "Production",
-        "SEO & AI Search",
-        "Performance Marketing",
-        "Brand Films",
-        "Commercial Photography",
-        "Google Business Profile",
+        "Décor",
+        "Corporate Events",
+        "Conferences",
+        "Weddings",
+        "Galas",
+        "Experiential",
+        "Venue Sourcing",
       ],
     },
   },
@@ -572,22 +576,22 @@ export const homeSections: PageSection[] = [
     type: "servicesEditorial",
     enabled: true,
     eyebrow: "What we do",
-    title: "Five services. One accountable studio.",
+    title: "Eight services. One accountable team.",
     subtitle:
-      "Engage Krew for a single service or run the full creative and performance engine. Every engagement is led by a senior strategist with specialist practitioners on the work.",
+      "Engage Gaila for a single service or run the full event engine. Every engagement is led by a senior producer with specialist practitioners on the work.",
     settings: { limit: 6 },
   },
   {
     id: "stats",
     type: "statsBand",
     enabled: true,
-    title: "Senior strategy, sharp execution, clear reporting.",
+    title: "Senior strategy, flawless execution, clear reporting.",
     settings: {
       stats: [
-        { value: "120+", label: "Campaigns shipped across Dubai and the UAE" },
-        { value: "30+", label: "Active UAE clients across 6 industries" },
+        { value: "200+", label: "Events delivered across Dubai and the UAE" },
+        { value: "40+", label: "Active UAE clients across 6 industries" },
         { value: "5.0", label: "Average Google rating from clients" },
-        { value: "98%", label: "Client retention after the first quarter" },
+        { value: "98%", label: "Client retention after the first event" },
       ],
     },
   },
@@ -596,28 +600,28 @@ export const homeSections: PageSection[] = [
     type: "processSteps",
     enabled: true,
     eyebrow: "How we work",
-    title: "A Proven Process Built for Dubai's Competitive Market",
+    title: "A Proven Process Built for Dubai's Event Landscape",
     settings: {
       steps: [
         {
           title: "Discover",
-          text: "We start by auditing your current digital presence — SEO, social, paid media, website, and brand positioning. We identify gaps, missed opportunities, and quick wins tailored to your Dubai market.",
+          text: "We start by understanding your event objectives — audience, budget, venue constraints, and success metrics. We identify gaps, missed opportunities, and quick wins tailored to your Dubai market.",
         },
         {
           title: "Strategize",
-          text: "Our team crafts a custom roadmap aligned with your revenue goals — whether that's SEO rankings, lead generation, brand awareness, or market expansion across the UAE.",
+          text: "Our team crafts a custom event roadmap aligned with your goals — whether that's a corporate gala, a multi-day summit, a wedding celebration, or a product launch across the UAE.",
         },
         {
           title: "Execute",
-          text: "From performance marketing and content creation to branding and video production, we execute across all channels with precision, creativity, and full Arabic & English capability.",
+          text: "From creative direction and venue sourcing to production and day-of management, we execute every detail with precision, creativity, and full Arabic & English capability.",
         },
         {
           title: "Optimise",
-          text: "We monitor, test, and refine continuously. Weekly performance reviews, A/B testing, and data-driven adjustments ensure every dirham spent delivers maximum return.",
+          text: "We rehearse, refine, and stress-test continuously. Production walkthroughs, vendor confirmations, and contingency planning ensure every element is ready before guests arrive.",
         },
         {
           title: "Scale",
-          text: "Once we find what works, we scale it. More channels, bigger campaigns, stronger ROI — backed by the same senior team from day one.",
+          text: "Once we deliver one exceptional event, we help you scale the programme. Annual galas, recurring summits, multi-venue roadshows — backed by the same senior team from day one.",
         },
       ],
     },
@@ -627,7 +631,7 @@ export const homeSections: PageSection[] = [
     type: "caseStudyGrid",
     enabled: true,
     eyebrow: "Work that delivers",
-    title: "Campaigns engineered around outcomes.",
+    title: "Events engineered around outcomes.",
     subtitle:
       "Fenty Beauty, Ford Middle East, Oberoi Yachts, 8th Café and more — real brands, real numbers, not stock metrics.",
     settings: { categorySlug: "case-studies" },
@@ -636,10 +640,10 @@ export const homeSections: PageSection[] = [
     id: "client-quote",
     type: "quote",
     enabled: true,
-    eyebrow: "Studio note",
+    eyebrow: "Client note",
     settings: {
       quote:
-        "Krew rebuilt our tracking, our paid funnel, and our weeknight covers — without ever sending us another agency deck.",
+        "Gaila rebuilt our annual gala programme, our sponsor experience, and our post-event pipeline — without ever sending us another agency deck.",
       author: "Group Marketing Director",
       role: "Dubai hospitality group · 5 venues",
       image: IMG.cafe,
@@ -650,7 +654,7 @@ export const homeSections: PageSection[] = [
     type: "googleReviews",
     enabled: true,
     eyebrow: "Google reviews",
-    title: "What clients say after working with Krew.",
+    title: "What clients say after working with Gaila.",
     subtitle:
       "Unedited Google reviews from leadership teams across Dubai Marina, Downtown Dubai, Business Bay, JLT, and Dubai Internet City.",
     settings: {},
@@ -659,30 +663,30 @@ export const homeSections: PageSection[] = [
     id: "insights",
     type: "imageText",
     enabled: true,
-    eyebrow: "Creative agency · Dubai",
-    title: "Marketing that performs—not just impresses.",
+    eyebrow: "Event company · Dubai",
+    title: "Events that deliver—not just impress.",
     settings: {
       image: IMG.studioTeam,
-      imageAlt: "Krew Marketing creative team in Dubai",
+      imageAlt: "Gaila event team in Dubai",
       align: "right",
       body: [
-        "Most businesses in Dubai have an online presence. Few have a strategy that actually converts it into revenue. As a creative digital marketing agency in Dubai, that's the gap Krew Marketing was built to close.",
-        "We are a full-service creative agency in Dubai combining strategy, branding, content, and performance built for businesses that want marketing that actually performs, not just looks good.",
-        "We work with brands at every stage—startups finding their footing, established companies hitting a growth ceiling, and ambitious businesses ready to lead their category. Across retail, hospitality, real estate, finance, and beyond, we've helped brands across the UAE turn their digital presence into a genuine growth engine.",
-        "Our work spans SEO, performance marketing, advertising, social media, branding, content creation, and web design—but we never treat these as isolated services. Every channel is connected to a single goal: growing your business in a way that's sustainable, measurable, and built to scale.",
-        "Dubai's market is competitive. Audiences are sophisticated. And the brands winning online aren't the ones spending the most — they're the ones with the clearest strategy and sharpest execution. That's what we bring as a trusted advertising agency in Dubai.",
-        "If you're ready to stop guessing and start growing, you're in the right place.",
+        "Most organisations in Dubai host events. Few have a programme that actually moves the business forward. As an event management company in Dubai, that's the gap Gaila was built to close.",
+        "We are a full-service event company in Dubai combining strategy, creative direction, production, and logistics built for brands and families that want events that actually deliver, not just look good in photos.",
+        "We work with clients at every stage—startups hosting their first launch, established companies running annual galas, and ambitious families planning milestone celebrations. Across hospitality, automotive, luxury, F&B, and beyond, we've helped organisations across the UAE turn their events into genuine relationship and revenue engines.",
+        "Our work spans corporate events, conferences, weddings, production, décor, venue sourcing, and experiential activations — but we never treat these as isolated services. Every element is connected to a single goal: creating an event your guests remember and your team trusts to repeat.",
+        "Dubai's event market is competitive. Guest expectations are high. And the events winning attention aren't the ones with the biggest budgets — they're the ones with the clearest brief and sharpest execution. That's what we bring as a trusted event management company in Dubai.",
+        "If you're ready to stop guessing and start planning, you're in the right place.",
       ].join("\n\n"),
-      checklistTitle: "Why Businesses Choose Krew",
+      checklistTitle: "Why Clients Choose Gaila",
       bullets: [
-        "Strategy before tactics—always",
-        "Creative that converts, not just impresses",
-        "SEO and organic growth built for Dubai's market",
-        "Paid media that maximises every dirham spent",
-        "Transparent reporting tied to real business metrics",
-        "A team invested in your growth, not just your retainer",
+        "Strategy before styling—always",
+        "Creative that captivates, not just decorates",
+        "Production built for Dubai's venue landscape",
+        "Logistics that make complex events feel effortless",
+        "Transparent reporting tied to real event outcomes",
+        "A team invested in your event, not just your invoice",
       ],
-      ctaLabel: "Book a strategy call",
+      ctaLabel: "Request a proposal",
       ctaHref: "/contact",
     },
   },
@@ -691,34 +695,34 @@ export const homeSections: PageSection[] = [
     type: "faq",
     enabled: true,
     eyebrow: "FAQ",
-    title: "Digital marketing questions, answered.",
-    subtitle: "Common questions about working with a digital marketing agency in Dubai.",
+    title: "Event management questions, answered.",
+    subtitle: "Common questions about working with an event management company in Dubai.",
     settings: {
       faqs: [
         {
-          question: "How long does it take to see results from digital marketing?",
+          question: "How far in advance should I start planning an event in Dubai?",
           answer:
-            "The timeline depends on the marketing channel. Paid advertising campaigns can generate results within days, while SEO and content marketing strategies typically require several months to build sustainable organic visibility and long-term growth.",
+            "The timeline depends on the event type. Corporate dinners and product launches typically require 6–8 weeks. Conferences and summits need 3–6 months. Weddings and large celebrations benefit from 6–12 months of planning for venue availability and vendor coordination.",
         },
         {
-          question: "Why should I hire a digital marketing agency in Dubai?",
+          question: "Why should I hire an event management company in Dubai?",
           answer:
-            "Hiring a digital marketing agency gives your business access to experienced marketers, creative specialists, advertising experts, and data-driven strategies without the cost of building a large in-house team. A professional agency can help improve brand awareness, lead generation, and marketing ROI.",
+            "Hiring an event management company gives you access to experienced producers, creative directors, production specialists, and logistics coordinators without building a large in-house team. A professional team helps reduce risk, manage vendor relationships, and deliver a flawless guest experience.",
         },
         {
-          question: "What digital marketing services do you offer in Dubai?",
+          question: "What event management services do you offer in Dubai?",
           answer:
-            "Krew Marketing provides a full range of digital marketing services in Dubai, including SEO, performance marketing, Google Ads, social media marketing, content creation, video production, influencer marketing, public relations, branding, and website development.",
+            "Gaila provides a full range of event management services in Dubai, including corporate events, conferences and summits, weddings and celebrations, event production and AV, creative direction and décor, venue sourcing and logistics, experiential activations, and event strategy consulting.",
         },
         {
-          question: "Can digital marketing generate qualified leads for my business?",
+          question: "Can you manage both corporate and private events?",
           answer:
-            "Yes. A well-executed digital marketing strategy helps attract high-intent prospects through search engines, social media platforms, paid advertising, and content marketing. By targeting the right audience with the right message, businesses can generate consistent and qualified leads.",
+            "Yes. We manage corporate galas, product launches, conferences, award ceremonies, weddings, engagements, and private celebrations. Our team adapts the production scale and creative approach to match each brief and budget.",
         },
         {
-          question: "What advertising services do you offer in Dubai?",
+          question: "Do you handle bilingual events in English and Arabic?",
           answer:
-            "Our advertising services in Dubai include Google Ads management, Meta advertising, LinkedIn advertising, YouTube advertising, TikTok advertising, remarketing campaigns, display advertising, lead generation campaigns, and performance marketing strategies designed to maximize return on investment.",
+            "Yes. Bilingual programming is standard for our Dubai events — signage, host teams, printed materials, and stage content in English and Arabic where the guest list requires it.",
         },
       ],
     },
@@ -727,12 +731,12 @@ export const homeSections: PageSection[] = [
     id: "cta",
     type: "ctaBanner",
     enabled: true,
-    title: "Ready to Grow with a Creative Digital Marketing Agency in Dubai?",
+    title: "Ready to Plan Your Next Event with Gaila in Dubai?",
     subtitle:
-      "Growth doesn't happen by chance. It happens when the right strategy meets sharp execution and a team that's genuinely invested in your success.",
+      "Memorable events don't happen by chance. They happen when the right strategy meets flawless execution and a team that's genuinely invested in your success.",
     settings: {
-      body: "If you're looking for an advertising agency in Dubai that's serious about long-term results, let's talk.",
-      ctaLabel: "Book a strategy call",
+      body: "If you're looking for an event management company in Dubai that's serious about delivering on every brief, let's talk.",
+      ctaLabel: "Speak to our team",
       ctaHref: "tel:+971502827279",
     },
   },
@@ -744,13 +748,13 @@ export const servicesSections: PageSection[] = [
     type: "heroEditorial",
     enabled: true,
     eyebrow: "SERVICES",
-    title: "Digital Marketing Services in Dubai Built Around One Thing — Your Growth",
+    title: "Event Management Services in Dubai Built Around One Thing — Your Event",
     subtitle:
-      "Krew Marketing offers a full suite of digital marketing services in Dubai designed to work together as one connected growth system. From SEO and paid advertising to branding, social media, content creation, and web development — every service is built to attract the right audience, convert interest into revenue, and scale what's working.",
+      "Gaila offers a full suite of event management services in Dubai designed to work together as one connected production system. From corporate events and conferences to weddings, production, décor, and logistics — every service is built to create memorable experiences, manage complexity, and deliver on every brief.",
     settings: {
       image: IMG.studioTeam,
-      imageAlt: "Creative team at work",
-      ctaLabel: "Book a strategy call",
+      imageAlt: "Event production team at work",
+      ctaLabel: "Request a proposal",
       ctaHref: "tel:+971502827279",
       secondaryCtaLabel: "See our case studies",
       secondaryCtaHref: "/case-studies",
@@ -762,9 +766,9 @@ export const servicesSections: PageSection[] = [
     type: "servicesEditorial",
     enabled: true,
     eyebrow: "OUR SERVICES",
-    title: "Digital Marketing Services Tailored to Your Business Goals",
+    title: "Event Services Tailored to Your Goals",
     subtitle:
-      "Every business requires a different growth strategy. That's why our services are designed to solve specific challenges while working together as part of a comprehensive digital marketing ecosystem. Explore our core services and discover how Krew Marketing helps businesses build visibility, generate leads, and drive measurable growth.",
+      "Every event requires a different approach. That's why our services are designed to solve specific challenges while working together as part of a comprehensive event management ecosystem. Explore our core services and discover how Gaila helps organisations create unforgettable experiences.",
     settings: {
       limit: 8,
       layout: "stacked",
@@ -775,10 +779,10 @@ export const servicesSections: PageSection[] = [
     id: "services-cta",
     type: "ctaBanner",
     enabled: true,
-    title: "Not sure which service fits your goals?",
+    title: "Not sure which service fits your event?",
     subtitle:
-      "Tell us what you want to grow. We'll recommend the right starting point — one service or a full studio engagement.",
-    settings: { ctaLabel: "Send a project brief", ctaHref: "/contact?topic=services" },
+      "Tell us what you're planning. We'll recommend the right starting point — one service or a full production engagement.",
+    settings: { ctaLabel: "Send an event brief", ctaHref: "/contact?topic=services" },
   },
 ];
 
@@ -788,12 +792,12 @@ export const aboutSections: PageSection[] = [
     type: "heroEditorial",
     enabled: true,
     eyebrow: "ABOUT US",
-    title: "The Creative Digital Marketing Agency Dubai Brands Trust to Grow",
+    title: "The Event Management Company Dubai Trusts to Deliver",
     subtitle: "",
     settings: {
       image: IMG.studioTeam,
-      imageAlt: "Krew Marketing team in Dubai",
-      ctaLabel: "Work with us",
+      imageAlt: "Gaila team in Dubai",
+      ctaLabel: "Plan your event",
       ctaHref: "/contact",
       secondaryCtaLabel: "See our work",
       secondaryCtaHref: "/case-studies",
@@ -806,12 +810,12 @@ export const aboutSections: PageSection[] = [
     enabled: true,
     title: "Who We Are",
     subtitle:
-      "Krew Marketing is a creative digital marketing agency in Dubai built for businesses that are serious about growth. We combine strategy, creativity, and performance into one connected system — designed to help brands cut through the noise, reach the right audience, and turn marketing into measurable revenue.",
+      "Gaila is an event management company in Dubai built for organisations and families that are serious about their events. We combine strategy, creative direction, production, and logistics into one connected system — designed to help you create experiences that guests remember and stakeholders trust.",
     settings: {
       image: IMG.studioTeam,
-      imageAlt: "Krew Marketing strategists and creatives in Dubai",
+      imageAlt: "Gaila producers and creatives in Dubai",
       align: "left",
-      body: "We're not a one-size-fits-all agency. We're a focused team of strategists, creatives, and performance marketers who care about one thing — results that actually move your business forward.",
+      body: "We're not a one-size-fits-all agency. We're a focused team of producers, creatives, and logistics specialists who care about one thing — events that actually deliver on the brief.",
       headingAs: "h2",
     },
   },
@@ -821,10 +825,10 @@ export const aboutSections: PageSection[] = [
     enabled: true,
     title: "Why We Started",
     subtitle:
-      "Dubai is one of the most competitive business environments in the world. We saw too many ambitious brands investing in marketing that looked good but delivered nothing. Krew was built to change that — to be the agency that connects creativity to commercial outcomes, and strategy to real growth.",
+      "Dubai is one of the most ambitious event markets in the world. We saw too many organisations investing in events that looked impressive but fell apart on the night. Gaila was built to change that — to be the company that connects creative vision to flawless execution, and ambition to reliable delivery.",
     settings: {
       image: IMG.heroDubai,
-      imageAlt: "Dubai skyline — where Krew Marketing was founded",
+      imageAlt: "Dubai skyline — where Gaila was founded",
       align: "right",
       body: "",
       headingAs: "h2",
@@ -836,10 +840,10 @@ export const aboutSections: PageSection[] = [
     enabled: true,
     title: "What We Believe",
     subtitle:
-      "Great marketing isn't about impressions or follower counts. It's about building brands that people trust, campaigns that convert, and strategies that compound over time. Every decision we make is guided by data, shaped by creativity, and measured against real business outcomes.",
+      "Great events aren't about guest counts or Instagram moments alone. They're about creating experiences people trust, programmes that achieve objectives, and production that runs flawlessly under pressure. Every decision we make is guided by the brief, shaped by creativity, and measured against real event outcomes.",
     settings: {
-      image: IMG.brand,
-      imageAlt: "Brand and creative work at Krew Marketing",
+      image: IMG.decor,
+      imageAlt: "Creative direction and décor at Gaila",
       align: "left",
       body: "",
       headingAs: "h2",
@@ -849,10 +853,10 @@ export const aboutSections: PageSection[] = [
     id: "about-cta",
     type: "ctaBanner",
     enabled: true,
-    title: "Work with Krew Marketing",
+    title: "Work with Gaila",
     subtitle:
-      "Tell us about your goals for the next four quarters. We'll come back with an honest view on where we can — and where we can't — help.",
-    settings: { ctaLabel: "Plan with Krew", ctaHref: "/contact?topic=partnership" },
+      "Tell us about your event for the next four quarters. We'll come back with an honest view on where we can — and where we can't — help.",
+    settings: { ctaLabel: "Plan with Gaila", ctaHref: "/contact?topic=partnership" },
   },
 ];
 
@@ -866,8 +870,8 @@ export const newPageSections: PageSection[] = [
     subtitle: "Add a short introduction for this page, then build the rest of the layout below.",
     settings: {
       image: IMG.studioTeam,
-      imageAlt: "Krew Marketing studio",
-      ctaLabel: "Start a project",
+      imageAlt: "Gaila studio",
+      ctaLabel: "Plan your event",
       ctaHref: "/contact",
       secondaryCtaLabel: "Browse the site",
       secondaryCtaHref: "/",
@@ -880,7 +884,7 @@ export const newPageSections: PageSection[] = [
     enabled: true,
     title: "Ready to launch this page?",
     subtitle: "Use this shared CTA band or replace it with custom sections from the editor.",
-    settings: { ctaLabel: "Talk to Krew", ctaHref: "/contact" },
+    settings: { ctaLabel: "Speak to our team", ctaHref: "/contact" },
   },
 ];
 
@@ -890,13 +894,13 @@ export const paidMediaSections: PageSection[] = [
     type: "heroEditorial",
     enabled: true,
     eyebrow: "Service · Dubai & UAE",
-    title: "Performance marketing agency in dubai",
+    title: "Conference & summit management in Dubai",
     subtitle:
-      "Performance marketing is a results-based approach to digital advertising where every campaign is measured against real business outcomes — leads generated, sales closed, revenue earned. Unlike traditional advertising, you only pay for what performs.",
+      "Conference and summit management is a results-driven discipline where every element — programme design, speaker logistics, registration, staging, and delegate experience — is measured against real outcomes. Unlike one-off gatherings, a well-run conference builds authority, generates leads, and compounds your brand's industry presence.",
     settings: {
-      image: IMG.performance,
-      imageAlt: "Performance marketing analytics and campaign dashboards",
-      ctaLabel: "Book a strategy call",
+      image: IMG.conference,
+      imageAlt: "Conference staging and delegate experience in Dubai",
+      ctaLabel: "Request a proposal",
       ctaHref: "tel:+971502827279",
       categories: [],
     },
@@ -905,46 +909,46 @@ export const paidMediaSections: PageSection[] = [
     id: "paid-media-platforms",
     type: "servicesEditorial",
     enabled: true,
-    title: "Platforms We Work With",
+    title: "Conference Formats We Deliver",
     subtitle:
-      "As a leading performance marketing agency in Dubai, we match every brand with the right platform based on audience, goals, and market behaviour.",
+      "As a leading conference management company in Dubai, we match every organisation with the right format based on audience, objectives, and market expectations.",
     settings: {
       layout: "stacked",
       cards: [
         {
-          title: "Google Search & Shopping",
+          title: "Industry Summits",
           description:
-            "Capture high-intent buyers at the exact moment they're searching for what you offer. We manage keyword strategy, bidding, ad copy, and landing page alignment to drive qualified traffic that converts.",
+            "Multi-track programmes with keynote stages, panel discussions, and networking receptions designed to position your brand as a thought leader in your sector.",
         },
         {
-          title: "Performance Max",
+          title: "Dealer & Partner Conferences",
           description:
-            "Google's most powerful campaign type, managed properly. We build asset groups, audience signals, and conversion tracking that make PMax work the way it's supposed to — not just spend your budget.",
+            "Annual gatherings that align sales teams, reveal new products, and strengthen partner relationships — managed end-to-end from invitation to post-event follow-up.",
         },
         {
-          title: "Meta Advantage+ — Facebook & Instagram",
+          title: "Hybrid & Virtual Conferences",
           description:
-            "Creative-led campaigns built for Dubai's social-first audience. We combine Advantage+ automation with strong creative strategy to reduce cost per result and scale what's working.",
+            "Live streaming, virtual breakout rooms, and on-demand content that extend your reach beyond the ballroom without compromising the in-room experience.",
         },
         {
-          title: "TikTok Spark Ads",
+          title: "Executive Roundtables",
           description:
-            "Dubai's fastest-growing platform for brand discovery. We build native-feeling TikTok campaigns that blend into the feed, capture attention, and drive measurable action.",
+            "Intimate, invitation-only sessions for C-suite audiences — curated guest lists, bespoke programming, and discreet production across Dubai's premium venues.",
         },
         {
-          title: "LinkedIn ABM",
+          title: "Exhibition & Trade Shows",
           description:
-            "The most effective B2B advertising platform in the UAE. We run account-based marketing campaigns that put your brand in front of the right decision-makers at the right companies.",
+            "Floor plans, exhibitor management, sponsor activations, and visitor journey design for events at DWTC, ADNEC, and boutique exhibition spaces.",
         },
         {
-          title: "YouTube Advertising",
+          title: "Award Ceremonies",
           description:
-            "Video-first campaigns that build brand awareness and drive retargeting audiences at scale — across Dubai and the wider GCC region.",
+            "Stage design, nominee management, live production, and guest experience for industry awards that reflect the prestige of the recognition.",
         },
         {
-          title: "Programmatic Retargeting",
+          title: "Post-Event Content Programmes",
           description:
-            "Re-engage your warmest audiences across the web. We build retargeting funnels that bring back visitors who didn't convert and guide them toward action.",
+            "Session recordings, highlight reels, and delegate communications that extend the value of your conference long after the closing session.",
         },
       ],
     },
@@ -953,12 +957,12 @@ export const paidMediaSections: PageSection[] = [
     id: "paid-media-tracking",
     type: "imageText",
     enabled: true,
-    title: "Our Tracking & Attribution Setup",
+    title: "Our Delegate Experience Framework",
     settings: {
       body:
-        "Bad data leads to bad decisions. Before we spend a single dirham on ads, we audit your entire tracking infrastructure — GA4 configuration, Google Tag Manager setup, server-side tracking, and offline conversion imports. You can't optimise what you can't measure accurately.\n\nEvery campaign we run is tied to real conversion events — not just clicks or sessions. Leads, calls, purchases, pipeline value — we track what actually matters to your business.\n\nOur performance marketing services in Dubai are built on one principle — if you can't measure it, you can't improve it.",
-      image: IMG.performance,
-      imageAlt: "Analytics and conversion tracking setup",
+        "A conference fails when delegates feel like an afterthought. Before we confirm a single vendor, we map the full delegate journey — registration, arrival, sessions, networking, catering, and departure — and stress-test every touchpoint.\n\nEvery conference we produce is tied to real success metrics — not just attendance numbers. Delegate satisfaction, sponsor ROI, pipeline generated, and media coverage — we measure what actually matters to your organisation.\n\nOur conference management services in Dubai are built on one principle — if the delegate experience isn't designed, it won't deliver.",
+      image: IMG.conference,
+      imageAlt: "Delegate experience planning for conferences",
       align: "right",
       headingAs: "h2",
     },
@@ -967,22 +971,22 @@ export const paidMediaSections: PageSection[] = [
     id: "paid-media-roadmap",
     type: "processSteps",
     enabled: true,
-    title: "The 90-Day Test Roadmap",
+    title: "The 90-Day Conference Roadmap",
     subtitle:
-      "We don't guess. Every new account starts with a structured 90-day testing roadmap covering creative variations, audience segments, bidding strategies, and landing page tests. By day 90 we know exactly what's working, what isn't, and where to scale.",
+      "We don't guess. Every new conference starts with a structured 90-day production roadmap covering programme design, speaker logistics, venue setup, sponsor activations, and rehearsal schedules. By day 90, every element is confirmed and ready.",
     settings: {
       steps: [
         {
           title: "Days 1–30",
-          text: "Audit, setup, tracking verification, campaign launch",
+          text: "Brief, venue selection, programme design, speaker confirmations",
         },
         {
           title: "Days 31–60",
-          text: "Data collection, creative testing, audience refinement",
+          text: "Registration launch, sponsor activations, production planning, vendor contracts",
         },
         {
           title: "Days 61–90",
-          text: "Scale winning campaigns, cut underperformers, build growth roadmap",
+          text: "Rehearsals, final run-of-show, delegate communications, show-day execution",
         },
       ],
     },
@@ -991,12 +995,12 @@ export const paidMediaSections: PageSection[] = [
     id: "paid-media-cta",
     type: "ctaBanner",
     enabled: true,
-    title: "Book a strategy call",
-    subtitle: "Tell us your goal and timeline. We'll come back with a practical plan in the first call.",
+    title: "Request a proposal",
+    subtitle: "Tell us your conference goals and timeline. We'll come back with a practical plan in the first call.",
     settings: {
       body:
-        "Whether you need a full-service advertising agency in Dubai or a specialist paid media team to plug into your existing setup — we're built for both.",
-      ctaLabel: "Book a strategy call",
+        "Whether you need a full-service conference management partner in Dubai or a specialist production team to plug into your existing setup — we're built for both.",
+      ctaLabel: "Request a proposal",
       ctaHref: "tel:+971502827279",
       variant: "dark",
     },
@@ -1009,13 +1013,13 @@ export const seoDubaiSections: PageSection[] = [
     type: "heroEditorial",
     enabled: true,
     eyebrow: "Service · Dubai & UAE",
-    title: "SEO Services in Dubai That Drive Real Organic Growth",
+    title: "Corporate Events in Dubai That Deliver Real Business Outcomes",
     subtitle:
-      "Most businesses in Dubai are invisible on Google. Not because their product is wrong — but because their SEO strategy is. As a trusted SEO agency in Dubai, Krew Marketing builds search visibility that compounds over time, turning your website into your most valuable sales asset.",
+      "Most corporate events in Dubai fail to deliver on their brief — not because the venue was wrong, but because the planning, production, and guest experience were treated as separate problems. As a trusted corporate events company in Dubai, Gaila designs end-to-end experiences that reflect your brand and achieve measurable results.",
     settings: {
-      image: IMG.seo,
-      imageAlt: "SEO analytics and organic search growth dashboards",
-      ctaLabel: "Book a Free SEO Audit",
+      image: IMG.corporate,
+      imageAlt: "Corporate gala and event staging in Dubai",
+      ctaLabel: "Request a proposal",
       ctaHref: "tel:+971502827279",
       categories: [],
     },
@@ -1024,14 +1028,14 @@ export const seoDubaiSections: PageSection[] = [
     id: "seo-dubai-overview",
     type: "imageText",
     enabled: true,
-    eyebrow: "SEO AGENCY IN DUBAI",
-    title: "SEO Services in Dubai That Drive Long-Term Organic Growth",
-    subtitle: "Why SEO Is the Most Valuable Investment a Dubai Business Can Make",
+    eyebrow: "CORPORATE EVENTS IN DUBAI",
+    title: "Corporate Event Management That Builds Last-Term Relationships",
+    subtitle: "Why Corporate Events Are the Most Valuable Investment a Dubai Business Can Make",
     settings: {
       body:
-        "In today's digital landscape, businesses in Dubai need more than one channel to grow. While paid advertising delivers immediate results, SEO builds the long-term foundation that compounds over time — driving consistent organic traffic, qualified leads, and brand authority that grows month on month without paying for every click.\n\nFor businesses in Dubai competing in one of the most active digital markets in the world, SEO is not optional. It's the difference between being found by customers who are actively searching for what you offer — and being invisible while your competitors take that traffic.",
-      image: IMG.seo,
-      imageAlt: "Organic search growth and SEO strategy",
+        "In today's business landscape, organisations in Dubai need more than one channel to build relationships. While digital marketing delivers reach, corporate events create the face-to-face moments that compound into partnerships, pipeline, and brand loyalty — driving consistent engagement that grows year on year.\n\nFor businesses in Dubai competing in one of the most active corporate markets in the world, events are not optional. They're the difference between being remembered by the clients and partners who matter — and being invisible while your competitors host the gala they're talking about.",
+      image: IMG.corporate,
+      imageAlt: "Corporate event planning and guest experience",
       align: "left",
       headingAs: "h2",
     },
@@ -1040,14 +1044,14 @@ export const seoDubaiSections: PageSection[] = [
     id: "seo-dubai-agency",
     type: "imageText",
     enabled: true,
-    title: "What Does an SEO Agency in Dubai Actually Do?",
+    title: "What Does a Corporate Events Company in Dubai Actually Do?",
     subtitle:
-      "A good SEO agency in Dubai does far more than chase keyword rankings. It builds a system that makes your website the most relevant, most authoritative, and most technically sound result for the searches that matter to your business.",
+      "A good corporate events company in Dubai does far more than book a ballroom. It builds a system that makes your event the most polished, most on-brand, and most operationally sound experience your guests will attend this year.",
     settings: {
       body:
-        "At Krew Marketing, our SEO services in Dubai are built across five core pillars:",
+        "At Gaila, our corporate event services in Dubai are built across five core pillars:",
       image: IMG.studioTeam,
-      imageAlt: "Krew Marketing SEO strategists in Dubai",
+      imageAlt: "Gaila corporate event producers in Dubai",
       align: "right",
       headingAs: "h2",
     },
@@ -1056,34 +1060,34 @@ export const seoDubaiSections: PageSection[] = [
     id: "seo-dubai-pillars",
     type: "servicesEditorial",
     enabled: true,
-    title: "Five Core Pillars of Our SEO Services",
+    title: "Five Core Pillars of Our Corporate Event Services",
     settings: {
       layout: "stacked",
       cards: [
         {
-          title: "Technical SEO",
+          title: "Event Strategy & Briefing",
           description:
-            "Search engines can only rank what they can find and understand. We conduct a 140-point technical audit covering site speed, Core Web Vitals, crawlability, indexation, mobile usability, structured data, and internal architecture — fixing every issue that's preventing your pages from ranking.",
+            "Every event starts with a clear brief. We conduct a comprehensive discovery covering objectives, audience, budget, success metrics, and brand requirements — ensuring every decision downstream supports your business goals.",
         },
         {
-          title: "On-Page SEO & Content Optimisation",
+          title: "Creative Direction & Décor",
           description:
-            "Every page on your website is an opportunity to rank. We optimise title tags, meta descriptions, heading structure, content depth, keyword placement, and internal linking — ensuring every page sends the right signals to Google.",
+            "Every touchpoint is an opportunity to impress. We design spatial concepts, tablescapes, floral styling, signage, and branded moments — ensuring every guest feels the brand from arrival to farewell.",
         },
         {
-          title: "Local SEO in Dubai",
+          title: "Venue Sourcing & Logistics",
           description:
-            "When someone searches \"near me\" or adds \"Dubai\" to their query, local SEO determines whether your business appears. We optimise your Google Business Profile, build local citations across UAE directories, create location-specific landing pages, and implement local schema markup to maximise your visibility in Dubai's local search results and Map Pack.",
+            "When you need a ballroom, a rooftop, or a desert setting, venue selection determines whether your event succeeds. We source venues across Dubai and the UAE, negotiate contracts, and manage load-in, guest transport, and run-of-show logistics.",
         },
         {
-          title: "SEO Content Strategy",
+          title: "Production & Technical",
           description:
-            "Google ranks websites that demonstrate genuine expertise and authority on a topic. We develop keyword-targeted content strategies that answer the real questions your audience is searching for — building topical authority that lifts rankings across your entire website, not just individual pages.",
+            "Flawless events require flawless production. We manage staging, lighting, sound, AV, live streaming, and show calling — ensuring your programme runs on time and every speaker is heard.",
         },
         {
-          title: "Link Building & Domain Authority",
+          title: "Guest Experience & Follow-Through",
           description:
-            "Backlinks from authoritative, relevant websites are one of Google's strongest ranking signals. We build high-quality links through digital PR, content partnerships, and outreach — strengthening your domain authority and supporting rankings across your full keyword portfolio.",
+            "Post-event engagement is one of the strongest relationship signals. We design invitation flows, registration systems, on-site hospitality, and follow-up communications that convert attendance into lasting connections.",
         },
       ],
     },
@@ -1092,12 +1096,12 @@ export const seoDubaiSections: PageSection[] = [
     id: "seo-dubai-market",
     type: "imageText",
     enabled: true,
-    title: "SEO for Dubai's Unique Market",
+    title: "Corporate Events for Dubai's Unique Market",
     settings: {
       body:
-        "Dubai's search landscape is unlike any other market in the world. You have a highly international audience searching in multiple languages, a business environment that moves fast, and competition from both local businesses and global brands targeting the same customers. Effective SEO services in Dubai need to account for all of this.\n\nThat means bilingual optimisation in English and Arabic, an understanding of UAE search behaviour and seasonality, and strategies that work across both local and international search intent.\n\nOur team has deep experience in Dubai's digital market — we know which keywords drive qualified traffic, which content formats perform best with UAE audiences, and how to build the kind of authority that Google rewards in this region.",
+        "Dubai's corporate event landscape is unlike any other market in the world. You have a highly international audience attending in multiple languages, a business environment that moves fast, and competition from both local organisations and global brands hosting events in the same calendar window. Effective corporate event management in Dubai needs to account for all of this.\n\nThat means bilingual programming in English and Arabic, an understanding of UAE business culture and seasonality, and production that works across hotel ballrooms, outdoor venues, and hybrid formats.\n\nOur team has deep experience in Dubai's event market — we know which venues deliver, which production setups perform best with UAE audiences, and how to build events that guests remember and stakeholders trust to repeat.",
       image: IMG.heroDubai,
-      imageAlt: "Dubai skyline representing the local SEO market",
+      imageAlt: "Dubai skyline representing the corporate events market",
       align: "left",
       headingAs: "h2",
     },
@@ -1106,47 +1110,47 @@ export const seoDubaiSections: PageSection[] = [
     id: "seo-dubai-strategy",
     type: "imageText",
     enabled: true,
-    title: "What Makes a Good SEO Strategy in 2026?",
+    title: "What Makes a Great Corporate Event in 2026?",
     subtitle:
-      "SEO in 2026 goes beyond Google's traditional search results. AI-powered tools like Google AI Overviews, ChatGPT, and Perplexity are now answering search queries directly — pulling from websites that demonstrate genuine expertise, authority, and trustworthiness.",
+      "Corporate events in 2026 go beyond the traditional gala format. Hybrid attendance, immersive activations, and content capture are now expected — and the organisations that invest in experience design pull ahead of those treating events as a line item.",
     settings: {
       body:
-        "The businesses that will dominate search in Dubai over the next five years are the ones investing in:",
-      footer: "As an SEO agency in Dubai, this is exactly how we build every campaign.",
+        "The organisations that will lead their industries in Dubai over the next five years are the ones investing in:",
+      footer: "As a corporate events company in Dubai, this is exactly how we build every engagement.",
       checklistTitle: "",
       bullets: [
-        "Technical excellence — fast, crawlable, well-structured websites",
-        "Topical authority — deep, expert content that covers a subject comprehensively",
-        "Genuine backlinks — earned through quality, not bought through shortcuts",
-        "AI search optimisation — content structured for both Google and AI answer engines",
-        "Local search dominance — owning the Map Pack for high-intent Dubai searches",
+        "Clear objectives — every event tied to a measurable business outcome",
+        "Immersive experience design — guests who feel the brand, not just see a slideshow",
+        "Flawless production — staging, AV, and show calling that runs without surprises",
+        "Hybrid readiness — live streaming and content capture for audiences beyond the room",
+        "Post-event follow-through — communications that convert attendance into pipeline",
       ],
-      image: IMG.seo,
-      imageAlt: "Modern SEO strategy and AI search optimisation",
+      image: IMG.gala,
+      imageAlt: "Modern corporate event design and production",
       align: "right",
       headingAs: "h2",
     },
   },
   {
-    id: "seo-dubai-why-krew",
+    id: "seo-dubai-why-gaila",
     type: "imageText",
     enabled: true,
-    title: "Why Businesses Choose Krew for SEO in Dubai",
+    title: "Why Businesses Choose Gaila for Corporate Events in Dubai",
     settings: {
       body: "",
       checklistTitle: "",
       bullets: [
-        "140-point technical audit — the most thorough in the market",
-        "Bilingual SEO strategy — English and Arabic",
-        "Local SEO built for Dubai's search landscape",
-        "AI search optimisation included in every campaign",
-        "Content strategy built for topical authority — not just keywords",
-        "Transparent monthly reporting tied to organic traffic and revenue",
-        "No shortcuts, no black-hat tactics — sustainable rankings only",
-        "Deep understanding of UAE market behaviour and search intent",
+        "120-item pre-event planning checklist — the most thorough in the market",
+        "Bilingual event programming — English and Arabic",
+        "Venue sourcing built for Dubai's landscape",
+        "Hybrid and live streaming included where the brief requires it",
+        "Creative direction built for brand immersion — not generic décor",
+        "Transparent post-event reporting tied to attendance and outcomes",
+        "No shortcuts, no last-minute surprises — reliable delivery only",
+        "Deep understanding of UAE business culture and guest expectations",
       ],
       image: IMG.studioTeam,
-      imageAlt: "Krew Marketing team delivering SEO for Dubai brands",
+      imageAlt: "Gaila team delivering corporate events for Dubai brands",
       align: "left",
       headingAs: "h2",
     },
@@ -1155,13 +1159,13 @@ export const seoDubaiSections: PageSection[] = [
     id: "seo-dubai-cta",
     type: "ctaBanner",
     enabled: true,
-    title: "Ready to Grow Your Organic Traffic in Dubai?",
+    title: "Ready to Plan Your Next Corporate Event in Dubai?",
     subtitle:
-      "If you're serious about building long-term search visibility, attracting qualified leads, and growing your brand online — our SEO services in Dubai are built for you.",
+      "If you're serious about creating an event that reflects your brand, engages your audience, and delivers measurable outcomes — our corporate event services in Dubai are built for you.",
     settings: {
       body:
-        "We'll analyse your website, identify your biggest ranking opportunities, and show you exactly what it would take to dominate search in Dubai.",
-      ctaLabel: "Book a Free SEO Audit",
+        "We'll review your brief, identify your biggest opportunities, and show you exactly what it would take to deliver an event your guests remember.",
+      ctaLabel: "Request a proposal",
       ctaHref: "tel:+971502827279",
       variant: "dark",
     },
@@ -1174,13 +1178,13 @@ export const socialMediaSections: PageSection[] = [
     type: "heroEditorial",
     enabled: true,
     eyebrow: "Service · Dubai & UAE",
-    title: "Social Media Marketing Agency in Dubai",
+    title: "Wedding & Celebration Planner in Dubai",
     subtitle:
-      "As a social media marketing agency in Dubai, Krew Marketing builds social presence that goes beyond likes and follower counts. We create content that earns attention, builds genuine brand affinity, and converts audiences into customers.",
+      "As a wedding and celebration planner in Dubai, Gaila creates events that go beyond décor and guest lists. We design experiences that honour your story, reflect your culture, and leave every guest with a memory they'll talk about for years.",
     settings: {
-      image: IMG.social,
-      imageAlt: "Social media content creation and brand storytelling",
-      ctaLabel: "Book a strategy call",
+      image: IMG.wedding,
+      imageAlt: "Wedding celebration and event styling in Dubai",
+      ctaLabel: "Plan your celebration",
       ctaHref: "tel:+971502827279",
       categories: [],
     },
@@ -1189,12 +1193,12 @@ export const socialMediaSections: PageSection[] = [
     id: "social-media-brand",
     type: "imageText",
     enabled: true,
-    title: "Build a Stronger Brand Through Strategic Social Media Marketing",
+    title: "Create an Unforgettable Celebration Through Thoughtful Planning",
     settings: {
       body:
-        "Social media has become one of the most powerful channels for building brand awareness, engaging customers, and driving business growth. However, success requires more than simply posting content. It requires a clear strategy, consistent execution, creative storytelling, and a deep understanding of audience behavior.\n\nAt Krew Marketing, we provide social media marketing services in Dubai designed to help businesses build meaningful connections with their audience while achieving measurable business objectives. Our team develops platform-specific strategies that combine engaging content, audience insights, and performance-driven campaigns to maximize reach, engagement, and conversions.\n\nAs a leading social media marketing agency in Dubai, we help brands establish a strong presence across Instagram, Facebook, LinkedIn, TikTok, X, and other emerging platforms. From content planning and creative production to community management and paid social advertising, every element is designed to strengthen your brand and support long-term growth.",
-      image: IMG.social,
-      imageAlt: "Strategic social media marketing for Dubai brands",
+        "Weddings and milestone celebrations have become some of the most meaningful events in a family's life. However, success requires more than beautiful flowers. It requires a clear vision, consistent execution, creative storytelling, and a deep understanding of cultural traditions and guest expectations.\n\nAt Gaila, we provide wedding and celebration planning in Dubai designed to help couples and families create meaningful moments while managing every detail with precision. Our team develops bespoke plans that combine stunning creative direction, vendor coordination, and flawless day-of production to maximise joy, comfort, and lasting memories.\n\nAs a leading wedding planner in Dubai, we help families establish celebrations across hotel ballrooms, desert venues, yacht charters, and private estates. From concept development and creative direction to guest logistics and show-day management, every element is designed to honour your story and support a celebration you'll cherish forever.",
+      image: IMG.wedding,
+      imageAlt: "Wedding planning and celebration design in Dubai",
       align: "left",
       headingAs: "h2",
     },
@@ -1203,39 +1207,39 @@ export const socialMediaSections: PageSection[] = [
     id: "social-media-services",
     type: "servicesEditorial",
     enabled: true,
-    title: "Our Social Media Marketing Services",
+    title: "Our Wedding & Celebration Services",
     settings: {
       layout: "stacked",
       cards: [
         {
-          title: "Social Media Strategy",
+          title: "Full Wedding Planning",
           description:
-            "Develop a clear roadmap aligned with your business goals, audience, and industry trends.",
+            "End-to-end planning from engagement to farewell — venue sourcing, vendor management, creative direction, and day-of coordination.",
         },
         {
-          title: "Content Creation",
+          title: "Creative Direction & Décor",
           description:
-            "Create high-quality visuals, videos, reels, graphics, and written content that capture attention and encourage engagement.",
+            "Bespoke spatial design, floral styling, tablescapes, lighting, and signage that transform your venue into a reflection of your story.",
         },
         {
-          title: "Social Media Management",
+          title: "Vendor Coordination",
           description:
-            "Maintain a consistent brand presence through content scheduling, audience engagement, and community management.",
+            "Curated vendor relationships across catering, photography, entertainment, florals, and transport — managed under one production team.",
         },
         {
-          title: "Paid Social Advertising",
+          title: "Guest Logistics",
           description:
-            "Reach highly targeted audiences through performance-focused campaigns on Meta, LinkedIn, TikTok, and other social platforms.",
+            "Invitation design, RSVP management, accommodation blocks, transport coordination, and on-site hospitality for local and international guests.",
         },
         {
-          title: "Reels & Short-Form Video Marketing",
+          title: "Cultural & Bilingual Programming",
           description:
-            "Leverage engaging short-form content to increase reach, visibility, and audience interaction.",
+            "Celebrations that honour Arabic, Indian, Western, and multi-cultural traditions — with bilingual hosts, signage, and ceremony elements.",
         },
         {
-          title: "Social Media Analytics & Reporting",
+          title: "Day-of Production",
           description:
-            "Track performance, audience growth, engagement, and campaign effectiveness through detailed reporting and strategic insights.",
+            "A dedicated show team managing timeline, vendors, staging, and guest experience so you can be fully present on your day.",
         },
       ],
     },
@@ -1244,22 +1248,22 @@ export const socialMediaSections: PageSection[] = [
     id: "social-media-why",
     type: "imageText",
     enabled: true,
-    title: "Why Invest in Social Media Marketing?",
+    title: "Why Invest in Professional Wedding Planning?",
     settings: {
       body:
-        "Whether you're building a new brand or scaling an established business, our social media marketing services help you connect with the right audience, create lasting impressions, and grow your business online.",
+        "Whether you're planning an intimate gathering or a multi-day celebration, our wedding and event planning services help you create lasting memories while managing complexity behind the scenes.",
       checklistTitle: "",
       bullets: [
-        "Increase Brand Awareness",
-        "Build Customer Trust",
-        "Generate Qualified Leads",
-        "Improve Audience Engagement",
-        "Strengthen Brand Authority",
-        "Drive Website Traffic",
-        "Support Long-Term Business Growth",
+        "Reduce stress on your most important day",
+        "Access curated vendor relationships",
+        "Ensure creative consistency across every touchpoint",
+        "Manage guest logistics for local and international attendees",
+        "Handle cultural and bilingual requirements seamlessly",
+        "Deliver flawless day-of production",
+        "Create a celebration that reflects your story",
       ],
       image: IMG.studioTeam,
-      imageAlt: "Krew Marketing social media team in Dubai",
+      imageAlt: "Gaila wedding planning team in Dubai",
       align: "right",
       headingAs: "h2",
     },
@@ -1268,12 +1272,12 @@ export const socialMediaSections: PageSection[] = [
     id: "social-media-cta",
     type: "ctaBanner",
     enabled: true,
-    title: "Book a strategy call",
-    subtitle: "Tell us your goal and timeline. We'll come back with a practical plan in the first call.",
+    title: "Plan your celebration",
+    subtitle: "Tell us about your event and timeline. We'll come back with a practical plan in the first call.",
     settings: {
       body:
-        "Whether you need a full-service social media marketing agency in Dubai or a specialist team to plug into your existing setup — we're built for both.",
-      ctaLabel: "Book a strategy call",
+        "Whether you need a full-service wedding planner in Dubai or a specialist team for creative direction and day-of production — we're built for both.",
+      ctaLabel: "Plan your celebration",
       ctaHref: "tel:+971502827279",
       variant: "dark",
     },
@@ -1286,13 +1290,13 @@ export const videoProductionSections: PageSection[] = [
     type: "heroEditorial",
     enabled: true,
     eyebrow: "Service · Dubai & UAE",
-    title: "VIDEO PRODUCTION SERVICES IN DUBAI",
+    title: "EVENT PRODUCTION & AV IN DUBAI",
     subtitle:
-      "At Krew Marketing, we provide video production services in Dubai that combine strategic storytelling, creative direction, and high-quality production to create content that delivers measurable business results. From corporate films and commercial advertisements to social media content and brand documentaries, every project is designed to engage viewers and support your marketing objectives.",
+      "At Gaila, we provide event production and AV services in Dubai that combine technical precision, creative staging, and seamless execution. From lighting and sound to LED walls, live streaming, and show calling, every element is designed to support your event objectives and run flawlessly under pressure.",
     settings: {
-      image: IMG.video,
-      imageAlt: "Professional video production and cinematography in Dubai",
-      ctaLabel: "Book a strategy call",
+      image: IMG.production,
+      imageAlt: "Professional event production and AV in Dubai",
+      ctaLabel: "Request a proposal",
       ctaHref: "tel:+971502827279",
       categories: [],
     },
@@ -1301,12 +1305,12 @@ export const videoProductionSections: PageSection[] = [
     id: "video-production-overview",
     type: "imageText",
     enabled: true,
-    title: "Professional Video Production That Brings Your Brand to Life",
+    title: "Professional Event Production That Brings Your Vision to Life",
     settings: {
       body:
-        "Video has become one of the most powerful tools for capturing attention, building trust, and influencing purchasing decisions. Whether you're launching a new product, promoting a service, or strengthening your brand identity, professionally produced video content helps communicate your message in a way that resonates with modern audiences.\n\nAt Krew Marketing, we provide video production services in Dubai that combine strategic storytelling, creative direction, and high-quality production to create content that delivers measurable business results. From corporate films and commercial advertisements to social media content and brand documentaries, every project is designed to engage viewers and support your marketing objectives.\n\nAs a trusted video production company in Dubai, we handle the entire production process—from concept development and scriptwriting to filming, editing, motion graphics, and final delivery. Our team creates content optimized for websites, social media platforms, digital advertising campaigns, and broadcast channels.",
-      image: IMG.video,
-      imageAlt: "Video production crew filming brand content in Dubai",
+        "Event production has become the backbone of every memorable gathering in Dubai. Whether you're hosting a 2,000-delegate summit, an intimate gala dinner, or a product launch with broadcast-quality streaming, professionally managed production ensures your message lands and your guests feel the difference.\n\nAt Gaila, we provide event production and AV services in Dubai that combine technical expertise, creative staging, and calm show-day execution. From rigging and lighting design to sound engineering, LED content, live streaming, and show calling, every project is built to run flawlessly under pressure.\n\nAs a trusted event production company in Dubai, we handle the entire technical scope — site surveys, CAD staging plans, equipment procurement, crew management, rehearsals, and live operation. Our team delivers production for ballrooms, outdoor venues, exhibition halls, and hybrid broadcast setups across the UAE.",
+      image: IMG.production,
+      imageAlt: "Event production crew setting up in Dubai",
       align: "left",
       headingAs: "h2",
     },
@@ -1315,39 +1319,39 @@ export const videoProductionSections: PageSection[] = [
     id: "video-production-services",
     type: "servicesEditorial",
     enabled: true,
-    title: "Our Video Production Services",
+    title: "Our Event Production Services",
     settings: {
       layout: "stacked",
       cards: [
         {
-          title: "Corporate Video Production",
+          title: "Staging & Set Design",
           description:
-            "Showcase your company, culture, services, and expertise through professional corporate films that build credibility and trust.",
+            "Custom stage builds, backdrop design, and spatial layouts that transform any venue into a polished event environment.",
         },
         {
-          title: "Commercial Video Production",
+          title: "Lighting Design",
           description:
-            "Create compelling advertisements designed to increase brand awareness, engagement, and conversions.",
+            "Ambient, architectural, and theatrical lighting that sets the mood, highlights speakers, and creates photo-worthy moments.",
         },
         {
-          title: "Brand Films",
+          title: "Sound & Audio",
           description:
-            "Tell your brand story through cinematic content that connects emotionally with your target audience.",
+            "Crystal-clear audio for speeches, panels, performances, and ambient music — engineered for every venue size and acoustics profile.",
         },
         {
-          title: "Social Media Video Content",
+          title: "LED Walls & Visual Content",
           description:
-            "Produce short-form videos, reels, and platform-specific content optimized for Instagram, TikTok, LinkedIn, Facebook, and YouTube.",
+            "High-resolution LED displays, content playback, and motion graphics that support presentations, branding, and immersive moments.",
         },
         {
-          title: "Event Videography",
+          title: "Live Streaming & Hybrid Production",
           description:
-            "Capture conferences, exhibitions, product launches, and corporate events with professional event coverage.",
+            "Multi-camera live streams, virtual delegate platforms, and on-demand recording for hybrid and virtual audiences.",
         },
         {
-          title: "Drone Videography",
+          title: "Show Calling & Technical Direction",
           description:
-            "Add dynamic aerial perspectives that elevate your brand's visual storytelling and production quality.",
+            "Experienced show callers managing cue sheets, speaker transitions, and live operations so your programme runs on time, every time.",
         },
       ],
     },
@@ -1356,24 +1360,24 @@ export const videoProductionSections: PageSection[] = [
     id: "video-production-why",
     type: "imageText",
     enabled: true,
-    title: "Why Invest in Professional Video Production?",
+    title: "Why Invest in Professional Event Production?",
     settings: {
       body: "",
       footer:
-        "High-quality video content helps businesses communicate more effectively, connect with audiences faster, and create memorable brand experiences. Whether you need a single campaign video or an ongoing content production partner, Krew Marketing delivers creative solutions that help your business grow.",
+        "High-quality event production helps organisations communicate more effectively, connect with audiences faster, and create memorable guest experiences. Whether you need production for a single gala or an ongoing event programme, Gaila delivers technical solutions that make every event feel effortless.",
       checklistTitle: "",
       bullets: [
-        "Increase Brand Awareness",
-        "Improve Audience Engagement",
-        "Build Customer Trust",
-        "Enhance Social Media Performance",
-        "Strengthen Marketing Campaigns",
-        "Increase Conversion Rates",
-        "Create Long-Term Brand Assets",
-        "Stand Out From Competitors",
+        "Flawless audio and visual for every speaker and moment",
+        "Staging that transforms any venue",
+        "Live streaming for hybrid and remote audiences",
+        "Experienced show callers who manage the programme",
+        "Technical rehearsals that prevent show-day surprises",
+        "Equipment and crew managed under one team",
+        "Content capture for post-event communications",
+        "Production that scales from 50 to 5,000 guests",
       ],
       image: IMG.studioTeam,
-      imageAlt: "Krew Marketing video production team in Dubai",
+      imageAlt: "Gaila event production team in Dubai",
       align: "right",
       headingAs: "h2",
     },
@@ -1382,34 +1386,34 @@ export const videoProductionSections: PageSection[] = [
     id: "video-production-process",
     type: "processSteps",
     enabled: true,
-    title: "Why Businesses Choose Our Video Production Company in Dubai",
+    title: "Why Clients Choose Our Event Production Company in Dubai",
     subtitle:
-      "From first brief to final delivery, our end-to-end workflow keeps every project on strategy, on schedule, and optimised for the channels where your audience actually watches.",
+      "From first site survey to show-day execution, our end-to-end workflow keeps every production on brief, on schedule, and ready for the moment guests arrive.",
     settings: {
       steps: [
         {
-          title: "Strategy",
-          text: "We align on business goals, audience insights, and distribution channels so every creative decision supports measurable outcomes.",
+          title: "Site Survey",
+          text: "We assess venue power, rigging points, load-in access, and acoustics so every technical decision is grounded in the actual space.",
         },
         {
-          title: "Concept",
-          text: "Our team develops scripts, storyboards, and visual treatments that translate your brand message into a compelling narrative.",
+          title: "Design",
+          text: "Our team develops CAD staging plans, lighting plots, audio diagrams, and run-of-show documents that translate the brief into executable production.",
         },
         {
-          title: "Production",
-          text: "Professional crews, equipment, and direction bring the concept to life — on location, in studio, or on set across Dubai and the UAE.",
+          title: "Build",
+          text: "Professional crews, equipment, and direction bring the design to life — in ballrooms, outdoor venues, or exhibition halls across Dubai and the UAE.",
         },
         {
-          title: "Editing",
-          text: "Post-production, colour grading, motion graphics, and sound design refine raw footage into polished, platform-ready content.",
+          title: "Rehearsal",
+          text: "Technical rehearsals, speaker walkthroughs, and cue-to-cue run-throughs refine every element before the first guest arrives.",
         },
         {
-          title: "Distribution",
-          text: "We deliver master files and cutdowns optimised for websites, social platforms, paid media, presentations, and broadcast.",
+          title: "Show Day",
+          text: "Live operation with show calling, technical direction, and on-site troubleshooting — so your programme runs on time and every moment lands.",
         },
         {
-          title: "Performance Analysis",
-          text: "We track engagement, view-through, and conversion metrics to inform future content and maximise return on production investment.",
+          title: "Wrap & Review",
+          text: "Equipment strike, content delivery, and a post-event debrief that informs future productions and maximises return on investment.",
         },
       ],
     },
@@ -1418,12 +1422,12 @@ export const videoProductionSections: PageSection[] = [
     id: "video-production-cta",
     type: "ctaBanner",
     enabled: true,
-    title: "Book a strategy call",
-    subtitle: "Tell us your goal and timeline. We'll come back with a practical plan in the first call.",
+    title: "Request a proposal",
+    subtitle: "Tell us about your event and timeline. We'll come back with a practical production plan in the first call.",
     settings: {
       body:
-        "Whether you need a single campaign film or an ongoing video production partner in Dubai — we're built for both.",
-      ctaLabel: "Book a strategy call",
+        "Whether you need production for a single gala or an ongoing event programme in Dubai — we're built for both.",
+      ctaLabel: "Request a proposal",
       ctaHref: "tel:+971502827279",
       variant: "dark",
     },
@@ -1440,9 +1444,9 @@ export const defaultPages = [
     headerLabel: "Home",
     headerOrder: 0,
     seo: {
-      title: "Krew Marketing | Creative Digital Agency in Dubai",
+      title: "Gaila | Event Management Company in Dubai",
       description:
-        "Krew Marketing is a Dubai creative digital agency combining strategy, brand, video production, social, performance marketing, and SEO into one accountable team.",
+        "Gaila is a Dubai event management company combining strategy, creative direction, production, and logistics into one accountable team for corporate events, conferences, and celebrations.",
     },
     sections: homeSections,
   },
@@ -1455,14 +1459,14 @@ export const defaultPages = [
     headerLabel: "Services",
     headerOrder: 1,
     seo: {
-      title: "Digital Marketing Services in Dubai | Krew Marketing",
+      title: "Event Management Services in Dubai | Gaila",
       description:
-        "Explore Krew Marketing services in Dubai: performance marketing, SEO, social media, video production, influencer marketing, PR, branding, and web development.",
+        "Explore Gaila event services in Dubai: corporate events, conferences, weddings, event production, creative direction, venue sourcing, experiential activations, and consulting.",
     },
     sections: servicesSections,
   },
   {
-    title: "Performance Marketing",
+    title: "Conferences & Summits",
     slug: "service-paid-media",
     status: "published",
     template: "service",
@@ -1470,14 +1474,14 @@ export const defaultPages = [
     headerLabel: "",
     headerOrder: 0,
     seo: {
-      title: "Performance Marketing & PPC Agency Dubai | Krew Marketing",
+      title: "Conference & Summit Management Dubai | Gaila",
       description:
-        "Plan and scale Google Ads, Meta, TikTok, and LinkedIn campaigns with a Dubai performance marketing agency focused on qualified leads.",
+        "Plan and deliver conferences and summits in Dubai with a team focused on programme design, delegate experience, hybrid streaming, and sponsor activations.",
     },
     sections: paidMediaSections,
   },
   {
-    title: "SEO Services Dubai",
+    title: "Corporate Events",
     slug: "service-seo-dubai",
     status: "published",
     template: "service",
@@ -1485,14 +1489,14 @@ export const defaultPages = [
     headerLabel: "",
     headerOrder: 0,
     seo: {
-      title: "SEO Services Dubai | SEO Agency Dubai | Krew Marketing",
+      title: "Corporate Events Dubai | Corporate Event Management | Gaila",
       description:
-        "SEO services in Dubai that drive real organic growth — technical SEO, local search, bilingual strategy, AI search optimisation, and content built for long-term rankings.",
+        "Corporate event management in Dubai — galas, product launches, award ceremonies, and leadership events with end-to-end planning, production, and guest experience.",
     },
     sections: seoDubaiSections,
   },
   {
-    title: "Social Media Marketing",
+    title: "Weddings & Celebrations",
     slug: "service-social-media",
     status: "published",
     template: "service",
@@ -1500,14 +1504,14 @@ export const defaultPages = [
     headerLabel: "",
     headerOrder: 0,
     seo: {
-      title: "Social Media Marketing Agency Dubai | Krew Marketing",
+      title: "Wedding Planner Dubai | Celebration Events | Gaila",
       description:
-        "Social media marketing agency in Dubai — strategy, content creation, community management, paid social, reels, and analytics that build brand affinity and drive conversions.",
+        "Wedding and celebration planning in Dubai — venue sourcing, creative direction, vendor coordination, and day-of production for unforgettable events.",
     },
     sections: socialMediaSections,
   },
   {
-    title: "Video Production",
+    title: "Event Production & AV",
     slug: "service-video-production",
     status: "published",
     template: "service",
@@ -1515,9 +1519,9 @@ export const defaultPages = [
     headerLabel: "",
     headerOrder: 0,
     seo: {
-      title: "Video Production Services Dubai | Krew Marketing",
+      title: "Event Production & AV Dubai | Gaila",
       description:
-        "Video production services in Dubai — corporate films, commercials, brand films, social content, event videography, and drone footage that delivers measurable business results.",
+        "Event production and AV services in Dubai — staging, lighting, sound, LED walls, live streaming, and show calling for conferences, galas, and launches.",
     },
     sections: videoProductionSections,
   },
@@ -1530,9 +1534,9 @@ export const defaultPages = [
     headerLabel: "Case Studies",
     headerOrder: 2,
     seo: {
-      title: "Digital Marketing Case Studies Dubai | Krew Marketing",
+      title: "Event Management Case Studies Dubai | Gaila",
       description:
-        "Recent Dubai campaigns for Fenty Beauty, Ford Middle East, Oberoi Yachts, 8th Café and more — brand film, social, SEO, and performance marketing.",
+        "Recent Dubai events for Fenty Beauty, Ford Middle East, Oberoi Yachts, 8th Café and more — galas, summits, launches, and celebrations.",
     },
     sections: [
       {
@@ -1540,13 +1544,13 @@ export const defaultPages = [
         type: "heroEditorial",
         enabled: true,
         eyebrow: "Selected work",
-        title: "Work that delivers results.",
+        title: "Events that deliver results.",
         subtitle:
-          "A working selection of campaigns we've built across beauty, automotive, luxury, hospitality, and lifestyle — with the actual numbers, not the stock photos.",
+          "A working selection of events we've produced across beauty, automotive, luxury, hospitality, and lifestyle — with the actual numbers, not the stock photos.",
         settings: {
-          image: IMG.beauty,
-          imageAlt: "Editorial brand photography",
-          ctaLabel: "Start a conversation",
+          image: IMG.gala,
+          imageAlt: "Editorial event photography",
+          ctaLabel: "Plan your event",
           ctaHref: "/contact",
           secondaryCtaLabel: "Explore services",
           secondaryCtaHref: "/services",
@@ -1566,24 +1570,24 @@ export const defaultPages = [
             "8th Café",
             "Baaqat Flowers",
             "Hospitality Group",
-            "Brand · Creative · Performance",
+            "Galas · Summits · Launches",
           ],
         },
       },
-      { id: "case-grid", type: "caseStudyGrid", enabled: true, title: "Recent campaigns", settings: {} },
+      { id: "case-grid", type: "caseStudyGrid", enabled: true, title: "Recent events", settings: {} },
       {
         id: "case-imagetext",
         type: "imageText",
         enabled: true,
         eyebrow: "Our approach",
-        title: "Built around the one number that decides whether a campaign worked.",
-        subtitle: "Outcome-led work, not deck-led work.",
+        title: "Built around the one outcome that decides whether an event worked.",
+        subtitle: "Outcome-led production, not deck-led production.",
         settings: {
-          image: IMG.brand,
-          imageAlt: "Krew studio at work on a campaign",
+          image: IMG.decor,
+          imageAlt: "Gaila team at work on an event",
           align: "left",
           body:
-            "Every Krew engagement starts with one question: what outcome will tell us this worked? We rebuild tracking, creative, and the paid funnel around that number, then run weekly optimisation against it. The case studies on this page all share the same DNA — a clear outcome, honest reporting, and a creative library the in-house team keeps using long after the campaign ends.",
+            "Every Gaila engagement starts with one question: what outcome will tell us this worked? We rebuild creative, production, and the guest journey around that number, then run weekly confirmations against it. The case studies on this page all share the same DNA — a clear outcome, honest reporting, and a production playbook the in-house team keeps using long after the event ends.",
         },
       },
       {
@@ -1594,9 +1598,9 @@ export const defaultPages = [
         title: "Numbers from the past 12 months.",
         settings: {
           stats: [
-            { value: "3.2x", label: "Blended ROAS for hospitality group" },
-            { value: "+184%", label: "Organic growth for retained SEO clients" },
-            { value: "+120%", label: "Engagement lift for Fenty Beauty launch" },
+            { value: "3.2x", label: "Sponsor ROI for hospitality group gala" },
+            { value: "200+", label: "Events delivered across Dubai and the UAE" },
+            { value: "+120%", label: "Social engagement for Fenty Beauty launch" },
             { value: "180+", label: "Production days delivered" },
           ],
         },
@@ -1605,9 +1609,9 @@ export const defaultPages = [
         id: "cta",
         type: "ctaBanner",
         enabled: true,
-        title: "Want a campaign like this for your brand?",
-        subtitle: "Tell us what you're trying to grow and we'll share a practical plan in the first call.",
-        settings: { ctaLabel: "Start a conversation", ctaHref: "/contact" },
+        title: "Want an event like this for your brand?",
+        subtitle: "Tell us what you're planning and we'll share a practical proposal in the first call.",
+        settings: { ctaLabel: "Plan your event", ctaHref: "/contact" },
       },
     ],
   },
@@ -1620,9 +1624,9 @@ export const defaultPages = [
     headerLabel: "Blog",
     headerOrder: 3,
     seo: {
-      title: "Digital Marketing Blog Dubai | Krew Marketing",
+      title: "Event Planning Blog Dubai | Gaila",
       description:
-        "Practical SEO, paid media, social, content, and Arabic-market insights for brands growing in Dubai and the wider UAE.",
+        "Practical event planning, venue selection, hybrid formats, and Dubai-market insights for organisations hosting events across the UAE.",
     },
     sections: [
       {
@@ -1630,13 +1634,13 @@ export const defaultPages = [
         type: "heroEditorial",
         enabled: true,
         eyebrow: "Blog",
-        title: "Working notes from a Dubai marketing studio.",
+        title: "Working notes from a Dubai event studio.",
         subtitle:
-          "Field notes on SEO, performance marketing, Arabic content, and the marketing tech stack from our work across the UAE.",
+          "Field notes on corporate events, venue selection, hybrid formats, and event production from our work across the UAE.",
         settings: {
           image: IMG.studioTeam,
           imageAlt: "Editorial workspace",
-          ctaLabel: "Start a project",
+          ctaLabel: "Plan your event",
           ctaHref: "/contact",
           secondaryCtaLabel: "Browse services",
           secondaryCtaHref: "/services",
@@ -1650,13 +1654,13 @@ export const defaultPages = [
         settings: {
           speedSeconds: 45,
           items: [
-            "SEO Dubai",
-            "Performance Marketing",
-            "AI Search Optimization",
-            "Arabic Content",
-            "Local SEO",
-            "Paid Social",
-            "Server-side Tagging",
+            "Corporate Events",
+            "Conferences",
+            "Weddings",
+            "Venue Selection",
+            "Hybrid Events",
+            "Event Production",
+            "Dubai Venues",
           ],
         },
       },
@@ -1674,9 +1678,9 @@ export const defaultPages = [
         eyebrow: "How we write",
         settings: {
           quote:
-            "We write the field notes we wish we'd had two years ago — what actually moved Dubai accounts, what wasted budget, and what we'd do differently on a six-figure media plan.",
+            "We write the field notes we wish we'd had two years ago — what actually made Dubai events succeed, what wasted budget, and what we'd do differently on a six-figure production.",
           author: "Hassan Karim",
-          role: "Head of Strategy · Krew Marketing",
+          role: "Head of Strategy · Gaila",
           image: IMG.studioTeam,
         },
       },
@@ -1699,10 +1703,10 @@ export const defaultPages = [
         id: "blog-cta",
         type: "ctaBanner",
         enabled: true,
-        title: "Want this kind of thinking on your account?",
+        title: "Want this kind of thinking on your event?",
         subtitle:
-          "These notes come out of running real Dubai campaigns. If you'd like that thinking applied to yours, talk to the strategists writing them.",
-        settings: { ctaLabel: "Talk to our strategists", ctaHref: "/contact?topic=insights" },
+          "These notes come out of producing real Dubai events. If you'd like that thinking applied to yours, talk to the producers writing them.",
+        settings: { ctaLabel: "Speak to our team", ctaHref: "/contact?topic=insights" },
       },
     ],
   },
@@ -1715,9 +1719,9 @@ export const defaultPages = [
     headerLabel: "About",
     headerOrder: 4,
     seo: {
-      title: "About Krew Marketing | Creative Digital Marketing Agency Dubai",
+      title: "About Gaila | Event Management Company Dubai",
       description:
-        "Krew Marketing is a creative digital marketing agency in Dubai built for businesses serious about growth — strategy, creativity, and performance in one connected system.",
+        "Gaila is an event management company in Dubai built for organisations and families serious about their events — strategy, creative direction, and production in one connected system.",
     },
     sections: aboutSections,
   },
@@ -1730,9 +1734,9 @@ export const defaultPages = [
     headerLabel: "Contact",
     headerOrder: 5,
     seo: {
-      title: "Contact Krew Marketing | Abu Dhabi Creative Digital Agency",
+      title: "Contact Gaila | Event Management Company Dubai",
       description:
-        "Contact Krew Marketing in Abu Dhabi — strategy, brand, video production, social, SEO, and performance marketing for UAE brands.",
+        "Contact Gaila in Dubai — corporate events, conferences, weddings, production, and logistics for UAE brands and families.",
     },
     sections: [
       {
@@ -1740,7 +1744,7 @@ export const defaultPages = [
         type: "heroEditorial",
         enabled: true,
         eyebrow: "Contact",
-        title: "Tell us what you want to grow.",
+        title: "Tell us about your event.",
         subtitle:
           "We typically respond within one business day. For urgent enquiries, WhatsApp the number in the footer and we'll come back the same day.",
         settings: {
@@ -1759,7 +1763,7 @@ export const defaultPages = [
         enabled: true,
         title: "Start a conversation",
         subtitle:
-          "Share a little about your business and your goal. The more context you can give, the more useful our first response will be.",
+          "Share a little about your event and your goals. The more context you can give, the more useful our first response will be.",
         settings: {},
       },
       {
@@ -1771,34 +1775,34 @@ export const defaultPages = [
         subtitle: "Sunday — Thursday, 09:00 to 19:00 GST.",
         settings: {
           image: IMG.studioTeam,
-          imageAlt: "Krew Marketing team in the Abu Dhabi studio",
+          imageAlt: "Gaila team in the Dubai studio",
           align: "right",
           body:
-            "Our team in Abu Dhabi monitors inbound enquiries from 09:00 to 19:00 GST, Sunday to Thursday. Briefs sent overnight get a same-morning response, and weekend launches are covered on WhatsApp. The first reply is always written by a senior strategist, not an account handler.",
+            "Our team in Dubai monitors inbound enquiries from 09:00 to 19:00 GST, Sunday to Thursday. Briefs sent overnight get a same-morning response, and weekend events are covered on WhatsApp. The first reply is always written by a senior producer, not an account handler.",
         },
       },
       {
         id: "contact-faq",
         type: "faq",
         enabled: true,
-        eyebrow: "Working with Krew",
+        eyebrow: "Working with Gaila",
         title: "Quick answers before the first call.",
         settings: {
           faqs: [
             {
               question: "What's the fastest way to get started?",
               answer:
-                "A 30-minute intro call. We'll ask about your goal, current setup, and constraints, then send a written recommendation within two business days.",
+                "A 30-minute intro call. We'll ask about your event, timeline, and budget, then send a written proposal within two business days.",
             },
             {
               question: "Are you available outside the UAE?",
               answer:
-                "Yes. Our roster includes brands across the GCC, KSA, UK, and US. The studio is in Abu Dhabi but the team works across time zones.",
+                "Yes. Our roster includes events across the GCC, KSA, UK, and US. The studio is in Dubai but the team works across time zones.",
             },
             {
-              question: "Do you work with start-ups?",
+              question: "Do you work with first-time event organisers?",
               answer:
-                "Selectively — we focus on brands ready to invest in proper creative and tracking. We'll be honest in the first call if Krew isn't the right fit yet.",
+                "Selectively — we focus on clients ready to invest in proper planning and production. We'll be honest in the first call if Gaila isn't the right fit yet.",
             },
           ],
         },

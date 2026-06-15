@@ -22,11 +22,11 @@ const appUrl = process.env.APP_URL ?? "http://localhost:3000";
 export const metadata: Metadata = {
   metadataBase: new URL(appUrl),
   title: {
-    default: "Krew Marketing | Creative Digital Agency in Dubai",
-    template: "%s | Krew Marketing",
+    default: "Gaila | Event Management Company in Dubai",
+    template: "%s | Gaila",
   },
   description:
-    "Krew Marketing is a Dubai creative digital agency for SEO, performance marketing, brand, social, and video production.",
+    "Gaila is a Dubai event management company for corporate events, conferences, weddings, galas, and experiential activations across the UAE.",
   verification: {
     google: "wRjCBU_RiwBV1TuyJE4-3mtJcL-9DDPK-SeOvM1xr0g",
   },

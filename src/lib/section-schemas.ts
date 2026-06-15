@@ -261,9 +261,9 @@ export const SECTION_SPECS: Record<SectionType, SectionTypeSpec> = {
       imageAlt: "",
       rotatingTitles: [],
       rotationSeconds: 4,
-      ctaLabel: "Book a strategy call",
+      ctaLabel: "Plan your event",
       ctaHref: "/contact",
-      secondaryCtaLabel: "Book a strategy call",
+      secondaryCtaLabel: "Request a proposal",
       secondaryCtaHref: "tel:+971502827279",
       categories: [
         { label: "Services", href: "/services", meta: "" },

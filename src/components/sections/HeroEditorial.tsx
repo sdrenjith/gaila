@@ -136,7 +136,7 @@ export function HeroEditorial({
 
   const resolvedVideo = video || (image ? "" : DEFAULT_VIDEO);
   const resolvedPoster = poster || image || DEFAULT_POSTER;
-  const heroAlt = imageAlt || title || "Krew Marketing editorial hero";
+  const heroAlt = imageAlt || title || "Gaila editorial hero";
 
   useEffect(() => {
     if (!resolvedVideo || reduceMotion) {
@@ -344,7 +344,7 @@ export function HeroEditorial({
                 className="group relative inline-flex items-center gap-3 rounded-full border border-white/30 px-7 py-4 text-[13px] font-semibold uppercase tracking-[0.22em] text-white/90 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-white/70 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ink)] motion-reduce:transform-none motion-reduce:transition-none"
               >
                 <span className="relative">
-                  {secondaryCtaLabel || "Book a strategy call"}
+                  {secondaryCtaLabel || "Request a proposal"}
                   <span
                     aria-hidden="true"
                     className="pointer-events-none absolute -bottom-1 left-0 h-px w-0 bg-white/80 transition-all duration-300 group-hover:w-full motion-reduce:hidden"

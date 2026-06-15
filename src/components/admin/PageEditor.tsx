@@ -54,9 +54,9 @@ export function PageEditor({ page, starterSections, categories = [] }: Props) {
   const [showInHeader, setShowInHeader] = useState(Boolean(page?.showInHeader));
   const [headerLabel, setHeaderLabel] = useState(page?.headerLabel ?? page?.title ?? "");
   const [headerOrder, setHeaderOrder] = useState(String(page?.headerOrder ?? 0));
-  const [seoTitle, setSeoTitle] = useState(page?.seo.title ?? "New page | Krew Marketing");
+  const [seoTitle, setSeoTitle] = useState(page?.seo.title ?? "New page | Gaila");
   const [seoDescription, setSeoDescription] = useState(
-    page?.seo.description ?? "A new page on the Krew Marketing site.",
+    page?.seo.description ?? "A new page on the Gaila site.",
   );
   const heroSection =
     sections.find((section) => section.type === "heroEditorial" || section.type === "heroSlider") ?? sections[0];
@@ -77,8 +77,8 @@ export function PageEditor({ page, starterSections, categories = [] }: Props) {
     setShowInHeader(Boolean(page?.showInHeader));
     setHeaderLabel(page?.headerLabel ?? page?.title ?? "");
     setHeaderOrder(String(page?.headerOrder ?? 0));
-    setSeoTitle(page?.seo.title ?? "New page | Krew Marketing");
-    setSeoDescription(page?.seo.description ?? "A new page on the Krew Marketing site.");
+    setSeoTitle(page?.seo.title ?? "New page | Gaila");
+    setSeoDescription(page?.seo.description ?? "A new page on the Gaila site.");
     setHeaderTitle(nextHero?.title ?? page?.title ?? "");
     setHeaderContent(nextHero?.subtitle ?? "");
   }, [page?._id, page, starterSections]);

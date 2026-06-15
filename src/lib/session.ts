@@ -1,1 +1,1 @@
-export const SESSION_COOKIE = "krew_admin_session";
+export const SESSION_COOKIE = "gaila_admin_session";

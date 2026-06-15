@@ -14,7 +14,7 @@ export default async function AdminLoginPage() {
           siteName={settings.siteName}
           variant="login"
         />
-        <h1 className="mt-6 text-3xl font-semibold">Krew CMS login</h1>
+        <h1 className="mt-6 text-3xl font-semibold">Gaila CMS login</h1>
         <p className="mt-3 text-sm leading-6 text-stone-500">
           Manage pages, sections, menus, content, media, leads, and site SEO from one protected admin panel.
         </p>

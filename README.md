@@ -1,6 +1,6 @@
-# Krew Marketing CMS
+# Gaila CMS
 
-Full-stack Next.js CMS for the Krew Marketing digital agency website. Public pages are server-rendered from MongoDB, and content is managed through a protected admin panel.
+Full-stack Next.js CMS for the Gaila event management website. Public pages are server-rendered from MongoDB, and content is managed through a protected admin panel.
 
 ## Requirements
 

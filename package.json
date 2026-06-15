@@ -1,0 +1,52 @@
+{
+  "name": "gaila",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "seed": "tsx scripts/seed.ts",
+    "admin:create": "tsx scripts/create-admin.ts",
+    "videos:rename": "tsx scripts/rename-videos.ts",
+    "contact:update": "tsx scripts/update-contact-details.ts",
+    "footer:update": "tsx scripts/update-footer.ts",
+    "blog:update-labels": "tsx scripts/update-blog-labels.ts",
+    "services:update": "tsx scripts/update-services-consolidation.ts",
+    "about:update": "tsx scripts/update-about.ts",
+    "paid-media:update": "tsx scripts/update-paid-media-page.ts",
+    "seo-dubai:update": "tsx scripts/update-seo-dubai-page.ts",
+    "social-media:update": "tsx scripts/update-social-media-page.ts",
+    "video-production:update": "tsx scripts/update-video-production-page.ts"
+  },
+  "dependencies": {
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.38.0",
+    "bcryptjs": "^3.0.3",
+    "clsx": "^2.1.1",
+    "dotenv": "^17.4.2",
+    "jose": "^6.2.3",
+    "mongoose": "^8.24.0",
+    "motion": "^12.39.0",
+    "next": "16.2.6",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.6",
+    "tailwindcss": "^4",
+    "tsx": "^4.22.3",
+    "typescript": "^5",
+    "vitest": "^3.2.4"
+  }
+}

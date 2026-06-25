@@ -82,7 +82,7 @@ export function AdminTable<T>({
           value={term}
           onChange={(event) => setTerm(event.target.value)}
           placeholder={searchPlaceholder}
-          className="w-full max-w-sm rounded-full border border-stone-200 bg-stone-50 px-4 py-2 text-sm outline-none focus:border-[var(--gold-deep)]"
+          className="w-full max-w-sm rounded-full border border-stone-200 bg-stone-50 px-4 py-2 text-sm outline-none focus:border-violet-600"
         />
         <span className="text-xs text-stone-500">
           {visibleRows.length} / {rows.length} {rows.length === 1 ? "row" : "rows"}

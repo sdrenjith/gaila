@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { adminBtn } from "@/lib/admin-ui";
 import { CategoryEditor } from "@/components/admin/CategoryEditor";
 import { DeleteActionForm } from "@/components/admin/DeleteActionForm";
 import { AdminPageFrame } from "@/components/admin/AdminPageFrame";
@@ -30,7 +31,7 @@ export default async function AdminCategoriesPage({ searchParams }: Props) {
           <Link
             href="/admin/categories?slug=new"
             prefetch={false}
-            className="rounded-full bg-[var(--ink)] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-[var(--ink-soft)]"
+            className={adminBtn}
           >
             + New category
           </Link>

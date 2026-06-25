@@ -34,7 +34,7 @@ export function AdminListSearch({
         value={value}
         onChange={(event) => onChange(event.target.value)}
         placeholder={placeholder}
-        className="w-full rounded-full border border-stone-200 bg-stone-50 px-4 py-2 text-sm outline-none focus:border-[var(--gold-deep)]"
+        className="w-full rounded-full border border-stone-200 bg-stone-50 px-4 py-2 text-sm outline-none focus:border-violet-600"
       />
       {stacked ? count : <span className="shrink-0">{count}</span>}
     </div>

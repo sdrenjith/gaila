@@ -1,7 +1,7 @@
-import { defaultFooterCta, footerMenuItems } from "@/lib/default-content";
+import { defaultFooterCta, footerMenuItems, headerMenuItems } from "@/lib/default-content";
 import type { MenuItem, NavigationRecord, PageRecord } from "@/types/cms";
 
-const DEFAULT_FOOTER_TAGLINE = "Built in Dubai · Made for the world";
+const DEFAULT_FOOTER_TAGLINE = "Built in Dubai · Made for memorable moments";
 
 function mergeFooterCta(menu: NavigationRecord | null): NavigationRecord["cta"] {
   const stored = menu?.cta;
@@ -12,6 +12,17 @@ function mergeFooterCta(menu: NavigationRecord | null): NavigationRecord["cta"] 
     label: stored?.label?.trim() || defaultFooterCta.label,
     href: stored?.href?.trim() || defaultFooterCta.href,
     visible: stored?.visible ?? defaultFooterCta.visible,
+  };
+}
+
+/** Header links with seed defaults when the DB menu is missing or empty. */
+export function resolveHeaderMenu(menu: NavigationRecord | null): NavigationRecord {
+  return {
+    _id: menu?._id ?? "header",
+    location: "header",
+    title: menu?.title?.trim() || "Header Menu",
+    items: menu?.items?.length ? menu.items : headerMenuItems,
+    cta: menu?.cta ?? { label: "Plan your event", href: "/contact", visible: true },
   };
 }
 
@@ -42,7 +53,10 @@ export function getPublishedPageHrefSet(pages: PageRecord[]) {
 
 export function splitManualMenuItems(items: MenuItem[], pages: PageRecord[]) {
   const pageHrefs = getPublishedPageHrefSet(pages);
-  return items.filter((item) => !pageHrefs.has(item.href));
+  return items.filter((item) => {
+    if (item.children?.length) return true;
+    return !pageHrefs.has(item.href);
+  });
 }
 
 export type PageHeaderPreviewItem = {
@@ -62,6 +76,16 @@ export function getPageHeaderPreviewItems(pages: PageRecord[]): PageHeaderPrevie
       slug: page.slug,
     }))
     .sort((a, b) => a.order - b.order);
+}
+
+export function isMenuItemActive(item: MenuItem, pathname: string): boolean {
+  if (isActiveHref(item.href, pathname)) return true;
+  return (item.children ?? []).some((child) => isActiveHref(child.href, pathname));
+}
+
+function isActiveHref(href: string, pathname: string): boolean {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(`${href}/`);
 }
 
 export function mergeHeaderMenuWithPages(
@@ -85,6 +109,10 @@ export function mergeHeaderMenuWithPages(
     .flatMap((page) => {
       const href = toPageHref(page.slug);
       const manualItem = manualByHref.get(href);
+      if (manualItem?.children?.length) {
+        return [];
+      }
+
       const visibleFromPage = page.showInHeader === true;
       const visibleFromExistingMenu = Boolean(manualItem?.visible);
 
@@ -98,11 +126,15 @@ export function mergeHeaderMenuWithPages(
           href,
           order: Number.isFinite(page.headerOrder) ? Number(page.headerOrder) : manualItem?.order || 0,
           visible: true,
+          children: manualItem?.children,
         },
       ];
     });
 
-  const manualItems = menu.items.filter((item) => !pageHrefMap.has(item.href));
+  const manualItems = menu.items.filter((item) => {
+    if (item.children?.length) return true;
+    return !pageHrefMap.has(item.href);
+  });
 
   return {
     ...menu,

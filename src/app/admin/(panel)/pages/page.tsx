@@ -1,8 +1,10 @@
 import Link from "next/link";
+import { adminBtn } from "@/lib/admin-ui";
 import { deletePageAction } from "@/app/actions/admin";
 import { DeleteActionForm } from "@/components/admin/DeleteActionForm";
 import { AdminPageFrame } from "@/components/admin/AdminPageFrame";
 import { Breadcrumbs } from "@/components/admin/Breadcrumbs";
+import { AdminPagesList } from "@/components/admin/AdminPagesList";
 import { PageEditor } from "@/components/admin/PageEditor";
 import { Panel } from "@/components/admin/forms/Field";
 import { getAdminCategoryOptions, getAdminPageBySlug, getAdminPagesList } from "@/lib/cms";
@@ -37,40 +39,16 @@ export default async function AdminPagesPage({ searchParams }: Props) {
           <Link
             href="/admin/pages?slug=new"
             prefetch={false}
-            className="rounded-full bg-[var(--ink)] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-[var(--ink-soft)]"
+            className={adminBtn}
           >
             + New page
           </Link>
         }
       />
 
-      <div className="mt-6 grid gap-6 xl:grid-cols-[18rem_minmax(0,1fr)]">
+      <div className="mt-6 grid gap-6 xl:grid-cols-[20rem_minmax(0,1fr)]">
         <Panel title="All pages" description={`${pages.length} pages`}>
-          <ul className="grid gap-1">
-            {pages.map((page) => {
-              const isActive = page.slug === (selected?.slug || slug);
-              return (
-                <li key={page._id}>
-                  <Link
-                    href={`/admin/pages?slug=${page.slug}`}
-                    prefetch={false}
-                    className={`flex items-center justify-between rounded-xl px-3 py-2.5 text-sm transition ${
-                      isActive ? "bg-stone-900 text-white" : "text-stone-700 hover:bg-stone-100"
-                    }`}
-                  >
-                    <span className="truncate">{page.title}</span>
-                    <span
-                      className={`text-[10px] uppercase tracking-[0.18em] ${
-                        isActive ? "text-white/60" : page.status === "published" ? "text-[var(--gold-deep)]" : "text-stone-400"
-                      }`}
-                    >
-                      {page.status === "published" ? "active" : "draft"}
-                    </span>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+          <AdminPagesList pages={pages} selectedSlug={selected?.slug || slug} />
           {selected && selected.slug !== "home" && (
             <DeleteActionForm
               action={deletePageAction}

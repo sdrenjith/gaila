@@ -19,7 +19,7 @@ export function EditorialFaq({ eyebrow, title, subtitle, faqs }: EditorialFaqPro
   if (!items.length) return null;
 
   return (
-    <section className="relative bg-white px-5 py-24 sm:px-8 lg:px-14 lg:py-28">
+    <section className="relative bg-transparent px-5 editorial-section-padding sm:px-8 lg:px-14">
       <div className="mx-auto grid max-w-[1480px] gap-12 lg:grid-cols-[0.35fr_0.65fr]">
         <div>
           {eyebrow && (

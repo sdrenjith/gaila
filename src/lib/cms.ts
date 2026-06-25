@@ -124,7 +124,7 @@ export const getSiteSettings = cache(async () => {
         ...serialized,
         googleReviews: serialized.googleReviews ?? [],
         heroVideo: serialized.heroVideo || "/uploads/video/home-hero.mp4",
-        logo: serialized.logo ?? "/gaila-logo.webp",
+        logo: serialized.logo || "",
       };
     },
     ["site-settings"],

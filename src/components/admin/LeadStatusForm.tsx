@@ -8,7 +8,7 @@ import type { LeadRecord } from "@/types/cms";
 const initialState: AdminActionState = { ok: false, message: "" };
 
 const statusBadge: Record<LeadRecord["status"], string> = {
-  new: "bg-[var(--gold-light)]/40 text-[var(--gold-deep)]",
+  new: "bg-violet-100 text-violet-800",
   contacted: "bg-blue-100 text-blue-700",
   qualified: "bg-emerald-100 text-emerald-700",
   closed: "bg-stone-200 text-stone-600",

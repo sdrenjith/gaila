@@ -6,7 +6,6 @@ import type { NavigationRecord, SiteSettingsRecord } from "@/types/cms";
 type SocialEntry = {
   label: string;
   href: string;
-  short: string;
 };
 
 function SocialIcon({ label }: { label: string }) {
@@ -48,37 +47,48 @@ export function Footer({ settings, menu }: { settings: SiteSettingsRecord; menu:
   const cta = menu.cta;
   const showCta = Boolean(cta?.visible && cta.label && cta.href);
   const footerTagline = settings.footer.tagline?.trim() || DEFAULT_FOOTER_TAGLINE;
+  const footerDescription = settings.footer.description?.trim();
 
   const socials: SocialEntry[] = [
-    { label: "Instagram", short: "IG", href: settings.social.instagram },
-    { label: "LinkedIn", short: "IN", href: settings.social.linkedin },
-    { label: "Facebook", short: "FB", href: settings.social.facebook },
-    { label: "X · Twitter", short: "X", href: settings.social.x },
+    { label: "Instagram", href: settings.social.instagram },
+    { label: "LinkedIn", href: settings.social.linkedin },
+    { label: "Facebook", href: settings.social.facebook },
+    { label: "X", href: settings.social.x },
   ].filter((entry) => Boolean(entry.href));
 
   return (
-    <footer className="relative isolate overflow-hidden bg-[var(--ink)] px-5 pb-10 pt-24 text-white sm:px-8 lg:px-14 lg:pt-32">
+    <footer className="relative isolate overflow-hidden bg-[#080014] px-5 pb-10 pt-24 text-white sm:px-8 lg:px-14 lg:pt-32">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(70%_50%_at_70%_20%,rgba(200,163,91,0.18),transparent_55%),radial-gradient(70%_60%_at_15%_85%,rgba(139,106,38,0.18),transparent_55%)]"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(70%_55%_at_78%_12%,rgba(168,85,247,0.38),transparent_58%),radial-gradient(60%_50%_at_8%_88%,rgba(255,63,180,0.22),transparent_55%),radial-gradient(40%_40%_at_50%_50%,rgba(34,211,238,0.08),transparent_60%)]"
       />
+      <div aria-hidden="true" className="editorial-noise pointer-events-none absolute inset-0 -z-10 opacity-40" />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-fuchsia-300/30 to-transparent"
+      />
+
       <div className="mx-auto max-w-[1480px]">
-        <div className="grid gap-14 lg:grid-cols-[1.2fr_0.8fr]">
+        <div className="grid items-start gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
           <div>
             {cta?.eyebrow ? (
-              <p className="mb-6 text-[11px] font-semibold uppercase tracking-[0.38em] text-white/50">
+              <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.34em] text-fuchsia-100/75">
+                <span className="h-1.5 w-1.5 rounded-full bg-[var(--event-cyan)] shadow-[0_0_12px_rgba(34,211,238,0.9)]" />
                 {cta.eyebrow}
               </p>
             ) : null}
-            <h2 className="font-display text-[clamp(3rem,8vw,8rem)] leading-[0.95] tracking-[-0.04em]">
-              {cta?.headline || "Let's build something"}
+            <h2 className="font-display text-[clamp(2.8rem,7.5vw,7rem)] uppercase leading-[0.9] tracking-[0.02em]">
+              {cta?.headline || "Let's create something"}
               <br />
-              <span className="text-[var(--gold-light)]">{cta?.headlineAccent || "that performs."}</span>
+              <span className="gold-text-gradient">{cta?.headlineAccent || "unforgettable."}</span>
             </h2>
+            {footerDescription ? (
+              <p className="mt-6 max-w-xl text-base leading-8 text-white/65">{footerDescription}</p>
+            ) : null}
             {showCta && cta ? (
               <Link
                 href={cta.href}
-                className="group mt-10 inline-flex items-center gap-3 rounded-full bg-[var(--gold)] px-7 py-4 text-[13px] font-semibold uppercase tracking-[0.18em] text-[var(--ink)] transition hover:bg-[var(--gold-light)]"
+                className="group mt-10 inline-flex items-center gap-3 rounded-full gold-gradient cta-shadow px-7 py-4 text-[13px] font-black uppercase tracking-[0.22em] text-white ring-1 ring-inset ring-white/25 transition hover:-translate-y-0.5 hover:brightness-110 cta-shadow-hover"
               >
                 {cta.label}
                 <span aria-hidden="true" className="transition group-hover:translate-x-1">
@@ -88,40 +98,49 @@ export function Footer({ settings, menu }: { settings: SiteSettingsRecord; menu:
             ) : null}
           </div>
 
-          <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-2">
-            <div>
-              <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.38em] text-white/45">
+          <div className="grid w-full grid-cols-1 items-stretch gap-5 sm:grid-cols-2 sm:gap-6">
+            <div className="flex h-full min-h-[18rem] flex-col rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl sm:min-h-[20rem] sm:p-7 lg:p-8">
+              <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.38em] text-fuchsia-100/60">
                 Explore
               </p>
-              <ul className="grid gap-2">
+              <ul className="grid flex-1 gap-2.5">
                 {items.map((item) => (
                   <li key={`${item.href}-${item.label}`}>
-                    <Link href={item.href} className="text-base text-white/85 transition hover:text-white">
+                    <Link
+                      href={item.href}
+                      className="text-[15px] leading-7 text-white/78 transition hover:text-[var(--gold-light)]"
+                    >
                       {item.label}
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
-            <div>
-              <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.38em] text-white/45">
+
+            <div className="flex h-full min-h-[18rem] flex-col rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl sm:min-h-[20rem] sm:p-7 lg:p-8">
+              <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.38em] text-fuchsia-100/60">
                 Studio
               </p>
-              <pre className="whitespace-pre-wrap font-sans-display text-base leading-7 text-white/85">
-                {settings.contact.address}
-              </pre>
-              <a href={`mailto:${settings.contact.email}`} className="mt-4 block text-base text-white/85 hover:text-white">
-                {settings.contact.email}
-              </a>
-              <a href={`tel:${phoneTel}`} className="mt-1 block text-base text-white/85 hover:text-white">
-                {phoneDisplay}
-              </a>
-              {socials.length > 0 && (
-                <div className="mt-8">
-                  <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.38em] text-white/45">
-                    Follow
-                  </p>
-                  <ul className="flex flex-wrap gap-2">
+              <div className="flex flex-1 flex-col">
+                <p className="text-[15px] leading-7 text-white/78">{settings.contact.address}</p>
+                <a
+                  href={`mailto:${settings.contact.email}`}
+                  className="mt-3 block text-[15px] leading-7 text-white/78 transition hover:text-[var(--event-cyan)]"
+                >
+                  {settings.contact.email}
+                </a>
+                <a
+                  href={`tel:${phoneTel}`}
+                  className="mt-1 block text-[15px] leading-7 text-white/78 transition hover:text-[var(--event-cyan)]"
+                >
+                  {phoneDisplay}
+                </a>
+                {socials.length > 0 && (
+                  <div className="mt-auto pt-6">
+                    <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.38em] text-fuchsia-100/60">
+                      Follow
+                    </p>
+                    <ul className="flex flex-wrap gap-2.5">
                     {socials.map((entry) => (
                       <li key={entry.label}>
                         <a
@@ -129,33 +148,23 @@ export function Footer({ settings, menu }: { settings: SiteSettingsRecord; menu:
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label={entry.label}
-                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/80 transition hover:border-[var(--gold-light)] hover:bg-white/10 hover:text-[var(--gold-light)]"
+                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-white/80 transition hover:border-[var(--event-cyan)]/50 hover:bg-[var(--event-cyan)]/10 hover:text-[var(--event-cyan)]"
                         >
-                          <SocialIcon label={entry.label.startsWith("X") ? "X" : entry.label} />
+                          <SocialIcon label={entry.label} />
                         </a>
                       </li>
                     ))}
                   </ul>
                 </div>
               )}
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="mt-16 flex flex-wrap items-end justify-between gap-6 border-t border-white/10 pt-8">
-          <p className="text-[11px] uppercase tracking-[0.32em] text-white/45">{settings.footer.copyright}</p>
-          {socials.length > 0 && (
-            <ul className="flex flex-wrap gap-6 text-[11px] uppercase tracking-[0.32em] text-white/70">
-              {socials.map((entry) => (
-                <li key={`bar-${entry.label}`}>
-                  <a className="hover:text-white" href={entry.href} target="_blank" rel="noopener noreferrer">
-                    {entry.label} ↗
-                  </a>
-                </li>
-              ))}
-            </ul>
-          )}
-          <p className="text-[11px] uppercase tracking-[0.32em] text-white/45">{footerTagline}</p>
+        <div className="mt-16 flex flex-col gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-[10px] uppercase tracking-[0.28em] text-white/45">{settings.footer.copyright}</p>
+          <p className="text-[10px] uppercase tracking-[0.28em] text-white/45">{footerTagline}</p>
         </div>
       </div>
     </footer>

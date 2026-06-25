@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { adminBtn, adminStatusActive } from "@/lib/admin-ui";
 import { AdminPageFrame } from "@/components/admin/AdminPageFrame";
 import { Breadcrumbs } from "@/components/admin/Breadcrumbs";
 import { Panel } from "@/components/admin/forms/Field";
@@ -22,7 +23,7 @@ export default async function AdminDashboardPage() {
         actions={
           <Link
             href="/admin/pages?slug=home"
-            className="rounded-full bg-[var(--ink)] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-[var(--ink-soft)]"
+            className={adminBtn}
           >
             Edit homepage
           </Link>
@@ -35,7 +36,7 @@ export default async function AdminDashboardPage() {
             key={card.label}
             href={card.href}
             prefetch={false}
-            className="rounded-2xl border border-stone-200 bg-white p-5 transition hover:border-[var(--gold)]"
+            className="rounded-2xl border border-stone-200 bg-white p-5 transition hover:border-violet-500"
           >
             <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-stone-400">{card.label}</p>
             <p className="mt-2 font-display text-4xl leading-none tracking-[-0.02em] text-stone-950">{card.value}</p>
@@ -54,7 +55,7 @@ export default async function AdminDashboardPage() {
                   className="flex items-center justify-between rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm transition hover:bg-white"
                 >
                   <span className="truncate">{page.title}</span>
-                  <span className="text-[10px] uppercase tracking-[0.18em] text-[var(--gold-deep)]">{page.status}</span>
+                  <span className={`text-[10px] uppercase tracking-[0.18em] ${adminStatusActive}`}>{page.status}</span>
                 </Link>
               </li>
             ))}

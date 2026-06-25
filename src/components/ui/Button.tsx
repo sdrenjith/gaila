@@ -10,7 +10,7 @@ type ButtonProps = {
 };
 
 const variants = {
-  primary: "gold-gradient text-white shadow-[0_14px_36px_rgba(184,134,11,0.28)] hover:brightness-105",
+  primary: "gold-gradient cta-shadow text-white hover:brightness-105",
   secondary: "border border-[#d5b46a] bg-white text-stone-900 hover:bg-[#fff8e8]",
   ghost: "text-stone-700 hover:text-black",
 };

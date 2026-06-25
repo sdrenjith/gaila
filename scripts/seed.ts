@@ -82,6 +82,13 @@ async function upsertAdmin() {
 async function seed() {
   await connectDB();
 
+  console.log("Clearing existing collections (Page, Content, Category, NavigationMenu, SiteSettings)...");
+  await Page.deleteMany({});
+  await Content.deleteMany({});
+  await Category.deleteMany({});
+  await NavigationMenu.deleteMany({});
+  await SiteSettings.deleteMany({});
+
   const defaultSettings = new SiteSettings().toObject();
   const { _id: _settingsId, ...settingsPayload } = defaultSettings;
   await SiteSettings.updateOne(
@@ -149,17 +156,7 @@ async function seed() {
       slug: "case-studies",
       description: "Event case studies managed through the Gaila CMS.",
       status: "published",
-      stories: caseStudies.map((item, index) => ({
-        id: `legacy-${item.slug}`,
-        title: item.title,
-        slug: item.slug,
-        summary: item.excerpt,
-        body: item.body,
-        status: item.status,
-        media: item.coverImage,
-        order: index,
-        subitems: [],
-      })),
+      stories: [],
     },
     {
       title: "Blog",

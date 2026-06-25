@@ -76,7 +76,7 @@ export function ContentEntryList({ items, selectedSlug }: Props) {
                     </span>
                     <span
                       className={`text-[10px] uppercase tracking-[0.18em] ${
-                        active ? "text-white/60" : published ? "text-[var(--gold-deep)]" : "text-stone-400"
+                        active ? "text-white/60" : published ? "text-violet-700" : "text-stone-400"
                       }`}
                     >
                       {published ? "active" : "draft"}

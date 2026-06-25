@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useActionState, useEffect, useState, useTransition } from "react";
 import { savePageAction, type AdminActionState } from "@/app/actions/admin";
+import { AdminSaveBar } from "@/components/admin/AdminSaveBar";
 import { SectionsManager } from "@/components/admin/SectionsManager";
 import { useToast } from "@/components/admin/Toaster";
 import { Panel, Select, Textarea, TextInput, Toggle } from "@/components/admin/forms/Field";
@@ -64,23 +65,26 @@ export function PageEditor({ page, starterSections, categories = [] }: Props) {
   const [headerContent, setHeaderContent] = useState(heroSection?.subtitle ?? "");
 
   useEffect(() => {
-    const nextSections = cloneSections(page?.sections ?? starterSections);
-    const nextHero =
-      nextSections.find((section) => section.type === "heroEditorial" || section.type === "heroSlider") ??
-      nextSections[0];
+    const timer = setTimeout(() => {
+      const nextSections = cloneSections(page?.sections ?? starterSections);
+      const nextHero =
+        nextSections.find((section) => section.type === "heroEditorial" || section.type === "heroSlider") ??
+        nextSections[0];
 
-    setSections(nextSections);
-    setTitle(page?.title ?? "");
-    setSlug(page?.slug ?? "new-page");
-    setStatus(page?.status ?? "draft");
-    setTemplate(page?.template ?? "standard");
-    setShowInHeader(Boolean(page?.showInHeader));
-    setHeaderLabel(page?.headerLabel ?? page?.title ?? "");
-    setHeaderOrder(String(page?.headerOrder ?? 0));
-    setSeoTitle(page?.seo.title ?? "New page | Gaila");
-    setSeoDescription(page?.seo.description ?? "A new page on the Gaila site.");
-    setHeaderTitle(nextHero?.title ?? page?.title ?? "");
-    setHeaderContent(nextHero?.subtitle ?? "");
+      setSections(nextSections);
+      setTitle(page?.title ?? "");
+      setSlug(page?.slug ?? "new-page");
+      setStatus(page?.status ?? "draft");
+      setTemplate(page?.template ?? "standard");
+      setShowInHeader(Boolean(page?.showInHeader));
+      setHeaderLabel(page?.headerLabel ?? page?.title ?? "");
+      setHeaderOrder(String(page?.headerOrder ?? 0));
+      setSeoTitle(page?.seo.title ?? "New page | Gaila");
+      setSeoDescription(page?.seo.description ?? "A new page on the Gaila site.");
+      setHeaderTitle(nextHero?.title ?? page?.title ?? "");
+      setHeaderContent(nextHero?.subtitle ?? "");
+    }, 0);
+    return () => clearTimeout(timer);
   }, [page?._id, page, starterSections]);
 
   useEffect(() => {
@@ -246,32 +250,29 @@ export function PageEditor({ page, starterSections, categories = [] }: Props) {
         />
       </details>
 
-      {/* Sticky save bar */}
-      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-stone-200 bg-white/95 backdrop-blur">
-        <div className="mx-auto flex max-w-[1480px] flex-wrap items-center justify-between gap-3 px-5 py-3 sm:px-8 lg:px-14">
-          <div className="text-xs text-stone-500">
-            {pending ? "Saving…" : "Unsaved changes are kept in this tab only until you save."}
-          </div>
-          <div className="flex items-center gap-2">
-            <button
-              type="submit"
-              disabled={pending}
-              className="rounded-full bg-[var(--ink)] px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-[var(--ink-soft)] disabled:opacity-60"
-            >
-              {pending ? "Saving…" : "Save"}
-            </button>
-            <Link
-              href={publicHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Preview public page"
-              className="rounded-full bg-[var(--gold)] px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--ink)] hover:bg-[var(--gold-light)]"
-            >
-              Preview ↗
-            </Link>
-          </div>
+      <AdminSaveBar>
+        <div className="text-xs text-stone-500">
+          {pending ? "Saving…" : "Unsaved changes are kept in this tab only until you save."}
         </div>
-      </div>
+        <div className="flex items-center gap-2">
+          <button
+            type="submit"
+            disabled={pending}
+            className="rounded-full bg-stone-900 px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-stone-700 disabled:opacity-60"
+          >
+            {pending ? "Saving…" : "Save"}
+          </button>
+          <Link
+            href={publicHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Preview public page"
+            className="rounded-full bg-violet-600 px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-violet-500"
+          >
+            Preview ↗
+          </Link>
+        </div>
+      </AdminSaveBar>
     </form>
   );
 }

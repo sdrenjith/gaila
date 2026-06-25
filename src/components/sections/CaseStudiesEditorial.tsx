@@ -31,7 +31,8 @@ export function CaseStudiesEditorial({
   const linkBase = hrefBase ?? (kind === "blog" ? "/blog" : "/case-studies");
 
   return (
-    <section className="relative bg-white px-5 py-24 sm:px-8 lg:px-14 lg:py-28">
+    <section className="relative overflow-hidden bg-transparent px-5 py-24 sm:px-8 lg:px-14 lg:py-28">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_60%_at_80%_10%,rgba(168,85,247,0.16),transparent_58%),radial-gradient(55%_50%_at_12%_90%,rgba(255,63,180,0.12),transparent_62%)]" />
       <div className="mx-auto max-w-[1480px]">
         {(eyebrow || title || subtitle) && (
           <div className="mb-16">
@@ -77,7 +78,7 @@ export function CaseStudiesEditorial({
               >
                 <Link
                   href={`${linkBase}/${item.slug}`}
-                  className="group relative block w-full overflow-hidden rounded-3xl bg-[var(--cream-deep)] shadow-[var(--shadow-card)] ring-1 ring-[var(--hairline)] transition duration-500 hover:-translate-y-1 hover:shadow-[var(--shadow-card-hover)] hover:ring-[var(--hairline-strong)]"
+                  className="group relative block w-full overflow-hidden rounded-[2rem] bg-[var(--cream-deep)] shadow-[var(--shadow-card)] ring-1 ring-[var(--hairline)] transition duration-500 hover:-translate-y-1 hover:shadow-[var(--shadow-card-hover)] hover:ring-[var(--hairline-strong)]"
                   aria-label={`Open ${item.title}`}
                 >
                   <div className="relative aspect-[3/2] w-full overflow-hidden">
@@ -103,13 +104,13 @@ export function CaseStudiesEditorial({
                   </Link>
                   <p className="mt-5 max-w-xl text-[15px] leading-8 text-[var(--ink-soft)]">{item.excerpt}</p>
                   {publishedSubitems.length > 0 ? (
-                    <div className="mt-6 rounded-2xl border border-[var(--hairline)] bg-[var(--paper)] p-5">
+                    <div className="mt-6 rounded-2xl border border-[var(--hairline)] bg-white/[0.05] p-5 backdrop-blur">
                       <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[var(--ink-mute)]">
                         Related items
                       </p>
                       <ul className="mt-3 grid gap-3">
                         {publishedSubitems.map((subitem) => (
-                          <li key={subitem.id} className="rounded-xl border border-[var(--hairline)] bg-white p-3">
+                          <li key={subitem.id} className="rounded-xl border border-[var(--hairline)] bg-white/[0.05] p-3">
                             <p className="font-semibold text-[var(--ink)]">{subitem.title}</p>
                             {subitem.content ? (
                               <p className="mt-1 text-sm leading-6 text-[var(--ink-soft)]">{subitem.content}</p>

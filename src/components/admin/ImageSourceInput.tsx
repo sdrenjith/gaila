@@ -79,18 +79,24 @@ export function ImageSourceInput({
     if (controlledValue === undefined) {
       return;
     }
-    setValueState(controlledValue);
-    if (controlledValue) {
-      setMode(detectInitialMode(controlledValue));
-    }
+    const timer = setTimeout(() => {
+      setValueState(controlledValue);
+      if (controlledValue) {
+        setMode(detectInitialMode(controlledValue));
+      }
+    }, 0);
+    return () => clearTimeout(timer);
   }, [controlledValue]);
 
   useEffect(() => {
     if (controlledValue !== undefined || !defaultValue) {
       return;
     }
-    setValueState(defaultValue);
-    setMode(detectInitialMode(defaultValue));
+    const timer = setTimeout(() => {
+      setValueState(defaultValue);
+      setMode(detectInitialMode(defaultValue));
+    }, 0);
+    return () => clearTimeout(timer);
   }, [controlledValue, defaultValue]);
 
   const setValue = (next: string) => {

@@ -232,7 +232,7 @@ export function VideoSourceInput({
           value={value}
           onChange={(event) => handleUrlChange(event.target.value)}
           aria-invalid={Boolean(error)}
-          className="w-full rounded-xl border border-stone-300 bg-white px-3.5 py-2.5 text-sm text-stone-950 outline-none focus:border-[var(--gold-deep)] focus:ring-2 focus:ring-[var(--gold-light)]/40"
+          className="w-full rounded-xl border border-stone-300 bg-white px-3.5 py-2.5 text-sm text-stone-950 outline-none focus:border-violet-600 focus:ring-2 focus:ring-violet-200"
         />
       ) : (
         <input

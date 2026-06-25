@@ -1,11 +1,15 @@
 import Link from "next/link";
 import { MenuEditor } from "@/components/admin/MenuEditor";
+import { adminNavActive, adminNavInactive } from "@/lib/admin-ui";
+import { cn } from "@/lib/utils";
 import { AdminPageFrame } from "@/components/admin/AdminPageFrame";
 import { Panel } from "@/components/admin/AdminFields";
 import { getAllNavigation, getPublishedPages, getSiteSettings } from "@/lib/cms";
 import { footerMenuItems, headerMenuItems } from "@/lib/default-content";
 import {
   getPageHeaderPreviewItems,
+  mergeHeaderMenuWithPages,
+  resolveHeaderMenu,
   splitManualMenuItems,
 } from "@/lib/navigation";
 
@@ -26,6 +30,10 @@ export default async function AdminMenusPage({ searchParams }: Props) {
   const manualItems =
     location === "header" ? splitManualMenuItems(storedItems, publishedPages) : storedItems;
   const pageHeaderItems = location === "header" ? getPageHeaderPreviewItems(publishedPages) : [];
+  const resolvedHeaderItems =
+    location === "header"
+      ? mergeHeaderMenuWithPages(resolveHeaderMenu(selected), publishedPages)?.items ?? []
+      : [];
 
   return (
     <AdminPageFrame>
@@ -42,11 +50,10 @@ export default async function AdminMenusPage({ searchParams }: Props) {
               <Link
                 key={item}
                 href={`/admin/menus?location=${item}`}
-                className={`block rounded-2xl border p-4 capitalize transition ${
-                  item === location
-                    ? "border-[var(--gold)] bg-[var(--paper)]"
-                    : "border-stone-200 bg-stone-50 hover:bg-stone-100"
-                }`}
+                className={cn(
+                  "block rounded-2xl border p-4 capitalize transition",
+                  item === location ? adminNavActive : adminNavInactive,
+                )}
               >
                 {item}
               </Link>
@@ -59,6 +66,7 @@ export default async function AdminMenusPage({ searchParams }: Props) {
           menu={selected?.location === location ? selected : null}
           initialItems={manualItems}
           pageHeaderItems={pageHeaderItems}
+          resolvedHeaderItems={resolvedHeaderItems}
           initialSocial={settings?.social}
         />
       </div>

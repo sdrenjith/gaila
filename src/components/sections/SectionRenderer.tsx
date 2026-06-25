@@ -6,6 +6,8 @@ import { EditorialContact } from "@/components/sections/EditorialContact";
 import { EditorialCta } from "@/components/sections/EditorialCta";
 import { EditorialFaq } from "@/components/sections/EditorialFaq";
 import { EditorialGallery } from "@/components/sections/EditorialGallery";
+import { EditorialImageSlider } from "@/components/sections/EditorialImageSlider";
+import { AmbientBackgroundSlider } from "@/components/sections/AmbientBackgroundSlider";
 import { EditorialImageText } from "@/components/sections/EditorialImageText";
 import { EditorialMarquee } from "@/components/sections/EditorialMarquee";
 import { EditorialProcess } from "@/components/sections/EditorialProcess";
@@ -15,8 +17,10 @@ import { GoogleReviewsSlider } from "@/components/sections/GoogleReviewsSlider";
 import { HeroAnimated } from "@/components/sections/HeroAnimated";
 import { HeroEditorial, type HeroEditorialCategory } from "@/components/sections/HeroEditorial";
 import { ServicesEditorial, type ServicesEditorialItem } from "@/components/sections/ServicesEditorial";
+import { ScrollProgressCircle } from "@/components/sections/ScrollProgressCircle";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { getCategories, getContent, getSiteSettings } from "@/lib/cms";
+import { whatsappWaMeUrl } from "@/lib/phone";
 import {
   getCategoryEditorialItems,
   resolveCaseStudyGridCategorySlug,
@@ -77,6 +81,10 @@ async function renderSectionInner(section: PageSection, siteSettings: SiteSettin
         .map((t) => t.trim())
         .filter((t) => t.length > 0);
       const rotationSeconds = getNumber(settings, "rotationSeconds", 4) || 4;
+      const backgroundImages = getArray<{ image?: string; alt?: string }>(settings, "backgroundImages")
+        .map((entry) => entry?.image?.trim() ?? "")
+        .filter(Boolean);
+      const backgroundIntervalSeconds = getNumber(settings, "backgroundIntervalSeconds", 6) || 6;
       return (
         <HeroEditorial
           eyebrow={section.eyebrow}
@@ -91,8 +99,13 @@ async function renderSectionInner(section: PageSection, siteSettings: SiteSettin
           secondaryCtaLabel={getString(settings, "secondaryCtaLabel", "Request a proposal")}
           secondaryCtaHref={getString(settings, "secondaryCtaHref", "tel:+971502827279")}
           categories={categories}
+          whatsappHref={whatsappWaMeUrl(siteSettings?.contact?.whatsapp ?? "+971567045314")}
+          instagramHref={siteSettings?.social?.instagram ?? "https://instagram.com/gaila.ae"}
+          contactHref="/contact"
           rotatingTitles={rotatingTitles}
           rotationSeconds={rotationSeconds}
+          backgroundImages={backgroundImages}
+          backgroundIntervalSeconds={backgroundIntervalSeconds}
         />
       );
     }
@@ -215,6 +228,8 @@ async function renderSectionInner(section: PageSection, siteSettings: SiteSettin
 
       const layout: "editorial" | "stacked" =
         layoutRaw === "stacked" || manualCards.length > 0 ? "stacked" : "editorial";
+      const sliderImages = getArray<{ image?: string; alt?: string }>(settings, "sliderImages");
+      const intervalSeconds = getNumber(settings, "intervalSeconds", 3.5) || 3.5;
 
       return (
         <ServicesEditorial
@@ -224,6 +239,8 @@ async function renderSectionInner(section: PageSection, siteSettings: SiteSettin
           items={items}
           linkLabel={linkLabel}
           layout={layout}
+          sliderImages={sliderImages}
+          intervalSeconds={intervalSeconds}
         />
       );
     }
@@ -307,7 +324,7 @@ async function renderSectionInner(section: PageSection, siteSettings: SiteSettin
           title={section.title}
           subtitle={section.subtitle}
           body={getString(settings, "body", "")}
-          ctaLabel={getString(settings, "ctaLabel", "Start a project")}
+          ctaLabel={getString(settings, "ctaLabel", "Plan your event")}
           ctaHref={getString(settings, "ctaHref", "/contact")}
           variant={variant}
           background={getString(settings, "background", "")}
@@ -342,14 +359,22 @@ async function renderSectionInner(section: PageSection, siteSettings: SiteSettin
 
     case "gallery": {
       const items = getArray<{ image?: string; alt?: string; caption?: string }>(settings, "items");
-      const columns = getNumber(settings, "columns", 3) || 3;
+      const categories = getArray<{
+        slug?: string;
+        label?: string;
+        items?: { image?: string; alt?: string; caption?: string }[];
+      }>(settings, "categories");
+      const columns = getNumber(settings, "columns", 4) || 4;
+      const defaultCategory = getString(settings, "defaultCategory", "");
       return (
         <EditorialGallery
           eyebrow={section.eyebrow}
           title={section.title}
           subtitle={section.subtitle}
           items={items}
+          categories={categories}
           columns={columns}
+          defaultCategory={defaultCategory}
         />
       );
     }
@@ -370,6 +395,60 @@ async function renderSectionInner(section: PageSection, siteSettings: SiteSettin
       return <EditorialContact title={section.title} subtitle={section.subtitle} />;
     }
 
+    case "ambientBackgroundSlider": {
+      const images = getArray<{ image?: string; alt?: string }>(settings, "images");
+      const intervalSeconds = getNumber(settings, "intervalSeconds", 6) || 6;
+      return <AmbientBackgroundSlider images={images} intervalSeconds={intervalSeconds} />;
+    }
+
+    case "editorialImageSlider": {
+      const items = getArray<{ image?: string; alt?: string; caption?: string }>(settings, "items");
+      const intervalSeconds = getNumber(settings, "intervalSeconds", 5) || 5;
+      return (
+        <EditorialImageSlider
+          eyebrow={section.eyebrow}
+          title={section.title}
+          subtitle={section.subtitle}
+          items={items}
+          intervalSeconds={intervalSeconds}
+          ctaLabel={getString(settings, "ctaLabel", "View gallery")}
+          ctaHref={getString(settings, "ctaHref", "/gallery")}
+        />
+      );
+    }
+
+    case "scrollProgressCircle": {
+      const mode = getString(settings, "mode", "story");
+      const reviewLimit = getNumber(settings, "reviewLimit", 5) || 5;
+
+      if (mode === "reviews") {
+        const reviews = (siteSettings?.googleReviews ?? []).slice(0, reviewLimit);
+        const scrollHeightVh = getNumber(settings, "scrollHeightVh", 0);
+        return (
+          <ScrollProgressCircle
+            mode="reviews"
+            reviews={reviews}
+            scrollHeightVh={scrollHeightVh}
+            header={{
+              eyebrow: section.eyebrow,
+              title: section.title,
+              subtitle: section.subtitle,
+            }}
+          />
+        );
+      }
+
+      const steps = getArray<{
+        eyebrow?: string;
+        title?: string;
+        body?: string;
+        image?: string;
+        imageAlt?: string;
+      }>(settings, "steps");
+      const scrollHeightVh = getNumber(settings, "scrollHeightVh", 33) || 33;
+      return <ScrollProgressCircle mode="story" steps={steps} scrollHeightVh={scrollHeightVh} />;
+    }
+
     default:
       return null;
   }
@@ -384,18 +463,23 @@ async function renderSection(section: PageSection, siteSettings: SiteSettingsRec
   }
 }
 
-function sectionNeedsSiteSettings(type: PageSection["type"]) {
+function sectionNeedsSiteSettings(section: PageSection) {
+  if (section.type === "scrollProgressCircle") {
+    const settings = section.settings ?? {};
+    return getString(settings, "mode", "story") === "reviews";
+  }
+
   return (
-    type === "heroEditorial" ||
-    type === "heroSlider" ||
-    type === "googleReviews" ||
-    type === "testimonialSlider"
+    section.type === "heroEditorial" ||
+    section.type === "heroSlider" ||
+    section.type === "googleReviews" ||
+    section.type === "testimonialSlider"
   );
 }
 
 export async function SectionRenderer({ sections }: { sections: PageSection[] }) {
   const enabledSections = sections.filter((section) => section.enabled);
-  const siteSettings = enabledSections.some((section) => sectionNeedsSiteSettings(section.type))
+  const siteSettings = enabledSections.some((section) => sectionNeedsSiteSettings(section))
     ? await getSiteSettings()
     : null;
   const [settled, sectionAssets] = await Promise.all([
@@ -450,6 +534,7 @@ export function sectionNavItems(sections: PageSection[]) {
     faq: "FAQ",
     ctaBanner: "Get in touch",
     imageText: "Story",
+    scrollProgressCircle: "Reviews",
     logoCloud: "Clients",
     googleReviews: "Reviews",
     testimonialSlider: "Reviews",

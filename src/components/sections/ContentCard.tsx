@@ -23,7 +23,7 @@ export function ContentCard({ item }: { item: ContentRecord }) {
     <motion.article
       whileHover={reduceMotion ? undefined : { y: -6 }}
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-      className="group relative h-full overflow-hidden rounded-[var(--radius-editorial)] border border-[var(--hairline)] bg-white shadow-[var(--shadow-card)] transition-[box-shadow,border-color] duration-500 hover:border-[var(--hairline-strong)] hover:shadow-[var(--shadow-card-hover)]"
+      className="group relative h-full overflow-hidden rounded-[var(--radius-editorial)] border border-[var(--hairline)] bg-[var(--cream)] shadow-[var(--shadow-card)] transition-[box-shadow,border-color] duration-500 hover:border-[var(--hairline-strong)] hover:shadow-[var(--shadow-card-hover)]"
     >
       <span
         aria-hidden="true"
@@ -46,7 +46,7 @@ export function ContentCard({ item }: { item: ContentRecord }) {
               {(item.tags ?? []).slice(0, 3).map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full border border-[var(--hairline)] bg-white px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--gold-deep)]"
+                  className="rounded-full border border-[var(--hairline)] bg-[var(--cream)] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--gold-deep)]"
                 >
                   {tag}
                 </span>

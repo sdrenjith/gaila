@@ -1,25 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #0e0e0e;
-  --ink: #0e0e0e;
-  --ink-soft: #4a4438;
-  --ink-mute: #6b6354;
-  /* Page surfaces are now pure white. Tokens are preserved so existing
-     references resolve, but they all collapse to white. */
-  --cream: #ffffff;
-  --paper: #ffffff;
-  /* Subtle warm neutral for hover surfaces and image placeholders only. */
-  --cream-deep: #f3f1ed;
-  --gold: #c8a35b;
-  --gold-deep: #8b6a26;
-  --gold-light: #e7c987;
-  --hairline: rgba(14, 14, 14, 0.07);
-  --hairline-strong: rgba(14, 14, 14, 0.14);
-  /* Unified card surface shadows. Use via shadow-[var(--shadow-card)] etc. */
-  --shadow-card: 0 1px 2px rgba(14, 14, 14, 0.04), 0 12px 40px -16px rgba(14, 14, 14, 0.08);
-  --shadow-card-hover: 0 2px 4px rgba(14, 14, 14, 0.05), 0 28px 60px -18px rgba(14, 14, 14, 0.18);
+  --background: #080014;
+  --foreground: #f3f4f6;
+  --ink: #f3f4f6;
+  --ink-soft: #d9d7ff;
+  --ink-mute: #a69bd3;
+  --cream: #100725;
+  --paper: #080014;
+  --cream-deep: #180b35;
+  --gold: #8b5cf6;
+  --gold-deep: #6d28d9;
+  --gold-light: #d4c4f7;
+  --event-cyan: #5eb4c9;
+  --event-pink: #be2089;
+  --event-warm: #c9a052;
+  --cta-gradient: linear-gradient(135deg, #6d28d9 0%, #be2089 100%);
+  --cta-shadow: 0 18px 48px rgba(109, 40, 217, 0.35);
+  --cta-shadow-hover: 0 24px 70px rgba(190, 32, 137, 0.32);
+  --hairline: rgba(255, 255, 255, 0.10);
+  --hairline-strong: rgba(212, 196, 247, 0.28);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.35), 0 24px 70px -30px rgba(109, 40, 217, 0.34);
+  --shadow-card-hover: 0 2px 4px rgba(0, 0, 0, 0.4), 0 34px 90px -28px rgba(190, 32, 137, 0.32);
 }
 
 @theme inline {
@@ -44,12 +46,15 @@
 }
 
 html {
-  background: #ffffff;
+  background: #080014;
   scroll-behavior: smooth;
 }
 
 body {
-  background: #ffffff;
+  background:
+    radial-gradient(circle at 15% 12%, rgba(190, 32, 137, 0.11), transparent 34rem),
+    radial-gradient(circle at 86% 8%, rgba(94, 180, 201, 0.09), transparent 32rem),
+    linear-gradient(180deg, #080014 0%, #120529 48%, #080014 100%);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
   font-feature-settings: "ss01" on, "ss02" on, "cv11" on;
@@ -61,10 +66,9 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: var(--font-display), "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  font-family: var(--font-display), "Arial Narrow", Impact, system-ui, sans-serif;
   font-feature-settings: "ss01" on, "ss02" on, "ss04" on;
-  letter-spacing: -0.02em;
-  font-variation-settings: "opsz" 144, "SOFT" 50;
+  letter-spacing: 0.01em;
 }
 
 .font-sans-display {
@@ -78,14 +82,22 @@ h4 {
 }
 
 .gold-text-gradient {
-  background-image: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 55%, var(--gold-deep) 100%);
+  background-image: linear-gradient(135deg, #ffffff 0%, var(--gold-light) 38%, var(--gold) 68%, var(--event-cyan) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .gold-gradient {
-  background-image: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 55%, var(--gold-deep) 100%);
+  background-image: var(--cta-gradient);
+}
+
+.cta-shadow {
+  box-shadow: var(--cta-shadow);
+}
+
+.cta-shadow-hover:hover {
+  box-shadow: var(--cta-shadow-hover);
 }
 
 .gold-gradient-soft {
@@ -105,10 +117,10 @@ h4 {
 }
 
 .editorial-grain {
-  background-image: radial-gradient(rgba(14, 14, 14, 0.4) 1px, transparent 1.2px);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.28) 1px, transparent 1.2px);
   background-size: 22px 22px;
-  opacity: 0.05;
-  mix-blend-mode: multiply;
+  opacity: 0.08;
+  mix-blend-mode: screen;
 }
 
 .editorial-noise {
@@ -182,16 +194,85 @@ select {
 
 /* Editorial admin surface */
 .admin-surface {
+  --background: #ffffff;
+  --foreground: #0e0e0e;
+  --ink: #0e0e0e;
+  --ink-soft: #4a4438;
+  --ink-mute: #6b6354;
+  --cream: #ffffff;
+  --paper: #ffffff;
+  --cream-deep: #f3f1ed;
+  --hairline: rgba(14, 14, 14, 0.07);
+  --hairline-strong: rgba(14, 14, 14, 0.14);
+  --shadow-card: 0 1px 2px rgba(14, 14, 14, 0.04), 0 12px 40px -16px rgba(14, 14, 14, 0.08);
+  --shadow-card-hover: 0 2px 4px rgba(14, 14, 14, 0.05), 0 28px 60px -18px rgba(14, 14, 14, 0.18);
   background: #ffffff;
-  color: var(--ink);
+  color: #0e0e0e;
+}
+
+@keyframes float-slow-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(8%, 10%) scale(1.15); }
+}
+@keyframes float-slow-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-10%, -8%) scale(1.08); }
+}
+
+.animate-float-slow-1 {
+  animation: float-slow-1 28s ease-in-out infinite;
+}
+.animate-float-slow-2 {
+  animation: float-slow-2 35s ease-in-out infinite;
+}
+
+@keyframes neon-pulse {
+  0%, 100% {
+    opacity: 0.42;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.78;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes tilt-card {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0) rotateX(2deg) rotateY(-3deg);
+  }
+}
+
+.animate-neon-pulse {
+  animation: neon-pulse 5.5s ease-in-out infinite;
+}
+
+.animate-tilt-card {
+  animation: tilt-card 9s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
+.glow-blob {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(229, 195, 115, 0.065) 0%, rgba(229, 195, 115, 0) 70%);
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: -10;
 }
 
 /* Unified premium card treatment for white canvas. */
 .editorial-card {
-  background: #ffffff;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.035)),
+    rgba(16, 7, 37, 0.92);
   border: 1px solid var(--hairline);
   border-radius: var(--radius-editorial);
   box-shadow: var(--shadow-card);
+  backdrop-filter: blur(18px);
   transition:
     transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1),
@@ -262,4 +343,10 @@ select {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Spacing optimization class to replace stark and giant vertical empty spaces */
+.editorial-section-padding {
+  padding-top: clamp(3.5rem, 6.5vh, 5.5rem);
+  padding-bottom: clamp(3.5rem, 6.5vh, 5.5rem);
 }

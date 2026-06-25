@@ -23,6 +23,10 @@ const heroEditorialSettingsSchema = z.object({
   poster: stringDefault(""),
   rotatingTitles: z.array(z.string()).default([]),
   rotationSeconds: z.coerce.number().optional().default(4),
+  backgroundImages: z
+    .array(z.object({ image: z.string().default(""), alt: z.string().optional().default("") }))
+    .default([]),
+  backgroundIntervalSeconds: z.coerce.number().optional().default(6),
   ...ctaSettingsSchema.shape,
   categories: z.array(heroCategorySchema).default([]),
 });
@@ -60,12 +64,19 @@ const servicesEditorialCardSchema = z.object({
   image: z.string().default(""),
 });
 
+const servicesEditorialSliderImageSchema = z.object({
+  image: z.string().default(""),
+  alt: z.string().default(""),
+});
+
 const servicesEditorialSettingsSchema = z.object({
   limit: z.coerce.number().default(6),
   serviceSlugs: z.array(z.string()).default([]),
   linkLabel: z.string().default(""),
   layout: z.enum(["editorial", "stacked"]).default("editorial"),
   cards: z.array(servicesEditorialCardSchema).default([]),
+  sliderImages: z.array(servicesEditorialSliderImageSchema).default([]),
+  intervalSeconds: z.coerce.number().optional().default(5),
 });
 
 const serviceGridSettingsSchema = z.object({});
@@ -140,9 +151,17 @@ const galleryItemSchema = z.object({
   caption: z.string().default(""),
 });
 
+const galleryCategorySchema = z.object({
+  slug: z.string().default(""),
+  label: z.string().default(""),
+  items: z.array(galleryItemSchema).default([]),
+});
+
 const gallerySettingsSchema = z.object({
   items: z.array(galleryItemSchema).default([]),
-  columns: z.coerce.number().default(3),
+  categories: z.array(galleryCategorySchema).default([]),
+  columns: z.coerce.number().default(4),
+  defaultCategory: z.string().optional().default(""),
 });
 
 const quoteSettingsSchema = z.object({
@@ -150,6 +169,35 @@ const quoteSettingsSchema = z.object({
   author: z.string().default(""),
   role: z.string().default(""),
   image: z.string().default(""),
+});
+
+const ambientBackgroundSettingsSchema = z.object({
+  images: z
+    .array(z.object({ image: z.string().default(""), alt: z.string().optional().default("") }))
+    .default([]),
+  intervalSeconds: z.coerce.number().optional().default(6),
+});
+
+const editorialImageSliderSettingsSchema = z.object({
+  items: z.array(galleryItemSchema).default([]),
+  intervalSeconds: z.coerce.number().optional().default(5),
+  ctaLabel: stringDefault(""),
+  ctaHref: stringDefault(""),
+});
+
+const scrollProgressCircleStepSchema = z.object({
+  eyebrow: z.string().optional().default(""),
+  title: z.string().default(""),
+  body: z.string().default(""),
+  image: z.string().default(""),
+  imageAlt: z.string().default(""),
+});
+
+const scrollProgressCircleSettingsSchema = z.object({
+  mode: z.enum(["story", "reviews"]).optional().default("story"),
+  steps: z.array(scrollProgressCircleStepSchema).default([]),
+  scrollHeightVh: z.coerce.number().optional().default(33),
+  reviewLimit: z.coerce.number().optional().default(5),
 });
 
 const contactFormSettingsSchema = z.object({});
@@ -197,6 +245,8 @@ export type SectionTypeSpec = {
     name: string;
     label: string;
     itemLabel: string;
+    /** Minimum items required — Remove is disabled at this count. Defaults to 0 (empty allowed). */
+    minItems?: number;
     fields: SectionFieldSpec[];
   }[];
   defaultSettings: Record<string, unknown>;
@@ -223,6 +273,12 @@ export const SECTION_SPECS: Record<SectionType, SectionTypeSpec> = {
         kind: "number",
         description: "How long each rotating headline is shown. Used when 2+ headlines are added.",
       },
+      {
+        name: "backgroundIntervalSeconds",
+        label: "Background rotation (seconds)",
+        kind: "number",
+        description: "How long each background image is shown when 2+ are added.",
+      },
       { name: "ctaLabel", label: "Primary CTA label", kind: "text" },
       { name: "ctaHref", label: "Primary CTA link", kind: "url" },
       { name: "secondaryCtaLabel", label: "Secondary CTA label", kind: "text" },
@@ -244,6 +300,15 @@ export const SECTION_SPECS: Record<SectionType, SectionTypeSpec> = {
         ],
       },
       {
+        name: "backgroundImages",
+        label: "Rotating background images",
+        itemLabel: "Background",
+        fields: [
+          { name: "image", label: "Image", kind: "image" },
+          { name: "alt", label: "Alt text", kind: "text" },
+        ],
+      },
+      {
         name: "categories",
         label: "Side-nav categories",
         itemLabel: "Category",
@@ -261,6 +326,8 @@ export const SECTION_SPECS: Record<SectionType, SectionTypeSpec> = {
       imageAlt: "",
       rotatingTitles: [],
       rotationSeconds: 4,
+      backgroundImages: [],
+      backgroundIntervalSeconds: 6,
       ctaLabel: "Plan your event",
       ctaHref: "/contact",
       secondaryCtaLabel: "Request a proposal",
@@ -346,11 +413,39 @@ export const SECTION_SPECS: Record<SectionType, SectionTypeSpec> = {
   servicesEditorial: {
     type: "servicesEditorial",
     label: "Services — Editorial",
-    description: "Large numbered service rows pulled from Content (kind=service).",
+    description: "Hero text + image slider, with a 3+2 service card grid below.",
     category: "content",
     topLevel: standardTop,
-    fields: [{ name: "limit", label: "Max services to show", kind: "number" }],
-    defaultSettings: { limit: 6 },
+    fields: [
+      { name: "limit", label: "Max services to show", kind: "number" },
+      {
+        name: "layout",
+        label: "Layout",
+        kind: "select",
+        options: [
+          { value: "editorial", label: "Hero slider + grid" },
+          { value: "stacked", label: "Stacked cards" },
+        ],
+      },
+      { name: "linkLabel", label: "Card link prefix (optional)", kind: "text" },
+      {
+        name: "intervalSeconds",
+        label: "Slider interval (seconds)",
+        kind: "number",
+      },
+    ],
+    groups: [
+      {
+        name: "sliderImages",
+        label: "Hero slider images",
+        itemLabel: "Slide",
+        fields: [
+          { name: "image", label: "Image", kind: "image" },
+          { name: "alt", label: "Alt text", kind: "text" },
+        ],
+      },
+    ],
+    defaultSettings: { limit: 6, layout: "editorial", sliderImages: [], intervalSeconds: 5 },
     schema: servicesEditorialSettingsSchema,
   },
   serviceGrid: {
@@ -568,14 +663,31 @@ export const SECTION_SPECS: Record<SectionType, SectionTypeSpec> = {
   gallery: {
     type: "gallery",
     label: "Gallery grid",
-    description: "Editorial image grid with captions.",
+    description: "Category-wise or flat editorial image grid with captions.",
     category: "content",
     topLevel: standardTop,
-    fields: [{ name: "columns", label: "Columns", kind: "number" }],
+    fields: [
+      { name: "columns", label: "Columns", kind: "number" },
+      {
+        name: "defaultCategory",
+        label: "Default category slug",
+        kind: "text",
+        description: "Which category tab opens first when using categories below.",
+      },
+    ],
     groups: [
       {
+        name: "categories",
+        label: "Categories",
+        itemLabel: "Category",
+        fields: [
+          { name: "slug", label: "Slug", kind: "text", placeholder: "weddings" },
+          { name: "label", label: "Label", kind: "text", placeholder: "Weddings" },
+        ],
+      },
+      {
         name: "items",
-        label: "Images",
+        label: "Images (flat layout)",
         itemLabel: "Image",
         fields: [
           { name: "image", label: "Image", kind: "image" },
@@ -584,7 +696,7 @@ export const SECTION_SPECS: Record<SectionType, SectionTypeSpec> = {
         ],
       },
     ],
-    defaultSettings: { items: [], columns: 3 },
+    defaultSettings: { items: [], categories: [], columns: 4, defaultCategory: "" },
     schema: gallerySettingsSchema,
   },
   quote: {
@@ -601,6 +713,121 @@ export const SECTION_SPECS: Record<SectionType, SectionTypeSpec> = {
     ],
     defaultSettings: { quote: "", author: "", role: "", image: "" },
     schema: quoteSettingsSchema,
+  },
+  ambientBackgroundSlider: {
+    type: "ambientBackgroundSlider",
+    label: "Ambient background slider",
+    description: "Full-width rotating background images with neon overlay.",
+    category: "hero",
+    topLevel: [],
+    fields: [
+      {
+        name: "intervalSeconds",
+        label: "Rotation interval (seconds)",
+        kind: "number",
+      },
+    ],
+    groups: [
+      {
+        name: "images",
+        label: "Background images",
+        itemLabel: "Slide",
+        fields: [
+          { name: "image", label: "Image", kind: "image" },
+          { name: "alt", label: "Alt text", kind: "text" },
+        ],
+      },
+    ],
+    defaultSettings: { images: [], intervalSeconds: 6 },
+    schema: ambientBackgroundSettingsSchema,
+  },
+  editorialImageSlider: {
+    type: "editorialImageSlider",
+    label: "Editorial image slider",
+    description: "Horizontal glassmorphism gallery slider with auto-advance.",
+    category: "content",
+    topLevel: standardTop,
+    fields: [
+      {
+        name: "intervalSeconds",
+        label: "Auto-advance interval (seconds)",
+        kind: "number",
+      },
+      { name: "ctaLabel", label: "CTA label", kind: "text" },
+      { name: "ctaHref", label: "CTA link", kind: "url" },
+    ],
+    groups: [
+      {
+        name: "items",
+        label: "Slides",
+        itemLabel: "Slide",
+        fields: [
+          { name: "image", label: "Image", kind: "image" },
+          { name: "alt", label: "Alt text", kind: "text" },
+          { name: "caption", label: "Caption", kind: "text" },
+        ],
+      },
+    ],
+    defaultSettings: {
+      items: [],
+      intervalSeconds: 5,
+      ctaLabel: "View gallery",
+      ctaHref: "/gallery",
+    },
+    schema: editorialImageSliderSettingsSchema,
+  },
+  scrollProgressCircle: {
+    type: "scrollProgressCircle",
+    label: "Scroll — Circle progress",
+    description:
+      "Pinned scroll section with neon circle fill. Story mode uses editorial steps; reviews mode pulls Google reviews from Site Settings.",
+    category: "content",
+    topLevel: ["eyebrow", "title", "subtitle"],
+    fields: [
+      {
+        name: "mode",
+        label: "Mode",
+        kind: "select",
+        options: [
+          { value: "story", label: "Story steps" },
+          { value: "reviews", label: "Google reviews" },
+        ],
+      },
+      {
+        name: "scrollHeightVh",
+        label: "Scroll height (vh)",
+        kind: "number",
+        description:
+          "Story mode: extra pinned scroll travel in vh. Reviews mode uses fixed auto travel so it releases right after the final review.",
+      },
+      {
+        name: "reviewLimit",
+        label: "Max reviews",
+        kind: "number",
+        description: "Reviews mode only — how many Google reviews to show (from Site Settings).",
+      },
+    ],
+    groups: [
+      {
+        name: "steps",
+        label: "Story steps (story mode)",
+        itemLabel: "Step",
+        fields: [
+          { name: "eyebrow", label: "Eyebrow", kind: "text" },
+          { name: "title", label: "Title", kind: "text" },
+          { name: "body", label: "Body", kind: "longtext" },
+          { name: "image", label: "Image", kind: "image" },
+          { name: "imageAlt", label: "Image alt text", kind: "text" },
+        ],
+      },
+    ],
+    defaultSettings: {
+      mode: "story",
+      scrollHeightVh: 33,
+      reviewLimit: 5,
+      steps: [],
+    },
+    schema: scrollProgressCircleSettingsSchema,
   },
 };
 
@@ -622,9 +849,9 @@ export function buildDefaultSection(type: SectionType): PageSection {
 }
 
 export const SECTION_GROUPS: { label: string; types: SectionType[] }[] = [
-  { label: "Hero", types: ["heroEditorial", "heroSlider"] },
-  { label: "Content", types: ["categoryStories", "servicesEditorial", "serviceGrid", "caseStudyGrid", "processSteps", "imageText", "gallery"] },
-  { label: "Social proof", types: ["statsBand", "marquee", "logoCloud", "googleReviews", "testimonialSlider", "quote"] },
+  { label: "Hero", types: ["heroEditorial", "heroSlider", "ambientBackgroundSlider"] },
+  { label: "Content", types: ["categoryStories", "servicesEditorial", "serviceGrid", "caseStudyGrid", "processSteps", "imageText", "gallery", "editorialImageSlider"] },
+  { label: "Social proof", types: ["statsBand", "marquee", "logoCloud", "googleReviews", "testimonialSlider", "quote", "scrollProgressCircle"] },
   { label: "Marketing", types: ["faq", "ctaBanner"] },
   { label: "Form", types: ["contactForm"] },
 ];

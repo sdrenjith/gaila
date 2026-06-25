@@ -102,7 +102,7 @@ export function SectionsManager({ value, onChange, categories = [] }: Props) {
             setPickerInsertIndex(null);
             setPickerOpen(true);
           }}
-          className="rounded-full bg-[var(--ink)] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-[var(--ink-soft)]"
+          className="rounded-full bg-stone-900 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-stone-700"
         >
           + Add section
         </button>
@@ -114,7 +114,7 @@ export function SectionsManager({ value, onChange, categories = [] }: Props) {
           <button
             type="button"
             onClick={() => setPickerOpen(true)}
-            className="mt-4 rounded-full bg-[var(--ink)] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white"
+            className="mt-4 rounded-full bg-stone-900 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-stone-700"
           >
             + Add section
           </button>
@@ -135,7 +135,7 @@ export function SectionsManager({ value, onChange, categories = [] }: Props) {
                 onDrop={() => handleDrop(section.id)}
                 onDragEnd={() => setDragId(null)}
                 className={`rounded-2xl border bg-white shadow-sm transition ${
-                  dragId === section.id ? "border-[var(--gold)] opacity-60" : "border-stone-200 hover:border-stone-300"
+                  dragId === section.id ? "border-violet-500 opacity-60" : "border-stone-200 hover:border-stone-300"
                 } ${!section.enabled ? "opacity-70" : ""}`}
               >
                 <div className="flex flex-wrap items-center gap-3 px-4 py-3">
@@ -276,7 +276,7 @@ export function SectionsManager({ value, onChange, categories = [] }: Props) {
                             <button
                               type="button"
                               onClick={() => insertSection(type, pickerInsertIndex)}
-                              className="flex w-full items-start gap-3 rounded-xl border border-stone-200 bg-white p-4 text-left transition hover:border-[var(--gold)] hover:bg-[var(--paper)]"
+                              className="flex w-full items-start gap-3 rounded-xl border border-stone-200 bg-white p-4 text-left transition hover:border-violet-500 hover:bg-stone-50"
                             >
                               <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-stone-100 font-mono text-xs text-stone-500">
                                 {type

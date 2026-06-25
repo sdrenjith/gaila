@@ -45,10 +45,8 @@ export function AdminNav() {
       <Link
         href="/admin"
         prefetch={false}
-        className={`flex items-center gap-2 rounded-xl px-3 py-2.5 transition ${
-          pathname === "/admin"
-            ? "bg-stone-900 text-white"
-            : "text-stone-700 hover:bg-stone-100"
+        className={`flex items-center gap-2 rounded-xl px-3 py-2.5 ${
+          pathname === "/admin" ? "admin-sidebar-link-active" : "admin-sidebar-link"
         }`}
       >
         Dashboard
@@ -60,7 +58,7 @@ export function AdminNav() {
             <button
               type="button"
               onClick={() => setCollapsed((current) => ({ ...current, [group.label]: !current[group.label] }))}
-              className="flex w-full items-center justify-between px-3 text-[10px] font-semibold uppercase tracking-[0.24em] text-stone-400"
+              className="admin-sidebar-group-label flex w-full items-center justify-between px-3 text-[10px] font-semibold uppercase tracking-[0.24em]"
             >
               {group.label}
               <span aria-hidden="true">{isCollapsed ? "+" : "−"}</span>
@@ -74,8 +72,8 @@ export function AdminNav() {
                       <Link
                         href={item.href}
                         prefetch={false}
-                        className={`flex items-center justify-between rounded-xl px-3 py-2 transition ${
-                          active ? "bg-stone-900 text-white" : "text-stone-700 hover:bg-stone-100"
+                        className={`flex items-center justify-between rounded-xl px-3 py-2 ${
+                          active ? "admin-sidebar-link-active" : "admin-sidebar-link"
                         }`}
                       >
                         <span className="truncate">{item.label}</span>

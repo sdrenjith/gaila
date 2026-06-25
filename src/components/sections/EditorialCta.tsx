@@ -75,10 +75,16 @@ export function EditorialCta({
 
   useEffect(() => {
     if (!effectiveVideo) return;
-    setMediaReady(isMediaPrefetched(effectiveVideo));
-    return onMediaPrefetched((url) => {
+    const timer = setTimeout(() => {
+      setMediaReady(isMediaPrefetched(effectiveVideo));
+    }, 0);
+    const cleanup = onMediaPrefetched((url) => {
       if (url === effectiveVideo) setMediaReady(true);
     });
+    return () => {
+      clearTimeout(timer);
+      cleanup();
+    };
   }, [effectiveVideo]);
 
   useEffect(() => {
@@ -147,7 +153,7 @@ export function EditorialCta({
     <section
       ref={sectionRef}
       className={`relative isolate overflow-hidden px-5 py-24 sm:px-8 lg:px-14 lg:py-32 ${
-        isDark ? "bg-[var(--ink)] text-white" : "bg-white text-[var(--ink)]"
+        isDark ? "bg-[#080014] text-white" : "bg-[var(--cream)] text-[var(--ink)]"
       }`}
     >
       {effectiveVideo && !reduceMotion && hasEntered && (
@@ -183,7 +189,7 @@ export function EditorialCta({
       )}
       {isDark && (
         <div aria-hidden="true" className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-[radial-gradient(80%_60%_at_70%_30%,rgba(200,163,91,0.22),transparent_60%),radial-gradient(70%_60%_at_15%_85%,rgba(139,106,38,0.22),transparent_55%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(80%_60%_at_70%_30%,rgba(168,85,247,0.42),transparent_60%),radial-gradient(70%_60%_at_15%_85%,rgba(255,63,180,0.28),transparent_55%),radial-gradient(40%_40%_at_55%_80%,rgba(34,211,238,0.16),transparent_60%)]" />
           <div className="editorial-noise absolute inset-0" />
         </div>
       )}
@@ -195,7 +201,7 @@ export function EditorialCta({
         whileInView={{ x: 0 }}
         viewport={{ once: true, margin: "-20%" }}
         transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-        className={`pointer-events-none absolute -bottom-6 left-0 right-0 select-none overflow-hidden whitespace-nowrap text-center font-display text-[clamp(3.5rem,12vw,11rem)] font-medium leading-none tracking-[-0.05em] sm:-bottom-8 ${
+        className={`pointer-events-none absolute -bottom-6 left-0 right-0 select-none overflow-hidden whitespace-nowrap text-center font-display text-[clamp(4rem,14vw,12rem)] font-normal uppercase leading-none tracking-[0.02em] sm:-bottom-8 ${
           isDark ? "text-white/[0.05]" : "text-[var(--ink)]/[0.05]"
         }`}
       >
@@ -205,7 +211,7 @@ export function EditorialCta({
       <div className="relative mx-auto flex max-w-[1480px] flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
         <div className="max-w-3xl">
           {title && (
-            <h2 className="font-display text-[clamp(2.4rem,6vw,5.2rem)] leading-[1.02] tracking-[-0.03em]">
+            <h2 className="font-display text-[clamp(3rem,7vw,6.8rem)] uppercase leading-[0.88] tracking-[0.02em]">
               {title}
             </h2>
           )}
@@ -233,7 +239,7 @@ export function EditorialCta({
             href={ctaHref || "/contact"}
             className={`group inline-flex items-center gap-3 rounded-full px-7 py-4 text-[13px] font-semibold uppercase tracking-[0.18em] transition ${
               isDark
-                ? "bg-[var(--gold)] text-[var(--ink)] hover:bg-[var(--gold-light)]"
+                ? "gold-gradient cta-shadow text-white hover:brightness-110 cta-shadow-hover"
                 : "bg-[var(--ink)] text-white hover:bg-[var(--ink-soft)]"
             }`}
           >

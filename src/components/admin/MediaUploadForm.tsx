@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import { useToast } from "@/components/admin/Toaster";
 import {
   UploadAbortError,
@@ -10,6 +10,11 @@ import {
   validateUpload,
   type UploadProgress,
 } from "@/lib/upload-client";
+import {
+  formatFolderLabel,
+  MEDIA_UPLOAD_FOLDER_OPTIONS,
+  normalizeFolder,
+} from "@/lib/media-library-ui";
 import { formatBytes } from "@/lib/utils";
 
 type UploadResponse = {
@@ -27,6 +32,15 @@ type UploadResponse = {
   };
 };
 
+type FolderOption = {
+  value: string;
+  label: string;
+};
+
+type MediaUploadFormProps = {
+  existingFolders?: string[];
+};
+
 function detectKind(file: File | null): "image" | "video" | null {
   if (!file) return null;
   const mime = (file.type || "").toLowerCase();
@@ -40,7 +54,26 @@ function suggestedFolder(kind: "image" | "video" | null): string {
   return "site";
 }
 
-export function MediaUploadForm() {
+function buildFolderOptions(existingFolders: string[]): FolderOption[] {
+  const seen = new Set<string>();
+  const options: FolderOption[] = [];
+
+  for (const option of MEDIA_UPLOAD_FOLDER_OPTIONS) {
+    seen.add(option.value);
+    options.push(option);
+  }
+
+  for (const folder of existingFolders) {
+    const value = normalizeFolder(folder);
+    if (seen.has(value)) continue;
+    seen.add(value);
+    options.push({ value, label: `${formatFolderLabel(value)} (existing)` });
+  }
+
+  return options;
+}
+
+export function MediaUploadForm({ existingFolders = [] }: MediaUploadFormProps) {
   const router = useRouter();
   const { push } = useToast();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -59,6 +92,7 @@ export function MediaUploadForm() {
   const [error, setError] = useState<string | null>(null);
 
   const kind = detectKind(file);
+  const folderOptions = useMemo(() => buildFolderOptions(existingFolders), [existingFolders]);
 
   useEffect(() => {
     if (!file) return;
@@ -74,7 +108,7 @@ export function MediaUploadForm() {
     folderTouched.current = false;
   };
 
-  const handleFolderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFolderChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     folderTouched.current = true;
     setFolder(event.target.value);
   };
@@ -203,7 +237,7 @@ export function MediaUploadForm() {
           required
           disabled={submitting}
           placeholder={kind === "video" ? "Describe the video for accessibility" : "Describe the image"}
-          className="rounded-xl border border-stone-300 bg-white px-3.5 py-2.5 text-sm outline-none focus:border-[var(--gold-deep)] disabled:cursor-not-allowed disabled:bg-stone-100"
+          className="rounded-xl border border-stone-300 bg-white px-3.5 py-2.5 text-sm outline-none focus:border-violet-600 disabled:cursor-not-allowed disabled:bg-stone-50 disabled:text-stone-800"
         />
       </label>
 
@@ -211,18 +245,25 @@ export function MediaUploadForm() {
         htmlFor={folderId}
         className="grid gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500"
       >
-        Folder
-        <input
+        Category / folder
+        <select
           id={folderId}
           name="folder"
           value={folder}
           onChange={handleFolderChange}
           disabled={submitting}
-          className="rounded-xl border border-stone-300 bg-white px-3.5 py-2.5 text-sm outline-none focus:border-[var(--gold-deep)] disabled:cursor-not-allowed disabled:bg-stone-100"
-        />
+          className="rounded-xl border border-stone-300 bg-white px-3.5 py-2.5 text-sm outline-none focus:border-violet-600 disabled:cursor-not-allowed disabled:bg-stone-50 disabled:text-stone-800"
+        >
+          {folderOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
         <span className="text-[11px] font-normal normal-case tracking-normal text-stone-500">
-          Stored under <code className="text-[var(--gold-deep)]">public/uploads/{folder || "general"}/</code>.
-          Videos default to <code className="text-[var(--gold-deep)]">video</code>.
+          Controls the Media library folder filter and stores the file under{" "}
+          <code className="text-violet-700">public/uploads/{folder || "general"}/</code>.
+          Videos default to <code className="text-violet-700">video</code>.
         </span>
       </label>
 
@@ -230,7 +271,7 @@ export function MediaUploadForm() {
         <div className="grid gap-1.5">
           <div className="h-1.5 w-full overflow-hidden rounded-full bg-stone-200">
             <div
-              className="h-full rounded-full bg-[var(--ink)] transition-[width]"
+              className="h-full rounded-full bg-stone-900 transition-[width]"
               style={{ width: `${percent ?? 25}%` }}
             />
           </div>
@@ -256,7 +297,7 @@ export function MediaUploadForm() {
         <button
           type="submit"
           disabled={submitting}
-          className="rounded-full bg-[var(--ink)] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-[var(--ink-soft)] disabled:opacity-60"
+          className="rounded-full bg-stone-900 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-stone-700 disabled:opacity-60"
         >
           {submitting ? "Uploading…" : "Upload"}
         </button>

@@ -90,15 +90,15 @@ export function SectionNav({ items }: { items: SectionNavItem[] }) {
       {/* Mobile: top progress strip with active label */}
       <div
         aria-hidden="true"
-        className="fixed left-0 right-0 top-[64px] z-20 lg:hidden"
+        className="fixed left-0 right-0 top-[calc(env(safe-area-inset-top)+4rem)] z-20 lg:hidden"
       >
-        <div className="flex items-center gap-3 border-b border-[var(--hairline)] bg-white/85 px-5 py-2 backdrop-blur-xl">
+        <div className="flex items-center gap-3 border-b border-white/10 bg-[#080014]/80 px-5 py-2 backdrop-blur-xl">
           <div className="flex flex-1 items-center gap-1.5">
             {items.map((item) => (
               <span
                 key={item.id}
                 className={`h-[3px] flex-1 rounded-full transition-colors ${
-                  item.id === activeId ? "bg-[var(--gold)]" : "bg-[var(--hairline-strong)]"
+                  item.id === activeId ? "bg-white" : "bg-white/20"
                 }`}
               />
             ))}
@@ -108,11 +108,11 @@ export function SectionNav({ items }: { items: SectionNavItem[] }) {
             initial={reduceMotion ? false : { opacity: 0, x: 6 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.25 }}
-            className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[var(--ink-soft)]"
+            className="text-[10px] font-semibold uppercase tracking-[0.32em] text-white/80"
           >
             {items[activeIndex]?.label}
           </motion.span>
-          <span className="hidden text-[10px] font-medium tabular-nums text-[var(--ink-mute)] sm:inline">
+          <span className="hidden text-[10px] font-medium tabular-nums text-white/50 sm:inline">
             {Math.round(progress * 100)}%
           </span>
         </div>

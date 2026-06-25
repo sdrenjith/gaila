@@ -18,7 +18,7 @@ if (existsSync(productionEnv)) {
 config();
 
 const PHONE_DISPLAY = "+971 50 282 7279";
-const PHONE_WHATSAPP = "+971502827279";
+const PHONE_WHATSAPP = "+971567045314";
 
 async function updateFooter() {
   await connectDB();
@@ -60,12 +60,18 @@ async function updateFooter() {
     { upsert: true },
   );
 
+  const copyright = defaults.footer?.copyright ?? "© 2026 Gaila · All rights reserved.";
+  const beforeCopyright = (
+    await SiteSettings.findOne({}, { "footer.copyright": 1 }).lean<{ footer?: { copyright?: string } }>()
+  )?.footer?.copyright;
+
   const settingsResult = await SiteSettings.updateOne(
     {},
     {
       $set: {
         "contact.phone": PHONE_DISPLAY,
         "contact.whatsapp": PHONE_WHATSAPP,
+        "footer.copyright": copyright,
         "social.instagram": social.instagram,
         "social.linkedin": social.linkedin,
         "social.facebook": social.facebook,
@@ -83,8 +89,10 @@ async function updateFooter() {
   console.log(
     `Footer menu updated — matched: ${navResult.matchedCount}, modified: ${navResult.modifiedCount}, upserted: ${navResult.upsertedCount ? "yes" : "no"}`,
   );
+  console.log(`Footer copyright — before: ${beforeCopyright ?? "(no document)"}`);
+  console.log(`Footer copyright — after: ${copyright}`);
   console.log(
-    `Site settings (phone/social) updated — matched: ${settingsResult.matchedCount}, modified: ${settingsResult.modifiedCount}`,
+    `Site settings (phone/social/copyright) updated — matched: ${settingsResult.matchedCount}, modified: ${settingsResult.modifiedCount}`,
   );
   console.log(`About page published in DB: ${aboutExists ? "yes" : "no — run seed or publish /about in admin"}`);
 

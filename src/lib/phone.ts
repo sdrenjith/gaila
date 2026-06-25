@@ -7,6 +7,12 @@ export function phoneTelHref(raw: string): string {
   return digits.startsWith("+") ? digits : `+${digits}`;
 }
 
+/** WhatsApp chat URL (digits only, no + or spaces). */
+export function whatsappWaMeUrl(raw: string): string {
+  const digits = phoneTelHref(raw).replace(/\D/g, "");
+  return digits ? `https://wa.me/${digits}` : "";
+}
+
 /** Readable UAE display for +971 mobile numbers; falls back to the raw string. */
 export function formatPhoneDisplay(raw: string): string {
   const tel = phoneTelHref(raw);

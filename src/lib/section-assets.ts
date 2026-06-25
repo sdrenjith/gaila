@@ -110,12 +110,37 @@ export async function collectSectionMediaAssets(
       break;
     }
 
+    case "editorialImageSlider": {
+      const items = getArray<{ image?: string }>(settings, "items");
+      const firstImage = items.find((item) => item.image?.trim())?.image?.trim() ?? "";
+      pushImage(assets, firstImage, sectionIndex, sectionId);
+      break;
+    }
+
+    case "scrollProgressCircle": {
+      for (const step of getArray<{ image?: string }>(settings, "steps")) {
+        pushImage(assets, step.image?.trim() ?? "", sectionIndex, sectionId);
+      }
+      break;
+    }
+
+    case "ambientBackgroundSlider": {
+      const images = getArray<{ image?: string }>(settings, "images");
+      const firstImage = images.find((item) => item.image?.trim())?.image?.trim() ?? "";
+      pushImage(assets, firstImage, sectionIndex, sectionId);
+      break;
+    }
+
     case "servicesEditorial": {
       const limit = getNumber(settings, "limit", 6) || 6;
       const services = (await getContent("service", true)).slice(0, limit);
       for (const service of services) {
         pushImage(assets, service.coverImage ?? "", sectionIndex, sectionId);
       }
+      const sliderImages = getArray<{ image?: string }>(settings, "sliderImages");
+      const firstSliderImage =
+        sliderImages.find((slide) => slide.image?.trim())?.image?.trim() ?? "";
+      pushImage(assets, firstSliderImage, sectionIndex, sectionId);
       break;
     }
 

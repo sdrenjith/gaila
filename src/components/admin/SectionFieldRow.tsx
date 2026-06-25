@@ -114,7 +114,8 @@ export function SectionFieldRow({ spec, value, onChange, categories = [] }: Prop
 
   return (
     <TextInput
-      type={resolvedSpec.kind === "url" ? "url" : "text"}
+      type="text"
+      inputMode={resolvedSpec.kind === "url" ? "url" : undefined}
       label={resolvedSpec.label}
       placeholder={resolvedSpec.placeholder}
       hint={resolvedSpec.description}

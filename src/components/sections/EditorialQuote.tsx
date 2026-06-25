@@ -73,8 +73,8 @@ export function EditorialQuote({
   return (
     <section
       ref={sectionRef}
-      className={`relative isolate overflow-hidden px-5 py-24 sm:px-8 lg:px-14 lg:py-28 ${
-        hasVideo ? "bg-[var(--ink)] text-white" : "bg-white text-[var(--ink)]"
+      className={`relative isolate overflow-hidden px-5 editorial-section-padding sm:px-8 lg:px-14 ${
+        hasVideo ? "bg-[var(--ink)] text-white" : "bg-[var(--cream)] text-[var(--ink)]"
       }`}
     >
       {hasVideo && !reduceMotion && hasEntered && (

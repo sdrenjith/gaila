@@ -99,7 +99,7 @@ function GoogleIcon({ className }: { className?: string }) {
 function ReviewCard({ review }: { review: GoogleReviewRecord }) {
   const stars = safeRating(review.rating);
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-[var(--radius-editorial)] border border-[var(--hairline)] bg-white p-6 shadow-[var(--shadow-card)] transition duration-500 hover:-translate-y-1 hover:border-[var(--hairline-strong)] hover:shadow-[var(--shadow-card-hover)]">
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-[var(--radius-editorial)] border border-[var(--hairline)] bg-[var(--cream)] p-6 shadow-[var(--shadow-card)] transition duration-500 hover:-translate-y-1 hover:border-[var(--hairline-strong)] hover:shadow-[var(--shadow-card-hover)]">
       <span
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-6 top-0 h-px origin-center scale-x-0 bg-gradient-to-r from-transparent via-[var(--gold)] to-transparent opacity-0 transition duration-500 group-hover:scale-x-100 group-hover:opacity-100"
@@ -172,7 +172,7 @@ export function GoogleReviewsSlider({ reviews }: { reviews: GoogleReviewRecord[]
 
   if (reviews.length === 0) {
     return (
-      <p className="rounded-[var(--radius-editorial)] border border-dashed border-[var(--hairline-strong)] bg-white p-8 text-center text-sm text-[var(--ink-mute)]">
+      <p className="rounded-[var(--radius-editorial)] border border-dashed border-[var(--hairline-strong)] bg-[var(--cream)] p-8 text-center text-sm text-[var(--ink-mute)]">
         No reviews yet. Add them from the admin panel.
       </p>
     );
@@ -227,7 +227,7 @@ export function GoogleReviewsSlider({ reviews }: { reviews: GoogleReviewRecord[]
               onClick={() => goToPage(activePage - 1)}
               disabled={activePage === 0}
               aria-label="Previous reviews"
-              className="grid h-10 w-10 place-items-center rounded-full border border-[var(--hairline-strong)] bg-white text-[var(--ink-soft)] transition hover:border-[var(--gold)] hover:text-[var(--ink)] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-[var(--hairline-strong)]"
+              className="grid h-10 w-10 place-items-center rounded-full border border-[var(--hairline-strong)] bg-[var(--cream)] text-[var(--ink-soft)] transition hover:border-[var(--gold)] hover:text-[var(--ink)] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-[var(--hairline-strong)]"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="15 18 9 12 15 6" />
@@ -238,7 +238,7 @@ export function GoogleReviewsSlider({ reviews }: { reviews: GoogleReviewRecord[]
               onClick={() => goToPage(activePage + 1)}
               disabled={activePage === totalPages - 1}
               aria-label="Next reviews"
-              className="grid h-10 w-10 place-items-center rounded-full border border-[var(--hairline-strong)] bg-white text-[var(--ink-soft)] transition hover:border-[var(--gold)] hover:text-[var(--ink)] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-[var(--hairline-strong)]"
+              className="grid h-10 w-10 place-items-center rounded-full border border-[var(--hairline-strong)] bg-[var(--cream)] text-[var(--ink-soft)] transition hover:border-[var(--gold)] hover:text-[var(--ink)] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-[var(--hairline-strong)]"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="9 18 15 12 9 6" />

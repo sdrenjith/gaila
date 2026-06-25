@@ -70,7 +70,7 @@ export function SiteLogo({
 
   if (logo) {
     const imageClass = onLightHero || isDark ? "brightness-0 invert" : "";
-    const height = floating && !isDark ? "h-9 w-[7.5rem]" : "h-10 w-32";
+    const height = floating && !isDark ? "h-10 w-52 md:h-9 md:w-[12.35rem]" : "h-10 w-52 md:w-56";
 
     return (
       <>
@@ -79,7 +79,7 @@ export function SiteLogo({
             src={logo}
             alt={siteName}
             fill
-            sizes="128px"
+            sizes="(max-width: 768px) 208px, 224px"
             className={`object-contain object-left ${imageClass}`}
             priority
           />
@@ -103,7 +103,7 @@ export function SiteLogo({
     <>
       <span
         className={`relative grid place-items-center transition-[height,width] duration-500 ease-out ${
-          floating && !isDark ? "h-9 w-9" : "h-10 w-10"
+          floating && !isDark ? "h-10 w-10 md:h-9 md:w-9" : "h-10 w-10"
         }`}
       >
         <span
@@ -126,7 +126,7 @@ export function SiteLogo({
       </span>
       <span className="flex flex-col leading-none">
         <span
-          className={`font-display text-[19px] tracking-[-0.02em] transition-colors ${
+          className={`font-display text-[22px] tracking-[-0.02em] transition-colors md:text-[23px] ${
             isDark || onLightHero ? "text-white" : "text-[var(--ink)]"
           }`}
         >

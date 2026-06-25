@@ -15,9 +15,9 @@ export function EditorialMarquee({ items, speedSeconds = 38 }: Props) {
   const row = [...safe, ...safe];
 
   return (
-    <div className="relative overflow-hidden border-y border-[var(--hairline-strong)] bg-white py-8">
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-white to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-white to-transparent" />
+    <div className="relative overflow-hidden border-y border-[var(--hairline-strong)] bg-transparent py-8">
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-[var(--background)] to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-[var(--background)] to-transparent" />
       <motion.div
         className="flex w-max items-center gap-14 whitespace-nowrap will-change-transform"
         animate={reduceMotion ? undefined : { x: ["0%", "-50%"] }}

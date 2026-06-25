@@ -40,8 +40,11 @@ export function DeleteActionForm({
 
     push({ message: state.message, variant: state.ok ? "success" : "error" });
     if (state.ok) {
-      setOpen(false);
+      const timer = setTimeout(() => {
+        setOpen(false);
+      }, 0);
       router.refresh();
+      return () => clearTimeout(timer);
     }
   }, [push, router, state.message, state.ok]);
 

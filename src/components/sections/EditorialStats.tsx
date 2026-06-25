@@ -58,7 +58,8 @@ export function EditorialStats({ eyebrow, title, stats }: EditorialStatsProps) {
   if (!items.length) return null;
 
   return (
-    <section className="relative bg-white px-5 py-24 sm:px-8 lg:px-14 lg:py-28">
+    <section className="relative overflow-hidden bg-transparent px-5 editorial-section-padding sm:px-8 lg:px-14">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-1/2 h-px bg-gradient-to-r from-transparent via-fuchsia-300/30 to-transparent" />
       <div className="mx-auto max-w-[1480px]">
         {(eyebrow || title) && (
           <div className="mb-14 max-w-3xl border-b border-[var(--hairline)] pb-8">
@@ -76,17 +77,18 @@ export function EditorialStats({ eyebrow, title, stats }: EditorialStatsProps) {
         )}
         <div
           ref={containerRef}
-          className="grid divide-y divide-[var(--hairline)] sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4"
+          className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
         >
           {items.map((stat, index) => (
             <div
               key={`${stat.label}-${index}`}
-              className="px-2 py-10 sm:px-8 sm:first:pl-0 sm:last:pr-0"
+              className="relative overflow-hidden rounded-[1.8rem] border border-white/10 bg-white/[0.055] px-6 py-9 shadow-[var(--shadow-card)] backdrop-blur-xl transition duration-500 hover:-translate-y-1 hover:border-fuchsia-200/35 hover:shadow-[var(--shadow-card-hover)]"
             >
-              <p className="font-display text-[clamp(3rem,7vw,6.4rem)] font-medium leading-none tracking-[-0.04em] text-[var(--ink)]">
+              <span aria-hidden="true" className="absolute -right-12 -top-16 h-32 w-32 rounded-full bg-[var(--gold)]/20 blur-3xl" />
+              <p className="relative font-display text-[clamp(3rem,7vw,6.4rem)] font-normal uppercase leading-none tracking-[0.02em] text-white">
                 <StatNumber value={stat.value || "0"} active={inView} />
               </p>
-              <p className="mt-5 text-sm leading-7 text-[var(--ink-soft)]">{stat.label}</p>
+              <p className="relative mt-5 text-sm leading-7 text-[var(--ink-soft)]">{stat.label}</p>
             </div>
           ))}
         </div>

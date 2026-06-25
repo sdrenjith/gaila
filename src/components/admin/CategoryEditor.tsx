@@ -2,6 +2,7 @@
 
 import { useActionState, useEffect, useMemo, useState, useTransition } from "react";
 import { saveCategoryAction, type AdminActionState } from "@/app/actions/admin";
+import { AdminSaveBar } from "@/components/admin/AdminSaveBar";
 import { AdminListSearch } from "@/components/admin/AdminListSearch";
 import { ConfirmDeleteDialog } from "@/components/admin/ConfirmDeleteDialog";
 import { ImageSourceInput } from "@/components/admin/ImageSourceInput";
@@ -52,14 +53,17 @@ export function CategoryEditor({ category }: Props) {
   }, [push, state.message, state.ok]);
 
   useEffect(() => {
-    const nextStories = cloneStories(category?.stories ?? []);
-    setTitle(category?.title ?? "");
-    setSlug(category?.slug ?? "new-category");
-    setDescription(category?.description ?? "");
-    setStatus(category?.status ?? "draft");
-    setStories(nextStories);
-    setOpenStoryId(nextStories[0]?.id ?? null);
-    setStorySearchTerm("");
+    const timer = setTimeout(() => {
+      const nextStories = cloneStories(category?.stories ?? []);
+      setTitle(category?.title ?? "");
+      setSlug(category?.slug ?? "new-category");
+      setDescription(category?.description ?? "");
+      setStatus(category?.status ?? "draft");
+      setStories(nextStories);
+      setOpenStoryId(nextStories[0]?.id ?? null);
+      setStorySearchTerm("");
+    }, 0);
+    return () => clearTimeout(timer);
   }, [category?._id, category]);
 
   const filteredStories = useMemo(() => {
@@ -246,7 +250,7 @@ export function CategoryEditor({ category }: Props) {
           <button
             type="button"
             onClick={addStory}
-            className="rounded-full bg-[var(--ink)] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-[var(--ink-soft)]"
+            className="rounded-full bg-stone-900 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-stone-700"
           >
             + Add story
           </button>
@@ -287,7 +291,7 @@ export function CategoryEditor({ category }: Props) {
                   onDrop={() => handleStoryDrop(story.id)}
                   onDragEnd={() => setDragStoryId(null)}
                   className={`rounded-2xl border bg-stone-50 transition ${
-                    dragStoryId === story.id ? "border-[var(--gold)] opacity-60" : "border-stone-200"
+                    dragStoryId === story.id ? "border-violet-500 opacity-60" : "border-stone-200"
                   }`}
                 >
                   <div className="flex flex-wrap items-center gap-3 px-4 py-3">
@@ -419,7 +423,7 @@ export function CategoryEditor({ category }: Props) {
                           <button
                             type="button"
                             onClick={() => addSubitem(story.id)}
-                            className="rounded-full bg-[var(--ink)] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-[var(--ink-soft)]"
+                            className="rounded-full bg-stone-900 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-stone-700"
                           >
                             + Add subitem
                           </button>
@@ -448,7 +452,7 @@ export function CategoryEditor({ category }: Props) {
                                 onDragEnd={() => setDragSubitem(null)}
                                 className={`rounded-xl border bg-white p-4 transition ${
                                   dragSubitem?.storyId === story.id && dragSubitem.subitemId === subitem.id
-                                    ? "border-[var(--gold)] opacity-60"
+                                    ? "border-violet-500 opacity-60"
                                     : "border-stone-200"
                                 }`}
                               >
@@ -554,20 +558,18 @@ export function CategoryEditor({ category }: Props) {
         </div>
       </Panel>
 
-      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-stone-200 bg-white/95 backdrop-blur">
-        <div className="mx-auto flex max-w-[1480px] items-center justify-between gap-3 px-5 py-3 sm:px-8 lg:px-14">
-          <p className="text-xs text-stone-500">
-            {pending ? "Saving…" : "Changes stay local until you save this category."}
-          </p>
-          <button
-            type="submit"
-            disabled={pending}
-            className="rounded-full bg-[var(--ink)] px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-[var(--ink-soft)] disabled:opacity-60"
-          >
-            {pending ? "Saving…" : "Save category"}
-          </button>
-        </div>
-      </div>
+      <AdminSaveBar>
+        <p className="text-xs text-stone-500">
+          {pending ? "Saving…" : "Changes stay local until you save this category."}
+        </p>
+        <button
+          type="submit"
+          disabled={pending}
+          className="rounded-full bg-stone-900 px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-stone-700 disabled:opacity-60"
+        >
+          {pending ? "Saving…" : "Save category"}
+        </button>
+      </AdminSaveBar>
 
       <ConfirmDeleteDialog
         open={Boolean(pendingDelete)}

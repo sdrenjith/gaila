@@ -47,7 +47,7 @@ export function SectionEditor({ section, onChange, categories = [] }: Props) {
     <div className="grid gap-6">
       <header className="flex flex-wrap items-center justify-between gap-3 border-b border-stone-200 pb-4">
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[var(--gold-deep)]">{spec.label}</p>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-violet-700">{spec.label}</p>
           <p className="mt-1 text-sm text-stone-500">{spec.description}</p>
         </div>
         <Toggle
@@ -162,7 +162,7 @@ export function SectionEditor({ section, onChange, categories = [] }: Props) {
               <button
                 type="button"
                 onClick={addItem}
-                className="rounded-full bg-[var(--ink)] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-[var(--ink-soft)]"
+                className="rounded-full bg-stone-900 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-stone-700"
               >
                 + Add {group.itemLabel.toLowerCase()}
               </button>
@@ -179,17 +179,17 @@ export function SectionEditor({ section, onChange, categories = [] }: Props) {
                     key={`${group.name}-${index}`}
                     className="grid gap-3 rounded-xl border border-stone-200 bg-white p-4"
                   >
-                    <div className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">
-                      <span>
+                    <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">
+                      <span className="shrink-0">
                         {group.itemLabel} {String(index + 1).padStart(2, "0")}
                       </span>
-                      <div className="flex items-center gap-1">
+                      <div className="flex shrink-0 flex-wrap items-center gap-1">
                         <button
                           type="button"
                           aria-label="Move up"
                           onClick={() => moveItem(index, -1)}
                           disabled={index === 0}
-                          className="grid h-7 w-7 place-items-center rounded-full border border-stone-200 bg-white text-stone-500 hover:bg-stone-100 disabled:cursor-not-allowed disabled:opacity-50"
+                          className="grid h-8 w-8 place-items-center rounded-full text-stone-500 hover:bg-stone-100 disabled:cursor-not-allowed disabled:opacity-40"
                         >
                           ↑
                         </button>
@@ -198,13 +198,14 @@ export function SectionEditor({ section, onChange, categories = [] }: Props) {
                           aria-label="Move down"
                           onClick={() => moveItem(index, 1)}
                           disabled={index === items.length - 1}
-                          className="grid h-7 w-7 place-items-center rounded-full border border-stone-200 bg-white text-stone-500 hover:bg-stone-100 disabled:cursor-not-allowed disabled:opacity-50"
+                          className="grid h-8 w-8 place-items-center rounded-full text-stone-500 hover:bg-stone-100 disabled:cursor-not-allowed disabled:opacity-40"
                         >
                           ↓
                         </button>
                         <button
                           type="button"
-                          aria-label="Remove"
+                          aria-label={`Remove ${group.itemLabel.toLowerCase()}`}
+                          disabled={items.length <= (group.minItems ?? 0)}
                           onClick={() => {
                             requestDelete({
                               title: `Remove ${group.itemLabel.toLowerCase()}?`,
@@ -212,9 +213,9 @@ export function SectionEditor({ section, onChange, categories = [] }: Props) {
                               onConfirm: () => removeItem(index),
                             });
                           }}
-                          className="grid h-7 w-7 place-items-center rounded-full border border-stone-200 bg-white text-red-600 hover:bg-red-50"
+                          className="rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-red-600 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-40"
                         >
-                          ×
+                          Remove
                         </button>
                       </div>
                     </div>
@@ -258,6 +259,7 @@ export function SectionEditor({ section, onChange, categories = [] }: Props) {
         open={Boolean(pendingDelete)}
         title={pendingDelete?.title ?? "Delete item?"}
         description={pendingDelete?.description ?? "This action cannot be undone."}
+        confirmLabel="Remove"
         onConfirm={confirmDelete}
         onCancel={cancelDelete}
       />

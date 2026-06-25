@@ -19,6 +19,9 @@ export const SECTION_TYPES = [
   "contactForm",
   "gallery",
   "quote",
+  "ambientBackgroundSlider",
+  "editorialImageSlider",
+  "scrollProgressCircle",
 ] as const satisfies readonly SectionType[];
 
 export function isSectionType(value: unknown): value is SectionType {

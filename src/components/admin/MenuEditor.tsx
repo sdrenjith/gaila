@@ -7,7 +7,9 @@ import { ConfirmDeleteDialog } from "@/components/admin/ConfirmDeleteDialog";
 import { Panel, Select, TextInput } from "@/components/admin/forms/Field";
 import { useToast } from "@/components/admin/Toaster";
 import { useConfirmDelete } from "@/components/admin/useConfirmDelete";
+import { HeaderMenuPreview } from "@/components/admin/HeaderMenuPreview";
 import { defaultFooterCta } from "@/lib/default-content";
+import { adminBadge, adminBadgeMuted, adminBtn, adminBtnLg, adminDragBorder } from "@/lib/admin-ui";
 import type { PageHeaderPreviewItem } from "@/lib/navigation";
 import type { MenuItem, NavigationRecord, SiteSettingsRecord } from "@/types/cms";
 
@@ -18,6 +20,7 @@ type Props = {
   menu?: NavigationRecord | null;
   initialItems: MenuItem[];
   pageHeaderItems?: PageHeaderPreviewItem[];
+  resolvedHeaderItems?: MenuItem[];
   initialSocial?: SiteSettingsRecord["social"];
 };
 
@@ -49,6 +52,7 @@ export function MenuEditor({
   menu,
   initialItems,
   pageHeaderItems = [],
+  resolvedHeaderItems = [],
   initialSocial,
 }: Props) {
   const { push } = useToast();
@@ -182,6 +186,15 @@ export function MenuEditor({
 
       {location === "header" ? (
         <Panel
+          title="Header menu preview"
+          description="How the main site navigation will appear, including Service sub-pages."
+        >
+          <HeaderMenuPreview items={resolvedHeaderItems} />
+        </Panel>
+      ) : null}
+
+      {location === "header" ? (
+        <Panel
           title="Pages in header"
           description="These links come from published pages marked “show in header” on the Pages screen. Edit labels and order there."
         >
@@ -203,7 +216,7 @@ export function MenuEditor({
                     <p className="truncate text-sm font-semibold text-stone-950">{item.label}</p>
                     <p className="truncate text-[11px] text-stone-500">{item.href}</p>
                   </div>
-                  <span className="rounded-full bg-stone-200 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-stone-600">
+                  <span className={adminBadge}>
                     Page
                   </span>
                   <Link
@@ -227,7 +240,7 @@ export function MenuEditor({
             <button
               type="button"
               onClick={addItem}
-              className="rounded-full bg-[var(--ink)] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-[var(--ink-soft)]"
+              className={adminBtn}
             >
               + Add link
             </button>
@@ -253,7 +266,7 @@ export function MenuEditor({
             <button
               type="button"
               onClick={addItem}
-              className="rounded-full bg-[var(--ink)] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-[var(--ink-soft)]"
+              className={adminBtn}
             >
               + Add link
             </button>
@@ -361,7 +374,7 @@ export function MenuEditor({
         <button
           type="submit"
           disabled={pending}
-          className="rounded-full bg-[var(--ink)] px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-[var(--ink-soft)] disabled:opacity-60"
+          className={adminBtnLg}
         >
           {pending ? "Saving…" : "Save menu"}
         </button>
@@ -420,7 +433,7 @@ function MenuItemList({
           }}
           onDrop={() => onDrop(item._id)}
           className={`rounded-2xl border bg-white transition ${
-            dragId === item._id ? "border-[var(--gold)] opacity-60" : "border-stone-200"
+            dragId === item._id ? `${adminDragBorder} opacity-60` : "border-stone-200"
           } ${!item.visible ? "opacity-70" : ""}`}
         >
           <div className="flex flex-wrap items-center gap-3 px-4 py-3">
@@ -441,7 +454,7 @@ function MenuItemList({
             <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-stone-400">
               {String(index + 1).padStart(2, "0")}
             </span>
-            <span className="rounded-full bg-stone-100 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-stone-600">
+            <span className={adminBadgeMuted}>
               Manual
             </span>
             <button
@@ -497,6 +510,26 @@ function MenuItemList({
               Visible
             </label>
           </div>
+          {(item.children ?? []).length > 0 ? (
+            <div className="border-t border-stone-200 px-4 py-4">
+              <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-stone-400">
+                Sub-items
+              </p>
+              <ul className="grid gap-1.5">
+                {[...(item.children ?? [])]
+                  .sort((a, b) => a.order - b.order)
+                  .map((child) => (
+                    <li
+                      key={child.href}
+                      className="flex items-center justify-between rounded-xl border border-stone-100 bg-stone-50 px-3 py-2 text-sm text-stone-700"
+                    >
+                      <span className="truncate">{child.label}</span>
+                      <span className="ml-2 shrink-0 text-[10px] text-stone-400">{child.href}</span>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          ) : null}
         </li>
       ))}
     </ul>

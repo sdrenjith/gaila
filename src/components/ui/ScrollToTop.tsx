@@ -29,12 +29,11 @@ export function ScrollToTop() {
         right: "calc(env(safe-area-inset-right) + 1.25rem)",
       }}
       className={[
-        "fixed z-40 h-12 w-12 inline-flex items-center justify-center rounded-full",
-        "border border-[var(--hairline-strong)] bg-white text-[var(--ink)]",
-        "shadow-[0_1px_2px_rgba(14,14,14,0.06),0_18px_44px_-22px_rgba(14,14,14,0.20)]",
-        "hover:bg-[var(--ink)] hover:text-white",
-        "transition duration-300 ease-out",
-        "focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--gold)] focus-visible:ring-offset-2 focus-visible:ring-offset-white",
+        "fixed z-50 h-12 w-12 inline-flex items-center justify-center rounded-full",
+        "border border-white/25 gold-gradient cta-shadow text-white",
+        "ring-1 ring-inset ring-white/20",
+        "transition duration-300 ease-out hover:-translate-y-0.5 hover:brightness-110 cta-shadow-hover",
+        "focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--gold-light)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#080014]",
         visible
           ? "opacity-100 translate-y-0 pointer-events-auto"
           : "opacity-0 translate-y-2 pointer-events-none",

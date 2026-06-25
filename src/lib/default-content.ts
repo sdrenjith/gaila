@@ -1,13 +1,26 @@
 import { isSectionType } from "@/lib/section-types";
+import { buildDefaultGalleryCategories, IMG, LOCAL_IMAGES } from "@/lib/local-images";
 import type { ContentRecord, MenuItem, PageSection, SectionType } from "@/types/cms";
 
 export const headerMenuItems: MenuItem[] = [
   { label: "Home", href: "/", order: 0, visible: true },
-  { label: "Services", href: "/services", order: 1, visible: true },
-  { label: "Case Studies", href: "/case-studies", order: 2, visible: true },
-  { label: "Blog", href: "/blog", order: 3, visible: true },
-  { label: "About", href: "/about", order: 4, visible: true },
-  { label: "Contact", href: "/contact", order: 5, visible: true },
+  { label: "About Us", href: "/about-us", order: 1, visible: true },
+  { label: "Contact", href: "/contact", order: 2, visible: true },
+  {
+    label: "Service",
+    href: "/services",
+    order: 3,
+    visible: true,
+    children: [
+      { label: "Wedding Planning", href: "/services/wedding-planning", order: 0, visible: true },
+      { label: "Newborn Hospital Decor", href: "/services/newborn-hospital-decor", order: 1, visible: true },
+      { label: "Graduation Setup", href: "/services/graduation-setup", order: 2, visible: true },
+      { label: "Corporate Events", href: "/services/corporate-events", order: 3, visible: true },
+      { label: "Dessert Events", href: "/services/dessert-events", order: 4, visible: true },
+    ],
+  },
+  { label: "Gallery", href: "/gallery", order: 4, visible: true },
+  { label: "Blog", href: "/blog", order: 5, visible: true },
 ];
 
 export const defaultFooterCta = {
@@ -20,513 +33,259 @@ export const defaultFooterCta = {
 } as const;
 
 export const footerMenuItems: MenuItem[] = [
-  { label: "About", href: "/about", order: 0, visible: true },
+  { label: "About Us", href: "/about-us", order: 0, visible: true },
   { label: "Blog", href: "/blog", order: 1, visible: true },
-  { label: "Corporate Events", href: "/services/seo-dubai", order: 2, visible: true },
-  { label: "Conferences & Summits", href: "/services/paid-media", order: 3, visible: true },
-  { label: "Weddings & Celebrations", href: "/services/social-media", order: 4, visible: true },
-  { label: "Event Production & AV", href: "/services/video-production", order: 5, visible: true },
-  { label: "Creative Direction & Décor", href: "/services/brand-creative", order: 6, visible: true },
+  { label: "Wedding Planning", href: "/services/wedding-planning", order: 2, visible: true },
+  { label: "Newborn Hospital Decor", href: "/services/newborn-hospital-decor", order: 3, visible: true },
+  { label: "Graduation Setup", href: "/services/graduation-setup", order: 4, visible: true },
+  { label: "Corporate Events", href: "/services/corporate-events", order: 5, visible: true },
+  { label: "Dessert Events", href: "/services/dessert-events", order: 6, visible: true },
   { label: "Contact", href: "/contact", order: 7, visible: true },
 ];
 
-// Stable Unsplash URLs used as seed defaults. Editors can replace per record
-// from the admin UI (upload or paste a different URL).
-const IMG = {
-  heroDubai:
-    "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=2400&q=80",
-  studioTeam:
-    "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1800&q=80",
-  corporate:
-    "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1800&q=80",
-  conference:
-    "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1800&q=80",
-  wedding:
-    "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80",
-  decor:
-    "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1800&q=80",
-  production:
-    "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1800&q=80",
-  gala:
-    "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1800&q=80",
-  summit:
-    "https://images.unsplash.com/photo-1505373877841-8d25f7d4666e?auto=format&fit=crop&w=1800&q=80",
-  yacht:
-    "https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?auto=format&fit=crop&w=1800&q=80",
-  cafe:
-    "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1800&q=80",
-  flowers:
-    "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1800&q=80",
-  hospitality:
-    "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1800&q=80",
-  venue:
-    "https://images.unsplash.com/photo-1566073771569-1067f85f0c4e?auto=format&fit=crop&w=1800&q=80",
-  experiential:
-    "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=1800&q=80",
-} as const;
+const heroBackgroundSlides = IMG.heroBackgrounds.map((image, index) => ({
+  image,
+  alt: `Gaila event styling ${index + 1}`,
+}));
+
+const gallerySliderItems = [
+  { image: LOCAL_IMAGES.weddings[1], alt: "Wedding reception hall", caption: "Luxury wedding reception" },
+  { image: LOCAL_IMAGES.weddings[13], alt: "Outdoor wedding table styling", caption: "Garden wedding florals" },
+  { image: LOCAL_IMAGES.events[5], alt: "Graduation celebration setup", caption: "Graduation celebration" },
+  { image: LOCAL_IMAGES.corporate[0], alt: "Corporate gala dinner", caption: "Corporate gala styling" },
+  { image: LOCAL_IMAGES.desserts[4], alt: "Dessert table display", caption: "Dessert table artistry" },
+  { image: LOCAL_IMAGES.events[2], alt: "Newborn welcome decor", caption: "Newborn hospital decor" },
+  { image: LOCAL_IMAGES.gallery[11], alt: "Event stage design", caption: "Custom stage production" },
+  { image: LOCAL_IMAGES.weddings[12], alt: "Floral wedding details", caption: "Floral design details" },
+];
+
+const portfolioGalleryCategories = buildDefaultGalleryCategories();
 
 export const services = [
   {
     kind: "service",
+    title: "Wedding Planning",
+    slug: "wedding-planning",
+    excerpt:
+      "Crafting beautiful, seamless, and culturally rich weddings in Dubai. From venue curation and custom stage set design to vendor coordination and flawless day-of show calling, we handle every detail so you can focus on the celebration.",
+    body:
+      "A luxury wedding in Dubai is more than just a gathering; it is the realization of a lifelong dream. At Gaila, we offer bespoke wedding planning services designed for couples who value elegance, personalization, and stress-free execution.\n\nOur process begins with an in-depth creative consult to outline your design vision, spatial styling, and flow. We curate the best vendors across the UAE — catering, lighting, sound, photography, and entertainment — and coordinate them under one single team.\n\nOn the wedding day, our producers manage the complete timeline, coordinate setup, and direct proceedings with calm technical show calling, ensuring your guests enjoy a flawless experience.",
+    coverImage: LOCAL_IMAGES.weddings[1],
+    tags: ["Weddings", "Design & Styling", "Vendor Management", "Show Day Production"],
+    status: "published",
+    featured: true,
+    metrics: [
+      { label: "Weddings designed annually", value: "40+" },
+      { label: "Pre-wedding check points", value: "180+" },
+      { label: "Guest satisfaction", value: "100%" },
+    ],
+    seo: {
+      title: "Wedding Planner Dubai | Luxury Wedding Planning & Design | Gaila",
+      description:
+        "Bespoke wedding planning and design in Dubai. We handle venue sourcing, floral styling, staging, custom décor, and show coordination for your perfect day.",
+    },
+  },
+  {
+    kind: "service",
+    title: "Newborn Hospital Decor",
+    slug: "newborn-hospital-decor",
+    excerpt:
+      "Welcome your bundle of joy with stunning, custom hospital room setups. We design elegant, personalized spaces with luxury balloon installs, themed florals, customized door wreaths, and boutique catering setups for family and guests.",
+    body:
+      "Welcoming a newborn is a milestone moment that deserves a beautiful, welcoming space. Gaila specializes in creating luxury newborn hospital room decor in Dubai, transforming standard suites into cozy, photogenic baby-welcome areas.\n\nWe collaborate closely with families to choose color palettes, themes, and personalized touches. Our installations include customized acrylic signage, premium organic balloon clouds, delicate fresh floral arrangements, personalized bed linens, and a stylish refreshment station for your guests.\n\nOur team works efficiently and quietly with hospital staff, managing set up and strike seamlessly so you can focus entirely on your new arrival.",
+    coverImage: LOCAL_IMAGES.events[2],
+    tags: ["Newborn Decor", "Balloon Clouds", "Hospital Suites", "Baby Welcoming"],
+    status: "published",
+    featured: true,
+    metrics: [
+      { label: "Newborn setups delivered", value: "150+" },
+      { label: "Hospital suites styled", value: "12+" },
+      { label: "Theme options available", value: "Unlimited" },
+    ],
+    seo: {
+      title: "Newborn Hospital Decor Dubai | Baby Welcome Room Styling | Gaila",
+      description:
+        "Bespoke newborn hospital room decor in Dubai. Elegant balloon arches, fresh florals, custom signs, and guest refreshment styling for your baby welcome.",
+    },
+  },
+  {
+    kind: "service",
+    title: "Graduation Setup",
+    slug: "graduation-setup",
+    excerpt:
+      "Celebrate achievements with premium graduation stage setups and private party designs. From formal university stages and AV production to backyard celebration marquees and customized photo backdrops.",
+    body:
+      "Graduating is a monumental achievement that deserves an equally spectacular celebration. Whether you are hosting a formal institutional ceremony or a private graduation garden party, Gaila provides complete design, setup, and AV management.\n\nWe design custom stages, custom photo backdrops, customized seating, balloon cascades, and custom signage themed to your institution's colors or your personal preference.\n\nOur technical team manages sound, lighting, and screens for speeches, while our catering and decor teams style dessert tables and dining areas to create a premium, festive atmosphere.",
+    coverImage: LOCAL_IMAGES.events[4],
+    tags: ["Graduation Ceremonies", "Stage Building", "AV & Sound", "Private Parties"],
+    status: "published",
+    featured: true,
+    metrics: [
+      { label: "Graduations styled in UAE", value: "95+" },
+      { label: "Stages custom built", value: "60+" },
+      { label: "Bespoke photo backdrops", value: "100%" },
+    ],
+    seo: {
+      title: "Graduation Party Setup Dubai | Graduation Ceremony Stages | Gaila",
+      description:
+        "Premium graduation stage setups and private party design in Dubai. Stage building, lighting, sound, custom photo booths, and event styling.",
+    },
+  },
+  {
+    kind: "service",
     title: "Corporate Events",
-    slug: "seo-dubai",
+    slug: "corporate-events",
     excerpt:
-      "Most corporate events in Dubai fail to deliver on their brief — not because the venue was wrong, but because the planning, production, and guest experience were treated as separate problems. As a trusted corporate events company in Dubai, Gaila designs end-to-end experiences that reflect your brand, engage your audience, and achieve measurable business outcomes.",
+      "Designing end-to-end corporate experiences that reflect your brand, engage your audience, and achieve measurable outcomes. From leadership summits and product launches to annual gala dinners in Dubai.",
     body:
-      "Gaila delivers corporate event management in Dubai across annual galas, product launches, leadership summits, award ceremonies, and client entertainment — with bilingual English and Arabic programmes, hybrid and in-person formats, and transparent reporting tied to attendance, engagement, and post-event follow-through.",
-    coverImage: IMG.corporate,
-    tags: ["Corporate Events", "Galas", "Product Launches"],
+      "A successful corporate event is a powerful branding tool. Gaila delivers end-to-end corporate event management in Dubai for summits, launches, award nights, and networking receptions.\n\nWe provide professional bilingual English and Arabic programming, high-end stage design, rigging, lighting, LED screens, and custom AV production. We oversee guest logistics, valet coordination, registration check-ins, and post-event reporting.\n\nOur client roster includes global automotive, luxury beauty, and leading hospitality groups who trust Gaila's meticulous 120-item planning checklist for zero-defect show days.",
+    coverImage: LOCAL_IMAGES.corporate[0],
+    tags: ["Corporate Events", "Galas & Awards", "Product Launches", "AV Staging"],
     status: "published",
     featured: true,
     metrics: [
-      { label: "Corporate events delivered in 2025", value: "85+" },
-      { label: "Pre-event planning checklist", value: "120 items" },
+      { label: "Corporate events delivered", value: "200+" },
+      { label: "Pre-event check items", value: "120" },
+      { label: "Sponsor ROI average", value: "3.2x" },
     ],
     seo: {
-      title: "Corporate Events Dubai | Corporate Event Management | Gaila",
+      title: "Corporate Event Management Dubai | Gala & Summit Planners | Gaila",
       description:
-        "Corporate event management in Dubai — galas, product launches, award ceremonies, and leadership events with end-to-end planning, production, and guest experience.",
+        "Leading corporate event management in Dubai. Product launches, galas, leadership summits, and award ceremonies with flawless AV, staging, and logistics.",
     },
   },
   {
     kind: "service",
-    title: "Conferences & Summits",
-    slug: "paid-media",
+    title: "Dessert Events",
+    slug: "dessert-events",
     excerpt:
-      "Conference and summit management is a results-driven discipline where every element — programme design, speaker logistics, registration, staging, and delegate experience — is measured against real outcomes. Unlike one-off gatherings, a well-run conference builds authority, generates leads, and compounds your brand's industry presence.",
+      "Bespoke dessert displays, custom cake backdrops, and sweet styling for weddings, baby showers, birthdays, and corporate celebrations. Designed to look breathtaking and taste incredible.",
     body:
-      "Gaila plans and produces conferences and summits for Dubai and UAE organisations across multi-track programmes, keynote stages, exhibition zones, networking receptions, and hybrid streaming. Every engagement starts with a delegate journey audit, then follows a structured 90-day production roadmap before we scale registration, content, and sponsor activations.",
-    coverImage: IMG.conference,
-    tags: ["Conferences", "Summits", "Hybrid Events"],
+      "A dessert table is often the centerpiece of a social event. Gaila designs and constructs immersive dessert tables and sweet installations that blend exquisite styling with gourmet pastries.\n\nWe curate a visually stunning themed backdrop, matching floral installations, custom stands, and personalized menu labels. We source luxury chocolates, custom cakes, themed cookies, and premium cupcakes from top-tier pastry chefs in Dubai.\n\nWhether it's a golden dessert cart for a wedding, a pastel treat stand for a newborn welcome, or a branded dessert bar for a product launch, we style a highlight moment your guests will queue to photograph.",
+    coverImage: LOCAL_IMAGES.desserts[4],
+    tags: ["Dessert Tables", "Sweet Styling", "Custom Backdrops", "Corporate Dessert Bars"],
     status: "published",
     featured: true,
     metrics: [
-      { label: "Average delegate satisfaction score", value: "4.8 / 5" },
-      { label: "Production cadence", value: "Weekly" },
+      { label: "Dessert displays styled", value: "110+" },
+      { label: "Custom themes developed", value: "75+" },
+      { label: "Vendor partners in Dubai", value: "15+" },
     ],
     seo: {
-      title: "Conference & Summit Management Dubai | Gaila",
+      title: "Dessert Table Styling Dubai | Sweet & Cake Displays | Gaila",
       description:
-        "Plan and deliver conferences and summits in Dubai with a team focused on programme design, delegate experience, hybrid streaming, and sponsor activations.",
-    },
-  },
-  {
-    kind: "service",
-    title: "Weddings & Celebrations",
-    slug: "social-media",
-    excerpt:
-      "As a wedding and celebration planner in Dubai, Gaila creates events that go beyond décor and guest lists. We design experiences that honour your story, reflect your culture, and leave every guest with a memory they'll talk about for years.",
-    body:
-      "Gaila provides wedding and celebration planning in Dubai designed to help couples and families create meaningful moments while managing every detail with precision. From venue selection and creative direction to vendor coordination, guest logistics, and day-of production, we help you establish a celebration that feels effortless — even when the planning behind it is anything but.",
-    coverImage: IMG.wedding,
-    tags: ["Weddings", "Engagements", "Celebrations"],
-    status: "published",
-    featured: true,
-    metrics: [
-      { label: "Celebrations planned per year", value: "40 — 60" },
-      { label: "Average guest satisfaction", value: "98%" },
-    ],
-    seo: {
-      title: "Wedding Planner Dubai | Celebration Events | Gaila",
-      description:
-        "Wedding and celebration planning in Dubai — venue sourcing, creative direction, vendor coordination, and day-of production for unforgettable events.",
-    },
-  },
-  {
-    kind: "service",
-    title: "Event Production & AV",
-    slug: "video-production",
-    excerpt:
-      "At Gaila, we provide event production and AV services in Dubai that combine technical precision, creative staging, and seamless execution to create experiences that deliver on every brief. From lighting and sound to LED walls, live streaming, and show calling, every element is designed to support your event objectives.",
-    body:
-      "Event production has become the backbone of every memorable gathering in Dubai. Whether you're hosting a 2,000-delegate summit, an intimate gala dinner, or a product launch with broadcast-quality streaming, professionally managed production ensures your message lands and your guests feel the difference.\n\nAt Gaila, we provide event production and AV services in Dubai that combine technical expertise, creative staging, and calm show-day execution. From rigging and lighting design to sound engineering, LED content, live streaming, and show calling, every project is built to run flawlessly under pressure.\n\nAs a trusted event production company in Dubai, we handle the entire technical scope — site surveys, CAD staging plans, equipment procurement, crew management, rehearsals, and live operation. Our team delivers production for ballrooms, outdoor venues, exhibition halls, and hybrid broadcast setups across the UAE.",
-    coverImage: IMG.production,
-    tags: ["AV Production", "Staging", "Live Streaming"],
-    status: "published",
-    featured: true,
-    metrics: [
-      { label: "Production days delivered in 2025", value: "180+" },
-      { label: "Average show-day turnaround", value: "3 — 5 weeks" },
-    ],
-    seo: {
-      title: "Event Production & AV Dubai | Gaila",
-      description:
-        "Event production and AV services in Dubai — staging, lighting, sound, LED walls, live streaming, and show calling for conferences, galas, and launches.",
-    },
-  },
-  {
-    kind: "service",
-    title: "Creative Direction & Décor",
-    slug: "brand-creative",
-    excerpt:
-      "Creative direction, spatial design, floral styling, and bespoke décor that transforms venues into immersive brand experiences — built for ambitious events in Dubai.",
-    body:
-      "Gaila leads events through concept development, mood boards, spatial design, floral styling, tablescapes, signage, and the creative system that holds everything together — entrance experiences, stage backdrops, photo moments, and branded touchpoints. We help in-house teams stop relying on generic rental packages and start operating from a clear, documented creative vision.\nDeliverables include concept decks, 3D renders, décor specifications, vendor briefs, and on-site creative supervision.",
-    coverImage: IMG.decor,
-    tags: ["Décor", "Creative Direction", "Spatial Design"],
-    status: "published",
-    featured: false,
-    metrics: [
-      { label: "Creative concept timeline", value: "4 — 6 weeks" },
-      { label: "Deliverables", value: "Concept deck + 3D renders" },
-    ],
-    seo: {
-      title: "Event Décor & Creative Direction Dubai | Gaila",
-      description:
-        "Creative direction and event décor in Dubai — spatial design, floral styling, and immersive brand experiences for galas, weddings, and corporate events.",
-    },
-  },
-  {
-    kind: "service",
-    title: "Venue Sourcing & Logistics",
-    slug: "web-design",
-    excerpt:
-      "Strategic venue selection, contract negotiation, guest logistics, transport coordination, and run-of-show planning designed to make complex Dubai events feel effortless.",
-    body:
-      "We source and secure venues across Dubai and the UAE with clear briefs, negotiated contracts, site visits, and contingency planning. Projects start with a requirements workshop, then move into venue shortlisting, technical site surveys, logistics mapping, vendor coordination, and a structured handover with documented run-of-show and guest journey plans.\nTypical scope: hotel ballrooms, outdoor desert venues, yacht charters, exhibition halls, and multi-venue programmes for regional roadshows.",
-    coverImage: IMG.venue,
-    tags: ["Venue Sourcing", "Logistics", "Run of Show"],
-    status: "published",
-    featured: false,
-    metrics: [
-      { label: "Venue partners across UAE", value: "120+" },
-      { label: "Average logistics checklist items", value: "85+" },
-    ],
-    seo: {
-      title: "Venue Sourcing & Event Logistics Dubai | Gaila",
-      description:
-        "Venue sourcing and event logistics in Dubai — site selection, contract negotiation, guest transport, and run-of-show planning for complex events.",
-    },
-  },
-  {
-    kind: "service",
-    title: "Experiential Activations",
-    slug: "influencer-marketing",
-    excerpt:
-      "Design immersive brand activations, pop-ups, and guest experiences that create lasting impressions, drive social sharing, and connect audiences to your brand in memorable ways.",
-    body:
-      "Gaila designs experiential activations for Dubai and GCC brands — concept development, spatial build, interactive elements, staffing, content capture, and performance reporting tied to footfall, dwell time, and social amplification.\nWe match activations to your audience and venue, run bilingual experiences where needed, and integrate photo moments, sampling stations, and digital touchpoints for compounding reach.",
-    coverImage: IMG.experiential,
-    tags: ["Activations", "Pop-ups", "Brand Experiences"],
-    status: "published",
-    featured: false,
-    metrics: [
-      { label: "Activation design criteria", value: "12-point scorecard" },
-      { label: "On-site reporting cadence", value: "Real-time" },
-    ],
-    seo: {
-      title: "Experiential Event Activations Dubai | Gaila",
-      description:
-        "Experiential activations in Dubai — immersive brand experiences, pop-ups, and guest engagement designed to create lasting impressions and social reach.",
-    },
-  },
-  {
-    kind: "service",
-    title: "Event Strategy & Consulting",
-    slug: "public-relations",
-    excerpt:
-      "Strengthen your event programme through strategic planning, stakeholder alignment, budget modelling, vendor frameworks, and consulting that turns ambition into executable plans.",
-    body:
-      "Our consulting team supports Dubai organisations with event strategy, programme design, budget modelling, RFP development, vendor selection frameworks, and ongoing event governance across English and Arabic stakeholder groups.\nWe build event roadmaps, craft compelling briefs, coordinate executive alignment, and align event moments with your wider business calendar — product launches, award ceremonies, partner summits, and annual galas.",
-    coverImage: IMG.hospitality,
-    tags: ["Strategy", "Consulting", "Programme Design"],
-    status: "published",
-    featured: false,
-    metrics: [
-      { label: "Typical strategy engagement", value: "4 — 6 weeks" },
-      { label: "Markets", value: "UAE · GCC" },
-    ],
-    seo: {
-      title: "Event Strategy & Consulting Dubai | Gaila",
-      description:
-        "Event strategy and consulting in Dubai — programme design, budget modelling, vendor frameworks, and governance for UAE and GCC organisations.",
+        "Bespoke dessert table styling and cake display backdrops in Dubai. Customized dessert tables, candy bars, and floral setups for premium events.",
     },
   },
 ] satisfies Partial<ContentRecord>[];
 
 export const servicesOverviewCards = [
   {
-    title: "Conferences & Summits",
+    title: "Wedding Planning",
     description:
-      "End-to-end conference and summit management designed to maximise delegate experience, sponsor value, and industry authority across Dubai and the wider UAE.",
-    href: "/services/paid-media",
-    ctaLabel: "Explore Conferences & Summits →",
-    image: IMG.conference,
+      "Crafting beautiful, seamless, and culturally rich weddings in Dubai. Venue curation, floral styling, staging, custom décor, and show coordination.",
+    href: "/services/wedding-planning",
+    ctaLabel: "Explore Wedding Planning →",
+    image: LOCAL_IMAGES.weddings[1],
+  },
+  {
+    title: "Newborn Hospital Decor",
+    description:
+      "Welcome your bundle of joy with stunning, custom hospital room setups. Balloon arches, fresh florals, custom signs, and guest refreshments styling.",
+    href: "/services/newborn-hospital-decor",
+    ctaLabel: "Explore Newborn Decor →",
+    image: LOCAL_IMAGES.events[2],
+  },
+  {
+    title: "Graduation Setup",
+    description:
+      "Celebrate achievements with premium graduation stage setups and private party designs. Custom stages, backdrops, lighting, and sound.",
+    href: "/services/graduation-setup",
+    ctaLabel: "Explore Graduation Setup →",
+    image: LOCAL_IMAGES.events[4],
   },
   {
     title: "Corporate Events",
     description:
-      "Plan and deliver corporate galas, product launches, award ceremonies, and leadership events that reflect your brand and achieve measurable business outcomes.",
-    href: "/services/seo-dubai",
+      "Designing end-to-end corporate experiences. Product launches, galas, leadership summits, and award ceremonies with flawless AV, staging, and logistics.",
+    href: "/services/corporate-events",
     ctaLabel: "Explore Corporate Events →",
-    image: IMG.corporate,
+    image: LOCAL_IMAGES.corporate[0],
   },
   {
-    title: "Weddings & Celebrations",
+    title: "Dessert Events",
     description:
-      "Create unforgettable weddings and celebrations through creative direction, vendor coordination, guest logistics, and flawless day-of production.",
-    href: "/services/social-media",
-    ctaLabel: "Explore Weddings & Celebrations →",
-    image: IMG.wedding,
-  },
-  {
-    title: "Event Production & AV",
-    description:
-      "Deliver technical excellence through staging, lighting, sound, LED walls, live streaming, and show calling for events of every scale across Dubai.",
-    href: "/services/video-production",
-    ctaLabel: "Explore Event Production →",
-    image: IMG.production,
-  },
-  {
-    title: "Experiential Activations",
-    description:
-      "Design immersive brand activations and pop-up experiences that create lasting impressions, drive engagement, and amplify your event across social channels.",
-    href: "/services/influencer-marketing",
-    ctaLabel: "Explore Experiential Activations →",
-    image: IMG.experiential,
-  },
-  {
-    title: "Event Strategy & Consulting",
-    description:
-      "Build a strategic event programme through planning frameworks, budget modelling, vendor selection, and consulting that turns ambition into executable plans.",
-    href: "/services/public-relations",
-    ctaLabel: "Explore Event Strategy →",
-    image: IMG.hospitality,
-  },
-  {
-    title: "Creative Direction & Décor",
-    description:
-      "Transform venues with bespoke décor, spatial design, floral styling, and creative direction that makes every event feel distinctly yours.",
-    href: "/services/brand-creative",
-    ctaLabel: "Explore Creative Direction →",
-    image: IMG.decor,
-  },
-  {
-    title: "Venue Sourcing & Logistics",
-    description:
-      "Secure the right venue and manage complex logistics — guest transport, run-of-show, vendor coordination, and on-site operations across the UAE.",
-    href: "/services/web-design",
-    ctaLabel: "Explore Venue & Logistics →",
-    image: IMG.venue,
+      "Bespoke dessert displays, custom cake backdrops, and sweet styling for weddings, baby showers, birthdays, and corporate celebrations.",
+    href: "/services/dessert-events",
+    ctaLabel: "Explore Dessert Styling →",
+    image: LOCAL_IMAGES.desserts[4],
   },
 ] as const;
 
-export const caseStudies = [
-  {
-    kind: "caseStudy",
-    title: "Fenty Beauty — Dubai product launch gala",
-    slug: "fenty-beauty",
-    excerpt:
-      "A premium product launch gala for Fenty Beauty in Dubai — immersive décor, live staging, and guest experience design that delivered 120% social engagement lift and sold-out attendance.",
-    body:
-      "Fenty Beauty has redefined beauty standards with its commitment to inclusivity, innovation, and vibrancy. Known for its wide-range foundation shades, bold colour cosmetics, and strong visual identity, Fenty needed a launch event in Dubai that matched its dynamic energy and upheld its high visual expectations.\nThe challenge: create an immersive guest experience that showcased product textures, shades, and packaging in a way that felt editorial, not promotional; design a venue transformation that photographed beautifully for social and press; maintain brand consistency across every touchpoint from invitation to farewell gift; and drive attendance and shareability through a guest journey built for content capture.\nOur solution combined bespoke spatial design (bold colour backdrops, product display moments, and a runway-style reveal) with live staging, DJ programming, and a content capture team embedded throughout the evening. The result was a 120% engagement-rate lift on launch content, sold-out attendance within 48 hours of invitations, and a 75% increase in social shares and reposts from guest-generated content.",
-    coverImage: IMG.gala,
-    tags: ["Product Launch", "Gala", "Brand Experience"],
-    status: "published",
-    featured: true,
-    metrics: [
-      { label: "Social engagement rate", value: "+120%" },
-      { label: "Ticket sell-through", value: "100%" },
-      { label: "Guest content shares", value: "+75%" },
-    ],
-    seo: {
-      title: "Fenty Beauty Dubai Launch Gala Case Study | Gaila",
-      description:
-        "Product launch gala for Fenty Beauty in Dubai — immersive décor, live staging, and guest experience design with 120% social engagement lift.",
-    },
-  },
-  {
-    kind: "caseStudy",
-    title: "Ford Middle East — Annual dealer summit",
-    slug: "ford-middleeast",
-    excerpt:
-      "A multi-day dealer summit for Ford Middle East across UAE, KSA, and the wider GCC — built around model reveals, leadership sessions, and regional networking.",
-    body:
-      "Ford Middle East needed an annual summit that connected dealers, leadership, and regional partners across UAE, KSA, and the wider GCC — weaving model reveals, training sessions, and cultural moments into one cohesive programme.\nGaila operated as Ford's event partner: producing the main stage for every new model reveal, building breakout sessions for sales and aftersales teams, coordinating bilingual Arabic and English programming for each market, and maintaining a production calendar tied to regional moments (Ramadan, National Day, off-roading season). Success was measured through delegate satisfaction scores, post-event sales pipeline, and dealer engagement metrics.\nThe outcome: a premium summit experience with consistent regional voice, measurable lifts in dealer engagement, and a production system the in-house team could brief against for the following year.",
-    coverImage: IMG.summit,
-    tags: ["Summit", "Automotive", "Multi-day", "GCC"],
-    status: "published",
-    featured: true,
-    metrics: [
-      { label: "Summits delivered / year", value: "3+" },
-      { label: "Markets covered", value: "GCC" },
-    ],
-    seo: {
-      title: "Ford Middle East Summit Case Study | Gaila",
-      description:
-        "Annual dealer summit for Ford Middle East — multi-day programming, model reveals, and bilingual production across the GCC.",
-    },
-  },
-  {
-    kind: "caseStudy",
-    title: "Oberoi Yachts — Luxury charter launch event",
-    slug: "oberoi-yachts",
-    excerpt:
-      "A luxury launch event for Oberoi Yachts — waterfront staging, lifestyle experience design, and an invitation-only evening that converted high-net-worth guests into charter enquiries.",
-    body:
-      "Oberoi Yachts needed an event that matched the calibre of the product — a fleet of luxury charters serving Dubai's high-net-worth and inbound luxury market.\nGaila produced a waterfront launch evening with live yacht tours, curated dining on the marina, ambient staging across the fleet, and a tightly managed guest list: personalised invitations for English and Arabic UHNW audiences, valet and concierge logistics, and a same-day broker follow-up system for every qualified enquiry.\nThe event delivered a steady stream of charter enquiries during the peak season, with a sharper brand presentation on the night and a creative and logistics playbook the team has reused across follow-up activations.",
-    coverImage: IMG.yacht,
-    tags: ["Luxury", "Launch Event", "Waterfront"],
-    status: "published",
-    featured: true,
-    metrics: [
-      { label: "Qualified charter enquiries", value: "+58%" },
-      { label: "Average guest follow-up", value: "Same day" },
-    ],
-    seo: {
-      title: "Oberoi Yachts Launch Event Case Study | Gaila",
-      description:
-        "Luxury charter launch event for Oberoi Yachts — waterfront staging, curated guest experience, and qualified enquiry conversion.",
-    },
-  },
-  {
-    kind: "caseStudy",
-    title: "8th Café — Grand opening celebration",
-    slug: "8th-cafe",
-    excerpt:
-      "A neighbourhood grand opening for 8th Café — editorial décor, live music programming, and a guest experience that turned invitations into a queue around the block.",
-    body:
-      "8th Café wanted an opening celebration that reflected the brand experience inside the café — minimal, editorial, and rooted in the neighbourhood.\nGaila built the full opening programme: spatial design and floral styling on-site, a live acoustic set and DJ handover, an invitation list tied to local influencers and regulars, and a community-management workflow with personalised RSVP follow-ups.\nWithin the opening weekend, footfall exceeded projections, the event generated a library of high-quality content for social and press, and the brand had a reusable template for future location openings.",
-    coverImage: IMG.cafe,
-    tags: ["F&B", "Grand Opening", "Community"],
-    status: "published",
-    featured: false,
-    metrics: [
-      { label: "Opening weekend footfall", value: "+140%" },
-      { label: "RSVP response rate", value: "92%" },
-    ],
-    seo: {
-      title: "8th Café Grand Opening Case Study | Gaila",
-      description:
-        "Grand opening celebration for 8th Café — editorial décor, live programming, and a guest experience that drove neighbourhood footfall.",
-    },
-  },
-  {
-    kind: "caseStudy",
-    title: "Baaqat Flowers — Seasonal wedding showcase",
-    slug: "baaqat-flowers",
-    excerpt:
-      "A creative wedding showcase for Baaqat Flowers — premium floral installations, seasonal tablescapes, and an open-day event that scaled bookings for every occasion.",
-    body:
-      "Baaqat Flowers needed creative and logistics working together: premium floral installations that reflected the brand, modular showcase setups for major occasions (Valentine's, Mother's Day, Eid, weddings), and an open-day event that converted walk-ins into confirmed bookings.\nGaila rebuilt the showcase concept around a single brand look, installed seasonal collections across three styled vignettes, and structured the guest journey around consultation stations with bilingual hosts for English, Arabic, and UAE-resident vs. inbound audiences. Real-time booking slots fed into a CRM so follow-ups happened within 24 hours.\nThe outcome was steadier bookings across major occasions, a sharper brand presentation, and a showcase format the team can deploy without production bottlenecks.",
-    coverImage: IMG.flowers,
-    tags: ["Wedding Showcase", "Floral", "Open Day"],
-    status: "published",
-    featured: false,
-    metrics: [
-      { label: "Booking conversion at showcase", value: "+44%" },
-      { label: "Styled vignettes per event", value: "12+" },
-    ],
-    seo: {
-      title: "Baaqat Flowers Wedding Showcase Case Study | Gaila",
-      description:
-        "Seasonal wedding showcase for Baaqat Flowers — floral installations, styled vignettes, and an open-day event that scaled bookings.",
-    },
-  },
-  {
-    kind: "caseStudy",
-    title: "Hospitality Group — Multi-venue gala series",
-    slug: "hospitality-group-paid-social",
-    excerpt:
-      "A multi-concept Dubai hospitality group rebuilt their annual gala programme — 3.2x sponsor ROI and a 41% lift in post-event reservations across 5 venues.",
-    body:
-      "A multi-concept hospitality group operating five venues in DIFC, JBR, and Dubai Marina was struggling with declining attendance at their annual partner galas. Each restaurant was running siloed events, with décor and production handled by separate vendors and reservations tracked by hand.\nGaila became their fractional events team. We consolidated the gala programme under one creative system, built a shared production framework across the five brands, and tied the reservation pipeline into a single post-event follow-up workflow.\nWithin one gala season, sponsor ROI reached 3.2x, post-event reservations were up 41% across the group, and the leadership team finally had a single dashboard showing attendance, average spend per guest, and venue contribution by location.",
-    coverImage: IMG.hospitality,
-    tags: ["Hospitality", "Gala", "Multi-venue"],
-    status: "published",
-    featured: true,
-    metrics: [
-      { label: "Sponsor ROI", value: "3.2x" },
-      { label: "Post-event reservations", value: "+41%" },
-    ],
-    seo: {
-      title: "Dubai Hospitality Group Gala Case Study | Gaila",
-      description:
-        "Multi-venue gala series for a Dubai hospitality group — 3.2x sponsor ROI and 41% lift in post-event reservations across 5 restaurants.",
-    },
-  },
-] satisfies Partial<ContentRecord>[];
+export const caseStudies = [] satisfies Partial<ContentRecord>[];
 
 export const blogPosts = [
   {
     kind: "blog",
-    title: "Planning corporate events in Dubai: what luxury brands get right",
-    slug: "email-marketing-dubai-luxury",
+    title: "5 Luxury Wedding Design Trends Gaining Traction in Dubai",
+    slug: "luxury-wedding-design-trends-dubai",
     excerpt:
-      "In a market this competitive, corporate events remain one of the highest-impact channels for Dubai luxury brands — when the brief, guest list, and experience design are right.",
+      "From immersive floral tunnels and projection-mapped tables to custom structural stages, here is what luxury couples are choosing for their celebrations in Dubai.",
     body:
-      "Dubai's luxury landscape is unlike anywhere else: a high-spend, multi-cultural audience moving constantly between brands, venues, and languages. In that environment, corporate events remain one of the highest-impact channels for luxury brands willing to invest in guest curation, experience design, and follow-through.\nFour areas matter most:\n• Guest list quality — Dubai's luxury audience is segmented by spend tier, language preference (Arabic vs. English vs. multilingual), and industry influence. A 200-guest list curated well will out-perform a 2,000-person invitation blast.\n• Experience design that reflects the brand — VIP guests should not see the same programme as general attendees. Build journeys around tier, interest, and language.\n• Production that respects the brand — events should look and feel like the brand, not a generic hotel ballroom package. Custom typography, editorial florals, ambient lighting, and considered Arabic copy.\n• Measurement — a clean post-event dashboard tied to pipeline, partnerships, and media coverage, not just attendance numbers.\nLuxury brands that run corporate events properly in Dubai consistently see them as a top-3 relationship channel. The ones that don't usually have a venue coordinator and a spreadsheet.",
-    coverImage: IMG.decor,
-    tags: ["Corporate Events", "Luxury", "Dubai"],
+      "Dubai's wedding market is moving faster than ever. Couples are no longer looking for template ballrooms — they want immersive, architectural, and highly personalized spaces that tell their unique love story.\n\nFive trends are defining luxury weddings this season:\n\n1. Structural Staging: Instead of standard stage risers, designers are crafting multi-tiered architectural sets inspired by classical domes or modern minimalist geometry.\n\n2. Projection Mapping: Using custom animations to map dynamic visuals onto wedding cakes, stage backdrops, and dining tables, shifting themes throughout the evening.\n\n3. Immersive Floral Tunnels: Creating entryways lined with fresh blooms, baby's breath, and cascading foliage that immediately transports guests into a fairy-tale garden.\n\n4. Editorial Lighting: Transitioning from standard spotlights to curated, warm architectural illumination and custom-blown glass pendant lights that photograph beautifully.\n\n5. Bespoke Dessert Bars: Moving away from the singular cake moment to fully styled sweet lounges containing custom desserts, chocolates, and pastries that double as interactive art pieces.\n\nCouples who hire professional designers early are able to weave these visual elements into a single, cohesive narrative.",
+    coverImage: LOCAL_IMAGES.weddings[1],
+    tags: ["Wedding Trends", "Floral Styling", "Event Design"],
     status: "published",
     featured: true,
     seo: {
-      title: "Corporate Events for Dubai Luxury Brands | Gaila",
+      title: "Wedding Design Trends Dubai | Luxury Planners | Gaila",
       description:
-        "Why corporate events remain one of the highest-impact channels for Dubai luxury brands — guest curation, experience design, and follow-through done right.",
+        "Explore the top luxury wedding design and decor trends in Dubai: projection mapping, architectural stages, immersive entryways, and bespoke desserts.",
     },
   },
   {
     kind: "blog",
-    title: "Why Dubai is the Middle East's most dynamic event destination",
-    slug: "dubai-social-media-innovation",
+    title: "Newborn Welcoming: The Art of Styling Hospital Suite Decor",
+    slug: "newborn-hospital-decor-styling-guide",
     excerpt:
-      "Dubai's blend of venues, infrastructure, and ambition has quietly made it the Middle East's most interesting event market.",
+      "Welcoming a new baby is a milestone family moment. Here is how to style an elegant hospital room setup that feels cozy for mom and welcoming for guests.",
     body:
-      "If you spend any time inside Dubai's events scene, you notice it quickly: the city has become the most ambitious event market in the Middle East. Organisers are testing formats here months before the rest of the region picks them up, and guest expectations have moved with them.\nThree forces drive it.\nFirst, the audience: Dubai's residents and inbound visitors come from across the world, fluent in multiple cultural codes. Events have to perform across guest lists shaped by GCC nationals, expats, and international travellers, often within the same evening.\nSecond, the infrastructure: world-class hotels, exhibition halls, production crews, caterers, and florists are all concentrated within a 30-minute drive. An organiser can move from concept to sold-out gala in weeks rather than months.\nThird, the ambition: leadership teams in Dubai are willing to invest. They expect flawless execution, but they're willing to fund proper creative and production to get there.\nThe practical implication for brands: if it's working in Dubai, it will scale across the GCC. If it's not working in Dubai, the rest of the region is unlikely to save it.",
-    coverImage: IMG.heroDubai,
-    tags: ["Events", "Dubai", "Middle East"],
+      "Transforming a private hospital suite into a warm, celebratory baby-welcome space has become a beautiful tradition in Dubai. It allows new parents to celebrate the birth with visiting family and friends in a stylish, comfortable environment.\n\nHere are the elements that create a balanced, premium newborn room setup:\n\n• The Entrance: A custom-designed door wreath or acrylic door sign welcoming guests and announcing the baby's name.\n\n• Organic Balloon Installations: Soft pastel or metallic balloon cascades positioned near the greeting area. Avoiding overpowering the room, focusing on structural corners.\n\n• Personal Bed Linens: Custom-ordered bed covers and pillowcases in matching shades to keep the mom's recovery space looking polished and clean.\n\n• Sweet & Refreshment Bar: A small themed table containing coffee, tea, chocolates, and decorated cookies styled with floral arrangements and custom risers.\n\n• Safe Floral Choices: Choosing low-fragrance, pollen-free flowers like hydrangeas or roses to ensure the environment remains clean and non-allergenic for the newborn.\n\nCoordinating with hospital administration regarding setup times and suite dimensions is key to a smooth, stress-free morning.",
+    coverImage: LOCAL_IMAGES.events[2],
+    tags: ["Newborn Decor", "Hospital Setup", "Baby Welcoming"],
     status: "published",
     featured: true,
     seo: {
-      title: "Why Dubai Leads Middle East Events | Gaila",
+      title: "Newborn Hospital Room Decor Guide Dubai | Gaila",
       description:
-        "Dubai's venues, infrastructure, and ambition combine to make it the Middle East's most dynamic event destination. Here's what to learn from it.",
+        "How to plan and style an elegant newborn hospital suite decoration in Dubai. Tips on balloons, florals, personalized linens, and guest refreshments.",
     },
   },
   {
     kind: "blog",
-    title: "In-person vs. hybrid events: which format is right for your Dubai conference?",
-    slug: "google-ads-vs-facebook-ads-dubai",
+    title: "Planning the Perfect Graduation Ceremony Stage & AV",
+    slug: "planning-graduation-ceremony-stage-av",
     excerpt:
-      "In-person and hybrid events serve different jobs in a Dubai organisation's calendar. Here's how we think about the split for clients across the UAE.",
+      "Stage design, sound projection, and photo backdrops are critical to graduation events. Here is how to engineer a flawless celebration for graduates.",
     body:
-      "We get the question constantly: should we run our conference in-person or hybrid? The honest answer is almost always both — but in different proportions, for different objectives.\nIn-person events capture presence. Delegates in a ballroom at Atlantis or DWTC are fully immersed — networking happens naturally, sponsors get face time, and the energy of a live audience is irreplaceable.\nHybrid events extend reach. Delegates who cannot travel still participate through live streaming, virtual breakout rooms, and on-demand content — but the production investment is higher and the experience must be designed for two audiences simultaneously.\nIn most Dubai conferences we produce, a healthy approach looks like a fully in-person core programme with hybrid streaming for keynote sessions and sponsor content, plus on-demand replays for 30–60 days post-event. Pure virtual works for internal town halls; pure in-person works for relationship-driven galas.\nThe wrong question is 'in-person vs. hybrid'. The right question is: where is the value for this audience created, where is it extended, and is the production ready to serve both?",
-    coverImage: IMG.conference,
-    tags: ["Hybrid Events", "Conferences", "Strategy"],
+      "A graduation is a highly emotional, formal ceremony that requires absolute technical precision. Unlike standard parties, graduations have strict scheduling, hundreds of graduates walking the stage, and critical audio moments that must not fail.\n\nThree technical scopes decide the success of a graduation event:\n\n1. Stage Safety & Sightlines: Building sturdy, wide stage ramps and stairs to prevent tripping. Ensuring high sightlines so parents at the back have a clear view as diplomas are handed out.\n\n2. Pristine Sound Distribution: Employing delayed audio arrays to ensure speeches are clearly audible throughout the hall, preventing echo or feedback near microphones.\n\n3. Branded Photo Backdrops: Setting up multiple high-quality backdrops in the foyer with professional lighting so graduates and families can capture high-resolution commemorative photos.\n\nCombining strict rehearsals for name calls with a robust AV checklist ensures the ceremony runs on time and remains a proud memory for everyone.",
+    coverImage: LOCAL_IMAGES.events[4],
+    tags: ["Graduation planning", "Stage AV", "Sound Engineering"],
     status: "published",
     featured: false,
     seo: {
-      title: "In-Person vs Hybrid Events for Dubai Conferences | Gaila",
+      title: "Graduation Stage Setup & AV Planning Dubai | Gaila",
       description:
-        "How Gaila thinks about the in-person vs. hybrid split for Dubai conferences — where presence matters, where reach extends, and how to fund both.",
-    },
-  },
-  {
-    kind: "blog",
-    title: "Venue selection signals that actually make Dubai events succeed",
-    slug: "local-seo-signals-dubai",
-    excerpt:
-      "Capacity charts alone won't make an event succeed. Here's what we see consistently driving guest experience and operational success across Dubai venues.",
-    body:
-      "Venue selection in Dubai has matured fast. The basics — capacity, location, catering package — get you in the conversation. They don't get you a flawless event.\nWhat we see driving success across the city in 2026:\n• Technical readiness: power, rigging points, load-in access, and AV infrastructure that match your production brief — not just a pretty ballroom photo.\n• Guest journey mapping: separate arrival, registration, main programme, networking, and departure flows that prevent bottlenecks.\n• Bilingual capability — signage, menus, and host teams fluent in English and Arabic for mixed guest lists.\n• Contingency planning — backup power, weather protocols for outdoor venues, and hold dates for critical vendors.\n• Contract clarity: cancellation terms, overtime charges, and exclusivity clauses documented before you sign.\nThe organisers that take venue selection seriously in Dubai right now deliver events that feel effortless to guests and manageable for production teams. The ones that don't are still arguing about whether the ballroom ceiling is high enough for the LED wall.",
-    coverImage: IMG.venue,
-    tags: ["Venue Selection", "Logistics"],
-    status: "published",
-    featured: false,
-    seo: {
-      title: "Venue Selection Dubai: What Actually Matters | Gaila",
-      description:
-        "Which venue selection factors actually make Dubai events succeed in 2026 — technical readiness, guest journey, bilingual capability, and contract clarity.",
+        "AV requirements, staging, lighting, and sound distribution for graduation ceremonies and private parties in Dubai.",
     },
   },
 ] satisfies Partial<ContentRecord>[];
 
 const heroCategories = [
-  { label: "Services", href: "/services", meta: "8" },
-  { label: "Case Studies", href: "/case-studies", meta: "12" },
+  { label: "Services", href: "/services", meta: "5 Areas" },
+  { label: "Gallery", href: "/gallery", meta: "Portfolio" },
   { label: "Blog", href: "/blog", meta: "Journal" },
-  { label: "About", href: "/about" },
+  { label: "About Us", href: "/about-us" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -535,20 +294,30 @@ export const homeSections: PageSection[] = [
     id: "hero-editorial",
     type: "heroEditorial",
     enabled: true,
-    eyebrow: "Event management · Dubai",
-    title: "Dubai's Event Management Company | for Ambitious Brands & Celebrations",
+    eyebrow: "Event Styling & Production · Dubai",
+    title: "Dubai's Premier Event Management & Design Studio",
     subtitle:
-      "Gaila is an event management company in Dubai combining strategy, creative direction, production, and logistics into one seamless experience. Trusted by leading brands and families across the UAE to create events that guests remember and organisers trust.",
+      "Gaila plans, designs, and produces breathtaking weddings, newborn hospital welcomes, graduation ceremonies, corporate events, and dessert table displays. We combine creative vision with flawless logistics.",
     settings: {
-      video: "https://videos.pexels.com/video-files/3209828/3209828-uhd_3840_2160_25fps.mp4",
-      poster: IMG.heroDubai,
-      image: IMG.heroDubai,
-      imageAlt: "Dubai skyline at golden hour",
+      video: "",
+      poster: IMG.featuredEvent,
+      image: IMG.featuredEvent,
+      imageAlt: "Gaila wedding reception hall with full guest seating",
+      backgroundImages: heroBackgroundSlides,
+      backgroundIntervalSeconds: 6,
       ctaLabel: "Plan your event",
-      ctaHref: "https://wa.me/971502827279",
-      secondaryCtaLabel: "Request a proposal",
-      secondaryCtaHref: "tel:+971502827279",
+      ctaHref: "/contact",
+      secondaryCtaLabel: "Browse gallery",
+      secondaryCtaHref: "/gallery",
       categories: heroCategories,
+      rotatingTitles: [
+        "Bespoke Wedding Planning & Design",
+        "Luxury Newborn Hospital Decor",
+        "Breathtaking Dessert Table Displays",
+        "Premium Graduation Party Setups",
+        "Flawless Corporate Event Production",
+      ],
+      rotationSeconds: 4,
     },
   },
   {
@@ -556,18 +325,18 @@ export const homeSections: PageSection[] = [
     type: "marquee",
     enabled: true,
     settings: {
-      speedSeconds: 38,
+      speedSeconds: 30,
       items: [
-        "Strategy",
-        "Creative",
-        "Production",
-        "Décor",
-        "Corporate Events",
-        "Conferences",
-        "Weddings",
-        "Galas",
-        "Experiential",
-        "Venue Sourcing",
+        "Wedding Planning",
+        "Newborn Decor",
+        "Graduations",
+        "Corporate Galas",
+        "Dessert Displays",
+        "Stage Building",
+        "AV & Lighting",
+        "Floral Design",
+        "Bespoke Styling",
+        "Logistics",
       ],
     },
   },
@@ -576,22 +345,34 @@ export const homeSections: PageSection[] = [
     type: "servicesEditorial",
     enabled: true,
     eyebrow: "What we do",
-    title: "Eight services. One accountable team.",
+    title: "Five Event Styling Services. One Accountable Team.",
     subtitle:
-      "Engage Gaila for a single service or run the full event engine. Every engagement is led by a senior producer with specialist practitioners on the work.",
-    settings: { limit: 6 },
+      "Engage Gaila for a private milestone or a corporate production. We manage every detail end-to-end with an in-house styling and setup team.",
+    settings: {
+      limit: 5,
+      intervalSeconds: 3.5,
+      sliderImages: [
+        { image: LOCAL_IMAGES.weddings[1], alt: "Wedding celebration hall with guests" },
+        { image: LOCAL_IMAGES.weddings[6], alt: "Elegant wedding floral styling" },
+        { image: LOCAL_IMAGES.events[2], alt: "Newborn hospital room decor" },
+        { image: LOCAL_IMAGES.corporate[7], alt: "Corporate gala production" },
+        { image: LOCAL_IMAGES.desserts[4], alt: "Premium dessert table styling" },
+        { image: LOCAL_IMAGES.gallery[10], alt: "Event gallery highlight" },
+      ],
+    },
   },
   {
     id: "stats",
     type: "statsBand",
     enabled: true,
-    title: "Senior strategy, flawless execution, clear reporting.",
+    eyebrow: "Our numbers",
+    title: "Experience that speaks for itself.",
     settings: {
       stats: [
-        { value: "200+", label: "Events delivered across Dubai and the UAE" },
-        { value: "40+", label: "Active UAE clients across 6 industries" },
-        { value: "5.0", label: "Average Google rating from clients" },
-        { value: "98%", label: "Client retention after the first event" },
+        { value: "500+", label: "Premium Events Styled & Delivered in UAE" },
+        { value: "100%", label: "Bespoke Visual Concept Customization" },
+        { value: "5.0", label: "Average Google Rating from Families & Brands" },
+        { value: "100%", label: "Bilingual Coordination & Flawless Setup" },
       ],
     },
   },
@@ -600,41 +381,67 @@ export const homeSections: PageSection[] = [
     type: "processSteps",
     enabled: true,
     eyebrow: "How we work",
-    title: "A Proven Process Built for Dubai's Event Landscape",
+    title: "Five steps to an unforgettable event",
     settings: {
       steps: [
         {
-          title: "Discover",
-          text: "We start by understanding your event objectives — audience, budget, venue constraints, and success metrics. We identify gaps, missed opportunities, and quick wins tailored to your Dubai market.",
+          title: "1. Creative Consult",
+          text: "We sit down to understand your theme, vision, venue guidelines, and budget. We establish the primary visual direction and layout options.",
         },
         {
-          title: "Strategize",
-          text: "Our team crafts a custom event roadmap aligned with your goals — whether that's a corporate gala, a multi-day summit, a wedding celebration, or a product launch across the UAE.",
+          title: "2. Visual Concept & Renders",
+          text: "Our design team creates mood boards, spatial layouts, and 3D mockups. You see exactly how the decor, lighting, and stages look before setup.",
         },
         {
-          title: "Execute",
-          text: "From creative direction and venue sourcing to production and day-of management, we execute every detail with precision, creativity, and full Arabic & English capability.",
+          title: "3. Curation & Crafting",
+          text: "We coordinate with premium partners across the UAE for catering, flowers, fabrics, and desserts, aligning every item with the visual theme.",
         },
         {
-          title: "Optimise",
-          text: "We rehearse, refine, and stress-test continuously. Production walkthroughs, vendor confirmations, and contingency planning ensure every element is ready before guests arrive.",
+          title: "4. Staging & Production",
+          text: "Our crew builds the setup on-site, routes the AV cables, arranges the florals, and finishes the dessert display without disturbing your venue or hospital space.",
         },
         {
-          title: "Scale",
-          text: "Once we deliver one exceptional event, we help you scale the programme. Annual galas, recurring summits, multi-venue roadshows — backed by the same senior team from day one.",
+          title: "5. The Event & Strike",
+          text: "Enjoy your moment stress-free while our event managers run the day-of program. Once the celebration ends, we pack and strike cleanly.",
         },
       ],
     },
   },
   {
-    id: "case-studies",
-    type: "caseStudyGrid",
+    id: "editorial-slider",
+    type: "editorialImageSlider",
     enabled: true,
-    eyebrow: "Work that delivers",
-    title: "Events engineered around outcomes.",
-    subtitle:
-      "Fenty Beauty, Ford Middle East, Oberoi Yachts, 8th Café and more — real brands, real numbers, not stock metrics.",
-    settings: { categorySlug: "case-studies" },
+    eyebrow: "Recent work",
+    title: "Moments we styled across Dubai",
+    subtitle: "Swipe through weddings, newborn welcomes, graduations, corporate galas, and dessert displays from recent Gaila productions.",
+    settings: {
+      intervalSeconds: 5,
+      ctaLabel: "Browse full gallery",
+      ctaHref: "/gallery",
+      items: gallerySliderItems,
+    },
+  },
+  {
+    id: "home-gallery",
+    type: "gallery",
+    enabled: true,
+    eyebrow: "Event gallery",
+    title: "Immersive snapshots of Gaila events.",
+    subtitle: "Take a look at our recent setups: wedding stages, balloon clouds, dessert bars, and graduation celebrations.",
+    settings: {
+      columns: 4,
+      items: [
+        { image: LOCAL_IMAGES.weddings[1], alt: "Wedding stage styling", caption: "Elegant reception hall with full guest seating" },
+        { image: LOCAL_IMAGES.events[2], alt: "Newborn welcoming setup", caption: "Bespoke hospital room welcome decor" },
+        { image: LOCAL_IMAGES.desserts[4], alt: "Dessert table installation", caption: "Gold accents and pastel treat displays" },
+        { image: LOCAL_IMAGES.events[4], alt: "Graduation party setup", caption: "Bold stage backdrop and celebration styling" },
+        { image: LOCAL_IMAGES.corporate[0], alt: "Corporate gala dinner", caption: "High-end table layouts and production" },
+        { image: LOCAL_IMAGES.weddings[13], alt: "Floral details", caption: "Outdoor garden wedding table styling" },
+        { image: LOCAL_IMAGES.gallery[8], alt: "Event production", caption: "Custom stage and lighting design" },
+        { image: LOCAL_IMAGES.desserts[10], alt: "Sweet table styling", caption: "Enhanced dessert display photography" },
+        { image: LOCAL_IMAGES.weddings[12], alt: "Floral wedding arch", caption: "Premium floral design and arch styling" },
+      ],
+    },
   },
   {
     id: "client-quote",
@@ -643,51 +450,25 @@ export const homeSections: PageSection[] = [
     eyebrow: "Client note",
     settings: {
       quote:
-        "Gaila rebuilt our annual gala programme, our sponsor experience, and our post-event pipeline — without ever sending us another agency deck.",
-      author: "Group Marketing Director",
-      role: "Dubai hospitality group · 5 venues",
-      image: IMG.cafe,
+        "Gaila created a stunning baby welcome room at the hospital in less than three hours. The balloon arches and fresh flowers were absolutely perfect, and the chocolate cart was a massive hit with all our guests!",
+      author: "Fatima Al Mansoori",
+      role: "Newborn Welcome Client · Jumeirah",
+      image: IMG.babyDecor,
     },
   },
   {
-    id: "google-reviews",
-    type: "googleReviews",
+    id: "google-reviews-scroll",
+    type: "scrollProgressCircle",
     enabled: true,
     eyebrow: "Google reviews",
     title: "What clients say after working with Gaila.",
     subtitle:
-      "Unedited Google reviews from leadership teams across Dubai Marina, Downtown Dubai, Business Bay, JLT, and Dubai Internet City.",
-    settings: {},
-  },
-  {
-    id: "insights",
-    type: "imageText",
-    enabled: true,
-    eyebrow: "Event company · Dubai",
-    title: "Events that deliver—not just impress.",
+      "Unedited Google reviews from clients across Dubai Marina, Downtown Dubai, Business Bay, and Jumeirah.",
     settings: {
-      image: IMG.studioTeam,
-      imageAlt: "Gaila event team in Dubai",
-      align: "right",
-      body: [
-        "Most organisations in Dubai host events. Few have a programme that actually moves the business forward. As an event management company in Dubai, that's the gap Gaila was built to close.",
-        "We are a full-service event company in Dubai combining strategy, creative direction, production, and logistics built for brands and families that want events that actually deliver, not just look good in photos.",
-        "We work with clients at every stage—startups hosting their first launch, established companies running annual galas, and ambitious families planning milestone celebrations. Across hospitality, automotive, luxury, F&B, and beyond, we've helped organisations across the UAE turn their events into genuine relationship and revenue engines.",
-        "Our work spans corporate events, conferences, weddings, production, décor, venue sourcing, and experiential activations — but we never treat these as isolated services. Every element is connected to a single goal: creating an event your guests remember and your team trusts to repeat.",
-        "Dubai's event market is competitive. Guest expectations are high. And the events winning attention aren't the ones with the biggest budgets — they're the ones with the clearest brief and sharpest execution. That's what we bring as a trusted event management company in Dubai.",
-        "If you're ready to stop guessing and start planning, you're in the right place.",
-      ].join("\n\n"),
-      checklistTitle: "Why Clients Choose Gaila",
-      bullets: [
-        "Strategy before styling—always",
-        "Creative that captivates, not just decorates",
-        "Production built for Dubai's venue landscape",
-        "Logistics that make complex events feel effortless",
-        "Transparent reporting tied to real event outcomes",
-        "A team invested in your event, not just your invoice",
-      ],
-      ctaLabel: "Request a proposal",
-      ctaHref: "/contact",
+      mode: "reviews",
+      scrollHeightVh: 0,
+      reviewLimit: 5,
+      steps: [],
     },
   },
   {
@@ -695,34 +476,29 @@ export const homeSections: PageSection[] = [
     type: "faq",
     enabled: true,
     eyebrow: "FAQ",
-    title: "Event management questions, answered.",
-    subtitle: "Common questions about working with an event management company in Dubai.",
+    title: "Common questions about our events.",
+    subtitle: "Common questions about working with Gaila event styling and production.",
     settings: {
       faqs: [
         {
-          question: "How far in advance should I start planning an event in Dubai?",
+          question: "How early should I book Gaila for an event?",
           answer:
-            "The timeline depends on the event type. Corporate dinners and product launches typically require 6–8 weeks. Conferences and summits need 3–6 months. Weddings and large celebrations benefit from 6–12 months of planning for venue availability and vendor coordination.",
+            "We recommend booking weddings and large graduation setups 3 to 6 months in advance. Newborn hospital room decors can be planned 4 to 8 weeks before your expected due date. Corporate events typically require a 6 to 8-week planning runway.",
         },
         {
-          question: "Why should I hire an event management company in Dubai?",
+          question: "Do you design custom themes and backdrops?",
           answer:
-            "Hiring an event management company gives you access to experienced producers, creative directors, production specialists, and logistics coordinators without building a large in-house team. A professional team helps reduce risk, manage vendor relationships, and deliver a flawless guest experience.",
+            "Yes, absolutely! Every Gaila event is designed from scratch. We do not use generic rental packages. Our creative team develops custom mood boards and builds unique stages, backdrops, and balloon arrangements tailored to your style.",
         },
         {
-          question: "What event management services do you offer in Dubai?",
+          question: "Which hospitals and venues do you cover in the UAE?",
           answer:
-            "Gaila provides a full range of event management services in Dubai, including corporate events, conferences and summits, weddings and celebrations, event production and AV, creative direction and décor, venue sourcing and logistics, experiential activations, and event strategy consulting.",
+            "Our team delivers decors and setups to all major private hospitals and premium event venues/hotels across Dubai, Abu Dhabi, and Sharjah.",
         },
         {
-          question: "Can you manage both corporate and private events?",
+          question: "Can you manage catering and dessert stands?",
           answer:
-            "Yes. We manage corporate galas, product launches, conferences, award ceremonies, weddings, engagements, and private celebrations. Our team adapts the production scale and creative approach to match each brief and budget.",
-        },
-        {
-          question: "Do you handle bilingual events in English and Arabic?",
-          answer:
-            "Yes. Bilingual programming is standard for our Dubai events — signage, host teams, printed materials, and stage content in English and Arabic where the guest list requires it.",
+            "Yes, we style and manage fully customized dessert tables, candy bars, and refreshment stations, sourcing premium cakes, chocolates, and pastries from top pastry chefs.",
         },
       ],
     },
@@ -731,13 +507,12 @@ export const homeSections: PageSection[] = [
     id: "cta",
     type: "ctaBanner",
     enabled: true,
-    title: "Ready to Plan Your Next Event with Gaila in Dubai?",
-    subtitle:
-      "Memorable events don't happen by chance. They happen when the right strategy meets flawless execution and a team that's genuinely invested in your success.",
+    title: "Ready to plan something unforgettable?",
+    subtitle: "Tell us about your event type, date, and venue. Our design team will share a tailored concept in the first call.",
     settings: {
-      body: "If you're looking for an event management company in Dubai that's serious about delivering on every brief, let's talk.",
       ctaLabel: "Speak to our team",
-      ctaHref: "tel:+971502827279",
+      ctaHref: "/contact",
+      variant: "dark",
     },
   },
 ];
@@ -748,16 +523,16 @@ export const servicesSections: PageSection[] = [
     type: "heroEditorial",
     enabled: true,
     eyebrow: "SERVICES",
-    title: "Event Management Services in Dubai Built Around One Thing — Your Event",
+    title: "Premium Event Styling & Production Services",
     subtitle:
-      "Gaila offers a full suite of event management services in Dubai designed to work together as one connected production system. From corporate events and conferences to weddings, production, décor, and logistics — every service is built to create memorable experiences, manage complexity, and deliver on every brief.",
+      "Gaila offers a focused suite of event design and management services in Dubai. From breathtaking weddings and private celebrations to newborn room decorations and corporate event production.",
     settings: {
       image: IMG.studioTeam,
-      imageAlt: "Event production team at work",
-      ctaLabel: "Request a proposal",
-      ctaHref: "tel:+971502827279",
-      secondaryCtaLabel: "See our case studies",
-      secondaryCtaHref: "/case-studies",
+      imageAlt: "Event styling team at work",
+      ctaLabel: "Request proposal",
+      ctaHref: "/contact",
+      secondaryCtaLabel: "Browse gallery",
+      secondaryCtaHref: "/gallery",
       categories: heroCategories,
     },
   },
@@ -766,11 +541,11 @@ export const servicesSections: PageSection[] = [
     type: "servicesEditorial",
     enabled: true,
     eyebrow: "OUR SERVICES",
-    title: "Event Services Tailored to Your Goals",
+    title: "Event Services Tailored to Your Milestone",
     subtitle:
-      "Every event requires a different approach. That's why our services are designed to solve specific challenges while working together as part of a comprehensive event management ecosystem. Explore our core services and discover how Gaila helps organisations create unforgettable experiences.",
+      "Explore our core services and see how Gaila transforms spaces into magical moments.",
     settings: {
-      limit: 8,
+      limit: 5,
       layout: "stacked",
       cards: [...servicesOverviewCards],
     },
@@ -779,9 +554,9 @@ export const servicesSections: PageSection[] = [
     id: "services-cta",
     type: "ctaBanner",
     enabled: true,
-    title: "Not sure which service fits your event?",
+    title: "Not sure which styling matches your occasion?",
     subtitle:
-      "Tell us what you're planning. We'll recommend the right starting point — one service or a full production engagement.",
+      "Tell us what you are celebrating. We will recommend the right starting concept or single service.",
     settings: { ctaLabel: "Send an event brief", ctaHref: "/contact?topic=services" },
   },
 ];
@@ -792,15 +567,15 @@ export const aboutSections: PageSection[] = [
     type: "heroEditorial",
     enabled: true,
     eyebrow: "ABOUT US",
-    title: "The Event Management Company Dubai Trusts to Deliver",
-    subtitle: "",
+    title: "About Gaila | Premium Event Styling & Management in Dubai",
+    subtitle: "We plan, design, and style milestone celebrations and corporate events across the UAE.",
     settings: {
       image: IMG.studioTeam,
-      imageAlt: "Gaila team in Dubai",
+      imageAlt: "Gaila event planning team in Dubai",
       ctaLabel: "Plan your event",
       ctaHref: "/contact",
-      secondaryCtaLabel: "See our work",
-      secondaryCtaHref: "/case-studies",
+      secondaryCtaLabel: "Browse gallery",
+      secondaryCtaHref: "/gallery",
       categories: heroCategories,
     },
   },
@@ -810,12 +585,12 @@ export const aboutSections: PageSection[] = [
     enabled: true,
     title: "Who We Are",
     subtitle:
-      "Gaila is an event management company in Dubai built for organisations and families that are serious about their events. We combine strategy, creative direction, production, and logistics into one connected system — designed to help you create experiences that guests remember and stakeholders trust.",
+      "Gaila is a premium, full-service event management studio built for families and brands who expect visual perfection and stress-free execution.",
     settings: {
       image: IMG.studioTeam,
-      imageAlt: "Gaila producers and creatives in Dubai",
+      imageAlt: "Gaila styling team at work",
       align: "left",
-      body: "We're not a one-size-fits-all agency. We're a focused team of producers, creatives, and logistics specialists who care about one thing — events that actually deliver on the brief.",
+      body: "We are a tight-knit team of visual designers, flower stylists, technical AV producers, and logistics experts. We do not use template styles or outsource our creative core. Every backdrop, balloon installation, and dessert display is styled and supervised in-house by our senior producers.",
       headingAs: "h2",
     },
   },
@@ -823,29 +598,14 @@ export const aboutSections: PageSection[] = [
     id: "about-why",
     type: "imageText",
     enabled: true,
-    title: "Why We Started",
+    title: "Our Philosophy",
     subtitle:
-      "Dubai is one of the most ambitious event markets in the world. We saw too many organisations investing in events that looked impressive but fell apart on the night. Gaila was built to change that — to be the company that connects creative vision to flawless execution, and ambition to reliable delivery.",
-    settings: {
-      image: IMG.heroDubai,
-      imageAlt: "Dubai skyline — where Gaila was founded",
-      align: "right",
-      body: "",
-      headingAs: "h2",
-    },
-  },
-  {
-    id: "about-believe",
-    type: "imageText",
-    enabled: true,
-    title: "What We Believe",
-    subtitle:
-      "Great events aren't about guest counts or Instagram moments alone. They're about creating experiences people trust, programmes that achieve objectives, and production that runs flawlessly under pressure. Every decision we make is guided by the brief, shaped by creativity, and measured against real event outcomes.",
+      "Events are not just items on a checklist. They are emotional milestones and critical brand stories.",
     settings: {
       image: IMG.decor,
-      imageAlt: "Creative direction and décor at Gaila",
-      align: "left",
-      body: "",
+      imageAlt: "Bespoke styling detail",
+      align: "right",
+      body: "Whether it is a luxury wedding, a welcoming room for a newborn baby, a proud graduation setup, or a high-profile corporate gala, we put design first. We focus on clean geometry, elegant color palettes, and perfect lighting so your celebration looks breathtaking in person and timeless in photographs.",
       headingAs: "h2",
     },
   },
@@ -853,10 +613,9 @@ export const aboutSections: PageSection[] = [
     id: "about-cta",
     type: "ctaBanner",
     enabled: true,
-    title: "Work with Gaila",
-    subtitle:
-      "Tell us about your event for the next four quarters. We'll come back with an honest view on where we can — and where we can't — help.",
-    settings: { ctaLabel: "Plan with Gaila", ctaHref: "/contact?topic=partnership" },
+    title: "Let's plan your next milestone",
+    subtitle: "Share your date, location, and style ideas. We'll outline a bespoke design concept for you.",
+    settings: { ctaLabel: "Get in touch", ctaHref: "/contact" },
   },
 ];
 
@@ -888,122 +647,233 @@ export const newPageSections: PageSection[] = [
   },
 ];
 
-export const paidMediaSections: PageSection[] = [
+export const weddingPlanningSections: PageSection[] = [
   {
-    id: "paid-media-hero",
+    id: "wedding-hero",
     type: "heroEditorial",
     enabled: true,
     eyebrow: "Service · Dubai & UAE",
-    title: "Conference & summit management in Dubai",
-    subtitle:
-      "Conference and summit management is a results-driven discipline where every element — programme design, speaker logistics, registration, staging, and delegate experience — is measured against real outcomes. Unlike one-off gatherings, a well-run conference builds authority, generates leads, and compounds your brand's industry presence.",
+    title: "Bespoke Wedding Planning & Design",
+    subtitle: "We plan, style, and produce luxury weddings that honor your story and culture.",
     settings: {
-      image: IMG.conference,
-      imageAlt: "Conference staging and delegate experience in Dubai",
-      ctaLabel: "Request a proposal",
-      ctaHref: "tel:+971502827279",
+      image: IMG.wedding,
+      imageAlt: "Wedding reception design by Gaila",
+      ctaLabel: "Plan your wedding",
+      ctaHref: "/contact",
       categories: [],
     },
   },
   {
-    id: "paid-media-platforms",
-    type: "servicesEditorial",
-    enabled: true,
-    title: "Conference Formats We Deliver",
-    subtitle:
-      "As a leading conference management company in Dubai, we match every organisation with the right format based on audience, objectives, and market expectations.",
-    settings: {
-      layout: "stacked",
-      cards: [
-        {
-          title: "Industry Summits",
-          description:
-            "Multi-track programmes with keynote stages, panel discussions, and networking receptions designed to position your brand as a thought leader in your sector.",
-        },
-        {
-          title: "Dealer & Partner Conferences",
-          description:
-            "Annual gatherings that align sales teams, reveal new products, and strengthen partner relationships — managed end-to-end from invitation to post-event follow-up.",
-        },
-        {
-          title: "Hybrid & Virtual Conferences",
-          description:
-            "Live streaming, virtual breakout rooms, and on-demand content that extend your reach beyond the ballroom without compromising the in-room experience.",
-        },
-        {
-          title: "Executive Roundtables",
-          description:
-            "Intimate, invitation-only sessions for C-suite audiences — curated guest lists, bespoke programming, and discreet production across Dubai's premium venues.",
-        },
-        {
-          title: "Exhibition & Trade Shows",
-          description:
-            "Floor plans, exhibitor management, sponsor activations, and visitor journey design for events at DWTC, ADNEC, and boutique exhibition spaces.",
-        },
-        {
-          title: "Award Ceremonies",
-          description:
-            "Stage design, nominee management, live production, and guest experience for industry awards that reflect the prestige of the recognition.",
-        },
-        {
-          title: "Post-Event Content Programmes",
-          description:
-            "Session recordings, highlight reels, and delegate communications that extend the value of your conference long after the closing session.",
-        },
-      ],
-    },
-  },
-  {
-    id: "paid-media-tracking",
+    id: "wedding-details",
     type: "imageText",
     enabled: true,
-    title: "Our Delegate Experience Framework",
+    title: "Elegance in Every Detail",
+    subtitle: "From custom stages to botanical styling.",
     settings: {
-      body:
-        "A conference fails when delegates feel like an afterthought. Before we confirm a single vendor, we map the full delegate journey — registration, arrival, sessions, networking, catering, and departure — and stress-test every touchpoint.\n\nEvery conference we produce is tied to real success metrics — not just attendance numbers. Delegate satisfaction, sponsor ROI, pipeline generated, and media coverage — we measure what actually matters to your organisation.\n\nOur conference management services in Dubai are built on one principle — if the delegate experience isn't designed, it won't deliver.",
-      image: IMG.conference,
-      imageAlt: "Delegate experience planning for conferences",
-      align: "right",
+      image: IMG.wedding,
+      imageAlt: "Floral arch wedding details",
+      align: "left",
+      body: "We believe weddings should feel warm and deeply personal. We design custom stage backdrops, curate exquisite tablescapes, build romantic lighting plots, and coordinate floral schemes using premium fresh blooms. Our senior coordinators manage vendor timelines, catering logistics, sound checks, and stage directions, ensuring your day flows seamlessly.",
       headingAs: "h2",
     },
   },
   {
-    id: "paid-media-roadmap",
+    id: "wedding-process",
     type: "processSteps",
     enabled: true,
-    title: "The 90-Day Conference Roadmap",
-    subtitle:
-      "We don't guess. Every new conference starts with a structured 90-day production roadmap covering programme design, speaker logistics, venue setup, sponsor activations, and rehearsal schedules. By day 90, every element is confirmed and ready.",
+    title: "Your Wedding Journey",
+    subtitle: "Our structural timeline ensures a flawless, stress-free wedding day.",
     settings: {
       steps: [
-        {
-          title: "Days 1–30",
-          text: "Brief, venue selection, programme design, speaker confirmations",
-        },
-        {
-          title: "Days 31–60",
-          text: "Registration launch, sponsor activations, production planning, vendor contracts",
-        },
-        {
-          title: "Days 61–90",
-          text: "Rehearsals, final run-of-show, delegate communications, show-day execution",
-        },
+        { title: "Design Concept", text: "We draft mood boards and color schemes based on your love story and venue choice." },
+        { title: "3D Render & Curation", text: "We present a 3D visual markup of your stage, tablescapes, and entryways, making tweaks before fabrication." },
+        { title: "Vendor Coordination", text: "We manage contracts and sound/lighting layouts with the best DJs, caterers, and photographers in Dubai." },
+        { title: "Setup & Show calling", text: "Our team builds the setup on-site, runs sound checks, and directs the day-of program from start to finish." },
       ],
     },
   },
   {
-    id: "paid-media-cta",
+    id: "wedding-cta",
     type: "ctaBanner",
     enabled: true,
-    title: "Request a proposal",
-    subtitle: "Tell us your conference goals and timeline. We'll come back with a practical plan in the first call.",
+    title: "Let's create your dream wedding",
+    subtitle: "Book a complimentary creative consult to discuss your vision, date, and venue.",
+    settings: { ctaLabel: "Request consult", ctaHref: "/contact?topic=wedding" },
+  },
+];
+
+export const newbornHospitalDecorSections: PageSection[] = [
+  {
+    id: "newborn-hero",
+    type: "heroEditorial",
+    enabled: true,
+    eyebrow: "Service · Dubai & UAE",
+    title: "Luxury Newborn Hospital Room Decor",
+    subtitle: "Style a beautiful, cozy welcome suite for your new arrival and visiting guests.",
     settings: {
-      body:
-        "Whether you need a full-service conference management partner in Dubai or a specialist production team to plug into your existing setup — we're built for both.",
-      ctaLabel: "Request a proposal",
-      ctaHref: "tel:+971502827279",
-      variant: "dark",
+      image: IMG.babyDecor,
+      imageAlt: "Baby welcome room decoration",
+      ctaLabel: "Book hospital decor",
+      ctaHref: "/contact",
+      categories: [],
     },
+  },
+  {
+    id: "newborn-details",
+    type: "imageText",
+    enabled: true,
+    title: "A Breathtaking Welcoming Space",
+    subtitle: "Custom door wreaths, organic balloon clouds, and guest refreshment bars.",
+    settings: {
+      image: IMG.babyDecor,
+      imageAlt: "Hospital room decor setup details",
+      align: "right",
+      body: "Transform hospital recovery suites into cozy, welcoming spaces. Gaila designs premium balloon arches, custom name signs, soft bed linens, fresh baby floral arrays, and elegant chocolate and coffee bars to greet family and guests. We coordinate quietly with hospital staff, setting up and strikes without hassle.",
+      headingAs: "h2",
+    },
+  },
+  {
+    id: "newborn-process",
+    type: "processSteps",
+    enabled: true,
+    title: "How It Works",
+    subtitle: "Simple, stress-free coordination for parents.",
+    settings: {
+      steps: [
+        { title: "Select Theme", text: "Choose a theme, color palette, name sign style, and guest bar options at week 32-34." },
+        { title: "Hospital Liaison", text: "We check suite dimensions and rules with your chosen hospital in Dubai or Abu Dhabi." },
+        { title: "Setup on Birth", text: "Call us when you are admitted; our styling crew quietly installs the decor before visitors arrive." },
+        { title: "Clean Strike", text: "Once you are ready to check out, we strike and clear the suite quickly, leaving no mess." },
+      ],
+    },
+  },
+  {
+    id: "newborn-cta",
+    type: "ctaBanner",
+    enabled: true,
+    title: "Welcome your baby in style",
+    subtitle: "Select a custom theme and secure your expected due-date slot on our calendar.",
+    settings: { ctaLabel: "Secure your date", ctaHref: "/contact?topic=newborn" },
+  },
+];
+
+export const graduationSetupSections: PageSection[] = [
+  {
+    id: "graduation-hero",
+    type: "heroEditorial",
+    enabled: true,
+    eyebrow: "Service · Dubai & UAE",
+    title: "Graduation Ceremony & Party Setups",
+    subtitle: "Professional ceremony stages, high-end sound projection, and custom backdrop installations.",
+    settings: {
+      image: IMG.graduation,
+      imageAlt: "Graduation celebration stage setup",
+      ctaLabel: "Plan graduation setup",
+      ctaHref: "/contact",
+      categories: [],
+    },
+  },
+  {
+    id: "graduation-details",
+    type: "imageText",
+    enabled: true,
+    title: "Engineering Proud Achievements",
+    subtitle: "Stages that stand out and AV that performs.",
+    settings: {
+      image: IMG.graduation,
+      imageAlt: "Ceremony staging details",
+      align: "left",
+      body: "We construct sturdy, wide stages and ramps styled in university colors. Our technical directors manage clear audio arrays, stage spotlights, and LED screens for presentations. In the foyer, we build large, beautifully lit backdrop structures where graduates and families capture professional memories.",
+      headingAs: "h2",
+    },
+  },
+  {
+    id: "graduation-cta",
+    type: "ctaBanner",
+    enabled: true,
+    title: "Style a memorable graduation",
+    subtitle: "From formal school stages to backyard private graduation marquees, we deliver both.",
+    settings: { ctaLabel: "Request proposal", ctaHref: "/contact?topic=graduation" },
+  },
+];
+
+export const corporateEventsSections: PageSection[] = [
+  {
+    id: "corporate-hero",
+    type: "heroEditorial",
+    enabled: true,
+    eyebrow: "Service · Dubai & UAE",
+    title: "Corporate Event Production & Management",
+    subtitle: "SUMMITS · LAUNCHES · GALAS · AWARD NIGHTS",
+    settings: {
+      image: IMG.corporate,
+      imageAlt: "Corporate event staging in Dubai",
+      ctaLabel: "Request corporate brief",
+      ctaHref: "/contact",
+      categories: [],
+    },
+  },
+  {
+    id: "corporate-details",
+    type: "imageText",
+    enabled: true,
+    title: "Brand Immersion & Flawless Logistics",
+    subtitle: "Structured event delivery for leading UAE brands.",
+    settings: {
+      image: IMG.corporate,
+      imageAlt: "Corporate product launch stage design",
+      align: "right",
+      body: "We provide high-impact stage designs, professional rigging, LED screens, sound engineering, and show calling. We map guest flows, manage registrations, and coordinate catering and transport. Our processes follow a thorough 120-item checklist to guarantee absolute precision on event day.",
+      headingAs: "h2",
+    },
+  },
+  {
+    id: "corporate-cta",
+    type: "ctaBanner",
+    enabled: true,
+    title: "Partner with Gaila for corporate events",
+    subtitle: "We deliver flawless, on-time, and on-budget events for ambitious brands in Dubai.",
+    settings: { ctaLabel: "Speak to a producer", ctaHref: "/contact?topic=corporate" },
+  },
+];
+
+export const dessertEventsSections: PageSection[] = [
+  {
+    id: "dessert-hero",
+    type: "heroEditorial",
+    enabled: true,
+    eyebrow: "Service · Dubai & UAE",
+    title: "Dessert Table Styling & sweet displays",
+    subtitle: "Visually stunning sweet displays and custom themed backdrops for milestones.",
+    settings: {
+      image: IMG.dessert,
+      imageAlt: "Dessert table styling by Gaila",
+      ctaLabel: "Book dessert styling",
+      ctaHref: "/contact",
+      categories: [],
+    },
+  },
+  {
+    id: "dessert-details",
+    type: "imageText",
+    enabled: true,
+    title: "Sweet Centerpieces Built to Amaze",
+    subtitle: "Exquisite styling paired with gourmet delicacies.",
+    settings: {
+      image: IMG.dessert,
+      imageAlt: "Chocolate and custom cake displays",
+      align: "left",
+      body: "We design custom-themed cake backdrops, floral structures, and matching stands. We collaborate with top pastry chefs in Dubai to curate a selection of themed cakes, personalized cookies, premium cupcakes, and chocolates that look incredible and taste delicious. Perfect for baby showers, birthdays, weddings, or brand launches.",
+      headingAs: "h2",
+    },
+  },
+  {
+    id: "dessert-cta",
+    type: "ctaBanner",
+    enabled: true,
+    title: "Style your sweet lounge",
+    subtitle: "Work with our designers to sketch a dessert display that fits your event theme.",
+    settings: { ctaLabel: "Request table draft", ctaHref: "/contact?topic=dessert" },
   },
 ];
 
@@ -1434,19 +1304,64 @@ export const videoProductionSections: PageSection[] = [
   },
 ];
 
+export const gallerySections: PageSection[] = [
+  {
+    id: "gallery-hero",
+    type: "heroEditorial",
+    enabled: true,
+    eyebrow: "Gallery",
+    title: "Moments we styled.",
+    subtitle:
+      "Browse through Gaila's catalog of gorgeous weddings, newborn baby Welcomes, graduation stages, corporate events, and dessert displays.",
+    settings: {
+      image: LOCAL_IMAGES.weddings[1],
+      imageAlt: "Gaila wedding decor",
+      backgroundImages: heroBackgroundSlides.slice(0, 4),
+      backgroundIntervalSeconds: 6,
+      ctaLabel: "Plan your event",
+      ctaHref: "/contact",
+      secondaryCtaLabel: "Explore services",
+      secondaryCtaHref: "/services",
+      categories: heroCategories,
+    },
+  },
+  {
+    id: "gallery-grid",
+    type: "gallery",
+    enabled: true,
+    eyebrow: "Our portfolio",
+    title: "Design is in the details.",
+    subtitle:
+      "Browse by category — weddings, events, corporate, gallery highlights, content, and dessert styling from recent Gaila productions.",
+    settings: {
+      columns: 4,
+      defaultCategory: "weddings",
+      categories: portfolioGalleryCategories,
+    },
+  },
+  {
+    id: "gallery-cta",
+    type: "ctaBanner",
+    enabled: true,
+    title: "Inspired by our gallery?",
+    subtitle: "Let's translate these styling elements into a custom layout for your upcoming date.",
+    settings: { ctaLabel: "Plan your celebration", ctaHref: "/contact" },
+  },
+];
+
 export const defaultPages = [
   {
     title: "Home",
     slug: "home",
     status: "published",
     template: "landing",
-    showInHeader: true,
+    showInHeader: false,
     headerLabel: "Home",
     headerOrder: 0,
     seo: {
-      title: "Gaila | Event Management Company in Dubai",
+      title: "Gaila | Event Management & Custom Styling Dubai",
       description:
-        "Gaila is a Dubai event management company combining strategy, creative direction, production, and logistics into one accountable team for corporate events, conferences, and celebrations.",
+        "Gaila plans, designs, and styles breathtaking weddings, newborn hospital welcomes, graduation ceremonies, corporate events, and dessert displays in Dubai.",
     },
     sections: homeSections,
   },
@@ -1455,178 +1370,118 @@ export const defaultPages = [
     slug: "services",
     status: "published",
     template: "standard",
-    showInHeader: true,
+    showInHeader: false,
     headerLabel: "Services",
     headerOrder: 1,
     seo: {
-      title: "Event Management Services in Dubai | Gaila",
+      title: "Event Styling & Styling Services Dubai | Gaila",
       description:
-        "Explore Gaila event services in Dubai: corporate events, conferences, weddings, event production, creative direction, venue sourcing, experiential activations, and consulting.",
+        "Explore Gaila event services in Dubai: weddings, newborn hospital room decor, graduation stage setups, corporate events, and bespoke dessert displays.",
     },
     sections: servicesSections,
   },
   {
-    title: "Conferences & Summits",
-    slug: "service-paid-media",
+    title: "Wedding Planning",
+    slug: "service-wedding-planning",
     status: "published",
     template: "service",
     showInHeader: false,
     headerLabel: "",
     headerOrder: 0,
     seo: {
-      title: "Conference & Summit Management Dubai | Gaila",
+      title: "Wedding Planner Dubai | Luxury Wedding Planning & Design | Gaila",
       description:
-        "Plan and deliver conferences and summits in Dubai with a team focused on programme design, delegate experience, hybrid streaming, and sponsor activations.",
+        "Bespoke wedding planning and design in Dubai. We handle venue sourcing, floral styling, staging, custom décor, and show coordination for your perfect day.",
     },
-    sections: paidMediaSections,
+    sections: weddingPlanningSections,
+  },
+  {
+    title: "Newborn Hospital Decor",
+    slug: "service-newborn-hospital-decor",
+    status: "published",
+    template: "service",
+    showInHeader: false,
+    headerLabel: "",
+    headerOrder: 0,
+    seo: {
+      title: "Newborn Hospital Decor Dubai | Baby Welcome Room Styling | Gaila",
+      description:
+        "Bespoke newborn hospital room decor in Dubai. Elegant balloon arches, fresh florals, custom signs, and guest welcoming setups.",
+    },
+    sections: newbornHospitalDecorSections,
+  },
+  {
+    title: "Graduation Setup",
+    slug: "service-graduation-setup",
+    status: "published",
+    template: "service",
+    showInHeader: false,
+    headerLabel: "",
+    headerOrder: 0,
+    seo: {
+      title: "Graduation Party Setup Dubai | Graduation Ceremony Stages | Gaila",
+      description:
+        "Premium graduation stage setups and private party design in Dubai. Stage building, lighting, sound, custom photo booths, and event styling.",
+    },
+    sections: graduationSetupSections,
   },
   {
     title: "Corporate Events",
-    slug: "service-seo-dubai",
+    slug: "service-corporate-events",
     status: "published",
     template: "service",
     showInHeader: false,
     headerLabel: "",
     headerOrder: 0,
     seo: {
-      title: "Corporate Events Dubai | Corporate Event Management | Gaila",
+      title: "Corporate Event Management Dubai | Gala & Summit Planners | Gaila",
       description:
-        "Corporate event management in Dubai — galas, product launches, award ceremonies, and leadership events with end-to-end planning, production, and guest experience.",
+        "Leading corporate event management in Dubai. Product launches, galas, leadership summits, and award ceremonies with flawless AV, staging, and logistics.",
     },
-    sections: seoDubaiSections,
+    sections: corporateEventsSections,
   },
   {
-    title: "Weddings & Celebrations",
-    slug: "service-social-media",
+    title: "Dessert Events",
+    slug: "service-dessert-events",
     status: "published",
     template: "service",
     showInHeader: false,
     headerLabel: "",
     headerOrder: 0,
     seo: {
-      title: "Wedding Planner Dubai | Celebration Events | Gaila",
+      title: "Dessert Table Styling Dubai | Sweet & Cake Displays | Gaila",
       description:
-        "Wedding and celebration planning in Dubai — venue sourcing, creative direction, vendor coordination, and day-of production for unforgettable events.",
+        "Bespoke dessert table styling and cake display backdrops in Dubai. Customized dessert tables, candy bars, and floral setups for premium events.",
     },
-    sections: socialMediaSections,
+    sections: dessertEventsSections,
   },
   {
-    title: "Event Production & AV",
-    slug: "service-video-production",
-    status: "published",
-    template: "service",
-    showInHeader: false,
-    headerLabel: "",
-    headerOrder: 0,
-    seo: {
-      title: "Event Production & AV Dubai | Gaila",
-      description:
-        "Event production and AV services in Dubai — staging, lighting, sound, LED walls, live streaming, and show calling for conferences, galas, and launches.",
-    },
-    sections: videoProductionSections,
-  },
-  {
-    title: "Case Studies",
-    slug: "case-studies",
+    title: "Gallery",
+    slug: "gallery",
     status: "published",
     template: "standard",
-    showInHeader: true,
-    headerLabel: "Case Studies",
+    showInHeader: false,
+    headerLabel: "Gallery",
     headerOrder: 2,
     seo: {
-      title: "Event Management Case Studies Dubai | Gaila",
+      title: "Event Gallery Dubai | Weddings, Welcoming & Party Backdrops | Gaila",
       description:
-        "Recent Dubai events for Fenty Beauty, Ford Middle East, Oberoi Yachts, 8th Café and more — galas, summits, launches, and celebrations.",
+        "Take a look at Gaila's stunning custom events: bridal stages, organic baby balloon clouds, sweet lounges, and graduation parties across the UAE.",
     },
-    sections: [
-      {
-        id: "case-hero",
-        type: "heroEditorial",
-        enabled: true,
-        eyebrow: "Selected work",
-        title: "Events that deliver results.",
-        subtitle:
-          "A working selection of events we've produced across beauty, automotive, luxury, hospitality, and lifestyle — with the actual numbers, not the stock photos.",
-        settings: {
-          image: IMG.gala,
-          imageAlt: "Editorial event photography",
-          ctaLabel: "Plan your event",
-          ctaHref: "/contact",
-          secondaryCtaLabel: "Explore services",
-          secondaryCtaHref: "/services",
-          categories: heroCategories,
-        },
-      },
-      {
-        id: "case-marquee",
-        type: "marquee",
-        enabled: true,
-        settings: {
-          speedSeconds: 42,
-          items: [
-            "Fenty Beauty",
-            "Ford Middle East",
-            "Oberoi Yachts",
-            "8th Café",
-            "Baaqat Flowers",
-            "Hospitality Group",
-            "Galas · Summits · Launches",
-          ],
-        },
-      },
-      { id: "case-grid", type: "caseStudyGrid", enabled: true, title: "Recent events", settings: {} },
-      {
-        id: "case-imagetext",
-        type: "imageText",
-        enabled: true,
-        eyebrow: "Our approach",
-        title: "Built around the one outcome that decides whether an event worked.",
-        subtitle: "Outcome-led production, not deck-led production.",
-        settings: {
-          image: IMG.decor,
-          imageAlt: "Gaila team at work on an event",
-          align: "left",
-          body:
-            "Every Gaila engagement starts with one question: what outcome will tell us this worked? We rebuild creative, production, and the guest journey around that number, then run weekly confirmations against it. The case studies on this page all share the same DNA — a clear outcome, honest reporting, and a production playbook the in-house team keeps using long after the event ends.",
-        },
-      },
-      {
-        id: "case-stats",
-        type: "statsBand",
-        enabled: true,
-        eyebrow: "Outcomes that compound",
-        title: "Numbers from the past 12 months.",
-        settings: {
-          stats: [
-            { value: "3.2x", label: "Sponsor ROI for hospitality group gala" },
-            { value: "200+", label: "Events delivered across Dubai and the UAE" },
-            { value: "+120%", label: "Social engagement for Fenty Beauty launch" },
-            { value: "180+", label: "Production days delivered" },
-          ],
-        },
-      },
-      {
-        id: "cta",
-        type: "ctaBanner",
-        enabled: true,
-        title: "Want an event like this for your brand?",
-        subtitle: "Tell us what you're planning and we'll share a practical proposal in the first call.",
-        settings: { ctaLabel: "Plan your event", ctaHref: "/contact" },
-      },
-    ],
+    sections: gallerySections,
   },
   {
     title: "Blog",
     slug: "blog",
     status: "published",
     template: "standard",
-    showInHeader: true,
+    showInHeader: false,
     headerLabel: "Blog",
     headerOrder: 3,
     seo: {
       title: "Event Planning Blog Dubai | Gaila",
       description:
-        "Practical event planning, venue selection, hybrid formats, and Dubai-market insights for organisations hosting events across the UAE.",
+        "Practical event planning, newborn welcoming tips, graduation ideas, and Dubai-market event styling insights.",
     },
     sections: [
       {
@@ -1634,12 +1489,12 @@ export const defaultPages = [
         type: "heroEditorial",
         enabled: true,
         eyebrow: "Blog",
-        title: "Working notes from a Dubai event studio.",
+        title: "Notes from Gaila Event Studio.",
         subtitle:
-          "Field notes on corporate events, venue selection, hybrid formats, and event production from our work across the UAE.",
+          "Insights on luxury weddings, newborn baby Welcomes, graduation setups, and corporate event management in Dubai.",
         settings: {
           image: IMG.studioTeam,
-          imageAlt: "Editorial workspace",
+          imageAlt: "Gaila studio planners",
           ctaLabel: "Plan your event",
           ctaHref: "/contact",
           secondaryCtaLabel: "Browse services",
@@ -1654,12 +1509,11 @@ export const defaultPages = [
         settings: {
           speedSeconds: 45,
           items: [
-            "Corporate Events",
-            "Conferences",
-            "Weddings",
-            "Venue Selection",
-            "Hybrid Events",
-            "Event Production",
+            "Wedding Planning",
+            "Newborn Welcomes",
+            "Graduation Stages",
+            "Dessert Display",
+            "Event Styling",
             "Dubai Venues",
           ],
         },
@@ -1668,60 +1522,31 @@ export const defaultPages = [
         id: "blog-grid",
         type: "caseStudyGrid",
         enabled: true,
-        title: "Latest thinking",
+        title: "Latest Thinking",
         settings: { categorySlug: "insights" },
-      },
-      {
-        id: "blog-quote",
-        type: "quote",
-        enabled: true,
-        eyebrow: "How we write",
-        settings: {
-          quote:
-            "We write the field notes we wish we'd had two years ago — what actually made Dubai events succeed, what wasted budget, and what we'd do differently on a six-figure production.",
-          author: "Hassan Karim",
-          role: "Head of Strategy · Gaila",
-          image: IMG.studioTeam,
-        },
-      },
-      {
-        id: "blog-stats",
-        type: "statsBand",
-        enabled: true,
-        eyebrow: "Editorial output",
-        title: "Field notes from the studio, in numbers.",
-        settings: {
-          stats: [
-            { value: "70+", label: "Field notes published since 2022" },
-            { value: "Weekly", label: "Cadence — new note every Tuesday" },
-            { value: "AR / EN", label: "Bilingual coverage across pieces" },
-            { value: "14", label: "Client briefings that reused a piece" },
-          ],
-        },
       },
       {
         id: "blog-cta",
         type: "ctaBanner",
         enabled: true,
-        title: "Want this kind of thinking on your event?",
-        subtitle:
-          "These notes come out of producing real Dubai events. If you'd like that thinking applied to yours, talk to the producers writing them.",
+        title: "Get expert styling advice",
+        subtitle: "Talk to our event designers about tailoring a concept for your upcoming occasion.",
         settings: { ctaLabel: "Speak to our team", ctaHref: "/contact?topic=insights" },
       },
     ],
   },
   {
-    title: "About",
-    slug: "about",
+    title: "About Us",
+    slug: "about-us",
     status: "published",
     template: "standard",
-    showInHeader: true,
-    headerLabel: "About",
+    showInHeader: false,
+    headerLabel: "About Us",
     headerOrder: 4,
     seo: {
       title: "About Gaila | Event Management Company Dubai",
       description:
-        "Gaila is an event management company in Dubai built for organisations and families serious about their events — strategy, creative direction, and production in one connected system.",
+        "Gaila is a premium, full-service event management studio in Dubai specializing in custom wedding design, newborn welcomes, graduations, and corporate events.",
     },
     sections: aboutSections,
   },
@@ -1730,13 +1555,13 @@ export const defaultPages = [
     slug: "contact",
     status: "published",
     template: "contact",
-    showInHeader: true,
+    showInHeader: false,
     headerLabel: "Contact",
     headerOrder: 5,
     seo: {
       title: "Contact Gaila | Event Management Company Dubai",
       description:
-        "Contact Gaila in Dubai — corporate events, conferences, weddings, production, and logistics for UAE brands and families.",
+        "Contact Gaila in Dubai — custom weddings, newborn hospital welcome decor, graduation stages, corporate events, and dessert displays.",
     },
     sections: [
       {
@@ -1746,14 +1571,14 @@ export const defaultPages = [
         eyebrow: "Contact",
         title: "Tell us about your event.",
         subtitle:
-          "We typically respond within one business day. For urgent enquiries, WhatsApp the number in the footer and we'll come back the same day.",
+          "We typically respond within one business day. For urgent enquiries, WhatsApp or call the number in the footer.",
         settings: {
           image: IMG.heroDubai,
           imageAlt: "Dubai skyline",
-          ctaLabel: "WhatsApp",
-          ctaHref: "/contact",
+          ctaLabel: "WhatsApp Us",
+          ctaHref: "https://wa.me/971567045314",
           secondaryCtaLabel: "See our work",
-          secondaryCtaHref: "/case-studies",
+          secondaryCtaHref: "/gallery",
           categories: heroCategories,
         },
       },
@@ -1763,7 +1588,7 @@ export const defaultPages = [
         enabled: true,
         title: "Start a conversation",
         subtitle:
-          "Share a little about your event and your goals. The more context you can give, the more useful our first response will be.",
+          "Share a little about your event type, date, guest count, and visual dreams. The more details you share, the better our first draft will be.",
         settings: {},
       },
       {
@@ -1771,14 +1596,14 @@ export const defaultPages = [
         type: "imageText",
         enabled: true,
         eyebrow: "Response time",
-        title: "Briefs get a same-week reply, usually inside one business day.",
-        subtitle: "Sunday — Thursday, 09:00 to 19:00 GST.",
+        title: "Bespoke styling drafts sent within two business days.",
+        subtitle: "Monday — Friday, 09:00 to 18:00 GST.",
         settings: {
           image: IMG.studioTeam,
           imageAlt: "Gaila team in the Dubai studio",
           align: "right",
           body:
-            "Our team in Dubai monitors inbound enquiries from 09:00 to 19:00 GST, Sunday to Thursday. Briefs sent overnight get a same-morning response, and weekend events are covered on WhatsApp. The first reply is always written by a senior producer, not an account handler.",
+            "Our studio in Dubai monitors inquiries daily. Draft concepts and visual options are prepared in-house by our design team, ensuring that your first proposal is relevant and accurately styled.",
         },
       },
       {
@@ -1792,17 +1617,17 @@ export const defaultPages = [
             {
               question: "What's the fastest way to get started?",
               answer:
-                "A 30-minute intro call. We'll ask about your event, timeline, and budget, then send a written proposal within two business days.",
+                "A brief 20-minute phone call. We will note your event type, estimated budget, date, and visual preferences, then compile a custom design deck within two days.",
             },
             {
-              question: "Are you available outside the UAE?",
+              question: "Do you travel outside of Dubai?",
               answer:
-                "Yes. Our roster includes events across the GCC, KSA, UK, and US. The studio is in Dubai but the team works across time zones.",
+                "Yes, Gaila designs and installs decors for weddings, baby welcomes, and corporate events across Abu Dhabi, Sharjah, Ajman, and Ras Al Khaimah.",
             },
             {
-              question: "Do you work with first-time event organisers?",
+              question: "Are your floral designs real or artificial?",
               answer:
-                "Selectively — we focus on clients ready to invest in proper planning and production. We'll be honest in the first call if Gaila isn't the right fit yet.",
+                "We style with premium, fresh botanical options (roses, hydrangeas, eucalyptus) by default. For complex large-scale stages, we can integrate high-grade silk florals to match.",
             },
           ],
         },

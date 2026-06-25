@@ -22,7 +22,10 @@ export type SectionType =
   | "logoCloud"
   | "contactForm"
   | "gallery"
-  | "quote";
+  | "quote"
+  | "ambientBackgroundSlider"
+  | "editorialImageSlider"
+  | "scrollProgressCircle";
 
 export type GoogleReviewRecord = {
   author: string;

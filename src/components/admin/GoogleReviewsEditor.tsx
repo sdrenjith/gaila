@@ -110,7 +110,7 @@ export function GoogleReviewsEditor({ initialReviews }: Props) {
         <button
           type="button"
           onClick={addReview}
-          className="rounded-full bg-[var(--ink)] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-[var(--ink-soft)]"
+          className="rounded-full bg-stone-900 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white hover:bg-stone-700"
         >
           + Add review
         </button>
@@ -133,7 +133,7 @@ export function GoogleReviewsEditor({ initialReviews }: Props) {
               onDrop={() => handleDrop(review._id)}
               onDragEnd={() => setDragId(null)}
               className={`rounded-2xl border bg-stone-50 transition ${
-                dragId === review._id ? "border-[var(--gold)] opacity-60" : "border-stone-200"
+                dragId === review._id ? "border-violet-500 opacity-60" : "border-stone-200"
               }`}
             >
               <div className="flex flex-wrap items-center gap-3 px-4 py-3">

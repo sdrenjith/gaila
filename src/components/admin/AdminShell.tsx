@@ -20,31 +20,31 @@ export function AdminShell({
 }) {
   return (
     <ToastProvider>
-      <div className="min-h-screen bg-stone-50 text-stone-950">
-        <aside className="fixed inset-y-0 left-0 z-30 hidden w-64 flex-col border-r border-stone-200 bg-white px-4 py-6 lg:flex">
+      <div className="admin-shell min-h-screen bg-stone-50 text-stone-950">
+        <aside className="admin-sidebar fixed inset-y-0 left-0 z-30 hidden w-64 flex-col border-r px-4 py-6 lg:flex">
           <Link href="/admin" className="mb-8 flex items-center gap-3 px-2">
             <SiteLogo logo={logo} logoText={logoText} siteName={siteName} variant="admin" />
             <span className="leading-tight">
-              <span className="block font-display text-lg tracking-[-0.01em] text-stone-950">Gaila CMS</span>
-              <span className="text-[10px] uppercase tracking-[0.32em] text-stone-400">Dynamic website</span>
+              <span className="block font-display text-lg tracking-[-0.01em] text-white">Gaila CMS</span>
+              <span className="text-[10px] uppercase tracking-[0.32em] text-white/50">Dynamic website</span>
             </span>
           </Link>
 
           <AdminNav />
 
-          <div className="mt-auto rounded-2xl border border-stone-200 bg-stone-50 p-3 text-sm">
-            <p className="text-[10px] uppercase tracking-[0.24em] text-stone-400">Signed in</p>
-            <p className="mt-1 truncate font-semibold text-stone-950">{session.name}</p>
-            <p className="truncate text-xs text-stone-500">{session.role}</p>
+          <div className="admin-sidebar-user-card mt-auto rounded-2xl border p-3 text-sm backdrop-blur-sm">
+            <p className="text-[10px] uppercase tracking-[0.24em] text-white/50">Signed in</p>
+            <p className="mt-1 truncate font-semibold text-white">{session.name}</p>
+            <p className="truncate text-xs text-white/65">{session.role}</p>
             <div className="mt-3 flex items-center gap-2">
               <Link
                 href="/"
-                className="flex-1 rounded-full border border-stone-300 px-3 py-1.5 text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-stone-700 hover:bg-stone-100"
+                className="flex-1 rounded-full border border-white/25 px-3 py-1.5 text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-white/90 transition hover:bg-white/10 hover:text-white"
               >
                 Site
               </Link>
               <form action={logoutAction}>
-                <button className="rounded-full bg-stone-900 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-white hover:bg-stone-700">
+                <button className="rounded-full bg-white px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#0c021d] transition hover:bg-white/90">
                   Logout
                 </button>
               </form>

@@ -2,7 +2,7 @@ import { Footer } from "@/components/site/Footer";
 import { Header } from "@/components/site/Header";
 import { ScrollToTop } from "@/components/ui/ScrollToTop";
 import { getNavigation, getPublishedPages, getSiteSettings } from "@/lib/cms";
-import { mergeHeaderMenuWithPages, resolveFooterMenu } from "@/lib/navigation";
+import { mergeHeaderMenuWithPages, resolveFooterMenu, resolveHeaderMenu } from "@/lib/navigation";
 
 export async function SiteChrome({ children }: { children: React.ReactNode }) {
   const [settings, headerMenu, footerMenu, publishedPages] = await Promise.all([
@@ -11,7 +11,7 @@ export async function SiteChrome({ children }: { children: React.ReactNode }) {
     getNavigation("footer"),
     getPublishedPages(),
   ]);
-  const resolvedHeaderMenu = mergeHeaderMenuWithPages(headerMenu, publishedPages);
+  const resolvedHeaderMenu = mergeHeaderMenuWithPages(resolveHeaderMenu(headerMenu), publishedPages);
   const resolvedFooterMenu = resolveFooterMenu(footerMenu);
 
   return (

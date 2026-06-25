@@ -11,7 +11,7 @@ type SectionShellProps = {
 
 export function SectionShell({ eyebrow, title, subtitle, children, className }: SectionShellProps) {
   return (
-    <section className={cn("relative overflow-hidden bg-white px-5 py-24 sm:px-8 lg:px-14", className)}>
+    <section className={cn("relative overflow-hidden bg-transparent px-5 py-24 sm:px-8 lg:px-14", className)}>
       <div className="mx-auto max-w-[1480px]">
         {(eyebrow || title || subtitle) && (
           <Reveal className="mb-12 max-w-3xl">

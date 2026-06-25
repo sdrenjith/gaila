@@ -54,11 +54,11 @@ export function UploadProgressBar({
       >
         {determinate ? (
           <div
-            className="h-full rounded-full bg-[var(--gold)] transition-[width] duration-150 ease-out"
+            className="h-full rounded-full bg-violet-600 transition-[width] duration-150 ease-out"
             style={{ width: `${Math.min(100, Math.max(0, progress!))}%` }}
           />
         ) : (
-          <div className="upload-indeterminate-bar h-full w-2/5 rounded-full bg-gradient-to-r from-[var(--gold-light)] via-[var(--gold)] to-[var(--gold-deep)]" />
+          <div className="upload-indeterminate-bar h-full w-2/5 rounded-full bg-gradient-to-r from-violet-200 via-violet-500 to-violet-700" />
         )}
       </div>
     </div>

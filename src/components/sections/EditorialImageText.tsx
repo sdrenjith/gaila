@@ -164,11 +164,11 @@ export function EditorialImageText({
               delay: Math.min(index, 5) * 0.05,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="flex gap-3.5 rounded-2xl border border-transparent bg-white/60 px-4 py-3.5 transition duration-300 hover:border-[var(--hairline)] hover:bg-white"
+            className="flex gap-3.5 rounded-2xl border border-transparent bg-[var(--cream)]/60 px-4 py-3.5 transition duration-300 hover:border-[var(--hairline)] hover:bg-[var(--cream)]"
           >
             <span
               aria-hidden="true"
-              className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full border border-[var(--hairline-strong)] bg-white text-[var(--gold-deep)] shadow-sm"
+              className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full border border-[var(--hairline-strong)] bg-[var(--cream)] text-[var(--gold-deep)] shadow-sm"
             >
               <CheckIcon />
             </span>
@@ -200,7 +200,7 @@ export function EditorialImageText({
   );
 
   return (
-    <section className="relative overflow-hidden bg-white px-5 py-24 sm:px-8 lg:px-14 lg:py-28">
+    <section className="relative overflow-hidden bg-transparent px-5 editorial-section-padding sm:px-8 lg:px-14">
       {/* Subtle ambient wash for rich sections */}
       {hasRichContent && (
         <div

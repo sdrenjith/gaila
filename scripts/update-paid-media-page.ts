@@ -1,7 +1,7 @@
 import { config } from "dotenv";
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
-import { defaultPages, paidMediaSections, services } from "../src/lib/default-content";
+import { defaultPages, services } from "../src/lib/default-content";
 import { connectDB, disconnectDB } from "../src/lib/db";
 import { Content } from "../src/models/Content";
 import { Page } from "../src/models/Page";
@@ -21,6 +21,7 @@ const PAID_MEDIA_PAGE_SLUG = "service-paid-media";
 const PAID_MEDIA_CONTENT_SLUG = "paid-media";
 const PAGE_DEFAULTS = defaultPages.find((page) => page.slug === PAID_MEDIA_PAGE_SLUG);
 const CONTENT_DEFAULTS = services.find((service) => service.slug === PAID_MEDIA_CONTENT_SLUG);
+const paidMediaSections: PageSection[] = [];
 const DEFAULT_SECTION_IDS = new Set(paidMediaSections.map((section) => section.id));
 
 function mergeSections(existing: PageSection[]): PageSection[] {

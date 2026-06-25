@@ -16,10 +16,10 @@ if (existsSync(productionEnv)) {
 }
 config();
 
-const AGENCY_STORY_DEFAULTS = homeSections.find((section) => section.id === "insights");
+const INSIGHTS_DEFAULTS = homeSections.find((section) => section.id === "insights");
 
 async function updateHomeInsights() {
-  if (!AGENCY_STORY_DEFAULTS) {
+  if (!INSIGHTS_DEFAULTS) {
     throw new Error("insights defaults missing from homeSections");
   }
 
@@ -32,13 +32,13 @@ async function updateHomeInsights() {
     const hasInsights = page.sections.some((section) => section.id === "insights");
     const sections: PageSection[] = hasInsights
       ? page.sections.map((section) =>
-          section.id === "insights" ? { ...AGENCY_STORY_DEFAULTS } : section,
+          section.id === "insights" ? { ...INSIGHTS_DEFAULTS } : section,
         )
-      : [...page.sections, AGENCY_STORY_DEFAULTS];
+      : [...page.sections, INSIGHTS_DEFAULTS];
 
     const pageResult = await Page.updateOne({ slug: "home" }, { $set: { sections } });
     console.log(
-      `Home insights section updated — matched: ${pageResult.matchedCount}, modified: ${pageResult.modifiedCount}`,
+      `Home insights scroll section updated — matched: ${pageResult.matchedCount}, modified: ${pageResult.modifiedCount}`,
     );
   }
 

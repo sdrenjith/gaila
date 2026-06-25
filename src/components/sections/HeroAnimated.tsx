@@ -73,8 +73,10 @@ export function HeroAnimated({
 
   useEffect(() => {
     if (!useVideo) {
-      setShouldLoadVideo(false);
-      return;
+      const timer = setTimeout(() => {
+        setShouldLoadVideo(false);
+      }, 0);
+      return () => clearTimeout(timer);
     }
     return deferUntilIdle(() => {
       setShouldLoadVideo(true);
@@ -193,41 +195,42 @@ export function HeroAnimated({
               showCards ? "" : "mx-auto"
             }`}
           >
-            {(() => {
-              let runningIndex = -1;
-              return titleLines.map((line, lineIdx) => {
-                const lineWords = line.split(" ").filter(Boolean);
-                return (
-                  <span
-                    key={`hl-${lineIdx}`}
-                    className={titleLines.length > 1 ? "block" : "inline"}
-                  >
-                    {lineWords.map((word, w) => {
-                      runningIndex += 1;
-                      const isLast = w === lineWords.length - 1;
-                      return (
-                        <motion.span
-                          key={`${word}-${lineIdx}-${w}`}
-                          initial="hidden"
-                          animate="visible"
-                          variants={wordVariants}
-                          transition={{
-                            duration: 0.6,
-                            delay:
-                              headlineDelayBase +
-                              runningIndex * headlineDelayStep,
-                            ease: [0.22, 1, 0.36, 1],
-                          }}
-                          className={`inline-block will-change-transform${isLast ? "" : " mr-[0.25em]"}`}
-                        >
-                          {word}
-                        </motion.span>
-                      );
-                    })}
-                  </span>
-                );
-              });
-            })()}
+            {titleLines.map((line, lineIdx) => {
+              const lineWords = line.split(" ").filter(Boolean);
+              const previousWordsCount = titleLines
+                .slice(0, lineIdx)
+                .reduce((acc, currLine) => acc + currLine.split(" ").filter(Boolean).length, 0);
+
+              return (
+                <span
+                  key={`hl-${lineIdx}`}
+                  className={titleLines.length > 1 ? "block" : "inline"}
+                >
+                  {lineWords.map((word, w) => {
+                    const currentWordIndex = previousWordsCount + w;
+                    const isLast = w === lineWords.length - 1;
+                    return (
+                      <motion.span
+                        key={`${word}-${lineIdx}-${w}`}
+                        initial="hidden"
+                        animate="visible"
+                        variants={wordVariants}
+                        transition={{
+                          duration: 0.6,
+                          delay:
+                            headlineDelayBase +
+                            currentWordIndex * headlineDelayStep,
+                          ease: [0.22, 1, 0.36, 1],
+                        }}
+                        className={`inline-block will-change-transform${isLast ? "" : " mr-[0.25em]"}`}
+                      >
+                        {word}
+                      </motion.span>
+                    );
+                  })}
+                </span>
+              );
+            })}
           </h1>
 
           {subtitleText && (

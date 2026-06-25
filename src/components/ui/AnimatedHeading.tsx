@@ -46,19 +46,21 @@ export function AnimatedHeading({
     : { animate: "visible", initial: "hidden" };
   const stepEffective = reduceMotion ? 0 : step;
 
-  let wordIndex = -1;
-
   return (
     <Component className={cn("[text-wrap:balance] [hyphens:none]", className)}>
       {lines.map((line, lineIdx) => {
         const words = line.split(/\s+/).filter(Boolean);
+        const previousWordsCount = lines
+          .slice(0, lineIdx)
+          .reduce((acc, currLine) => acc + currLine.split(/\s+/).filter(Boolean).length, 0);
+
         return (
           <span
             key={`line-${lineIdx}-${line}`}
             className={lines.length > 1 ? "block" : undefined}
           >
             {words.map((word, w) => {
-              wordIndex += 1;
+              const currentWordIndex = previousWordsCount + w;
               return (
                 <Fragment key={`${word}-${lineIdx}-${w}`}>
                   {w > 0 ? " " : null}
@@ -66,7 +68,7 @@ export function AnimatedHeading({
                     variants={wordVariants}
                     transition={{
                       duration: 0.6,
-                      delay: delay + wordIndex * stepEffective,
+                      delay: delay + currentWordIndex * stepEffective,
                       ease: [0.22, 1, 0.36, 1],
                     }}
                     className="inline-block will-change-transform"

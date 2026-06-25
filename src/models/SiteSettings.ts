@@ -9,16 +9,16 @@ const siteSettingsSchema = new Schema(
       default: "A Dubai event management team for brands that expect flawless execution.",
     },
     logoText: { type: String, default: "Gaila" },
-    logo: { type: String, default: "/gaila-logo.webp" },
+    logo: { type: String, default: "" },
     contact: {
-      email: { type: String, default: "info@gaila.ae" },
+      email: { type: String, default: "gailaevents@gmail.com" },
       phone: { type: String, default: "+971 50 282 7279" },
       address: {
         type: String,
         default:
           "Zig Zag tower, Office No F10 Floor - 5th St - near Al Dana Hotel - Al Zahiyah - E14 - Abu Dhabi",
       },
-      whatsapp: { type: String, default: "+971502827279" },
+      whatsapp: { type: String, default: "+971567045314" },
     },
     social: {
       instagram: { type: String, default: "https://instagram.com/gaila.ae" },
@@ -49,7 +49,7 @@ const siteSettingsSchema = new Schema(
       },
       copyright: {
         type: String,
-        default: "© 2026 Gaila FZ-LLC · DED Trade Licence 1187462 · All rights reserved.",
+        default: "© 2026 Gaila · All rights reserved.",
       },
       tagline: {
         type: String,

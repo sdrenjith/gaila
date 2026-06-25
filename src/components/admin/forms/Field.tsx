@@ -1,10 +1,8 @@
 "use client";
 
-import { type ReactNode, type ChangeEvent } from "react";
+import { type ReactNode, type ChangeEvent, type InputHTMLAttributes } from "react";
+import { adminInputClass } from "@/lib/admin-ui";
 import { cn } from "@/lib/utils";
-
-const baseInputClass =
-  "w-full rounded-xl border border-stone-300 bg-white px-3.5 py-2.5 text-sm text-stone-950 outline-none transition placeholder:text-stone-400 focus:border-[var(--gold-deep)] focus:ring-2 focus:ring-[var(--gold-light)]/40 disabled:cursor-not-allowed disabled:bg-stone-100 disabled:text-stone-400";
 
 type FieldShellProps = {
   label?: ReactNode;
@@ -39,6 +37,7 @@ type TextInputProps = {
   label?: ReactNode;
   name?: string;
   type?: string;
+  inputMode?: InputHTMLAttributes<HTMLInputElement>["inputMode"];
   defaultValue?: string;
   value?: string;
   placeholder?: string;
@@ -57,6 +56,7 @@ export function TextInput({
   label,
   name,
   type = "text",
+  inputMode,
   defaultValue,
   value,
   placeholder,
@@ -76,13 +76,14 @@ export function TextInput({
         id={id}
         name={name}
         type={type}
+        inputMode={inputMode}
         defaultValue={defaultValue}
         value={value}
         placeholder={placeholder}
         required={required}
         disabled={disabled}
         onChange={onChange}
-        className={cn(baseInputClass, inputClassName)}
+        className={cn(adminInputClass, inputClassName)}
       />
     </FieldShell>
   );
@@ -133,7 +134,7 @@ export function Textarea({
         required={required}
         disabled={disabled}
         onChange={onChange}
-        className={cn(baseInputClass, "resize-y leading-6")}
+        className={cn(adminInputClass, "resize-y leading-6")}
       />
     </FieldShell>
   );
@@ -180,7 +181,7 @@ export function Select({
         disabled={disabled}
         required={required}
         onChange={onChange}
-        className={cn(baseInputClass, "pr-8")}
+        className={cn(adminInputClass, "pr-8")}
       >
         {options.map((option) => (
           <option key={option.value} value={option.value}>
@@ -215,7 +216,7 @@ export function Toggle({ label, name, checked, defaultChecked, hint, onChange, i
           onChange={onChange}
           className="peer sr-only"
         />
-        <span className="block h-5 w-9 rounded-full bg-stone-300 transition peer-checked:bg-[var(--ink)]" />
+        <span className="block h-5 w-9 rounded-full bg-stone-300 transition peer-checked:bg-stone-900" />
         <span className="absolute left-0.5 inline-block h-4 w-4 rounded-full bg-white shadow transition-transform peer-checked:translate-x-4" />
       </span>
       <span className="grid gap-1">

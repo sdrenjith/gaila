@@ -30,9 +30,9 @@ export function CategoryStoriesSection({
           return (
             <section
               key={category._id}
-              className="rounded-[2rem] border border-[var(--hairline)] bg-white p-6 shadow-[0_18px_50px_-34px_rgba(14,14,14,0.22)]"
+              className="rounded-[2rem] border border-[var(--hairline)] bg-[var(--cream)] p-6 shadow-[0_18px_50px_-34px_rgba(0,0,0,0.6)]"
             >
-              <div className="border-b border-stone-200 pb-4">
+              <div className="border-b border-[var(--hairline-strong)] pb-4">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--gold-deep)]">
                   Category
                 </p>
@@ -55,10 +55,10 @@ export function CategoryStoriesSection({
                   return (
                     <article
                       key={story.id}
-                      className="overflow-hidden rounded-[1.5rem] border border-stone-200 bg-stone-50"
+                      className="overflow-hidden rounded-[1.5rem] border border-[var(--hairline-strong)] bg-[var(--background)]"
                     >
                       {story.media ? (
-                        <div className="relative aspect-[16/9] bg-stone-200">
+                        <div className="relative aspect-[16/9] bg-[var(--cream-deep)]">
                           <Image
                             src={story.media}
                             alt={story.title}
@@ -72,7 +72,7 @@ export function CategoryStoriesSection({
                       <div className="grid gap-3 p-5">
                         <div className="flex items-center justify-between gap-3">
                           <h4 className="text-lg font-semibold text-[var(--ink)]">{story.title}</h4>
-                          <span className="rounded-full bg-white px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-stone-500">
+                          <span className="rounded-full bg-[var(--cream)] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--ink-soft)]">
                             Story
                           </span>
                         </div>
@@ -80,20 +80,20 @@ export function CategoryStoriesSection({
                           <p className="text-sm leading-7 text-[var(--ink-mute)]">{story.summary}</p>
                         ) : null}
                         {story.body ? (
-                          <p className="text-sm leading-7 text-stone-600 line-clamp-4">{story.body}</p>
+                          <p className="text-sm leading-7 text-[var(--ink-soft)] line-clamp-4">{story.body}</p>
                         ) : null}
 
                         {showSubitems && subitems.length > 0 ? (
-                          <div className="mt-2 rounded-[1.25rem] border border-stone-200 bg-white p-4">
-                            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-stone-400">
+                          <div className="mt-2 rounded-[1.25rem] border border-[var(--hairline-strong)] bg-[var(--cream)] p-4">
+                            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--ink-mute)]">
                               Published subitems
                             </p>
                             <ul className="mt-3 grid gap-3">
                               {subitems.map((subitem) => (
-                                <li key={subitem.id} className="rounded-xl border border-stone-100 bg-stone-50 p-3">
+                                <li key={subitem.id} className="rounded-xl border border-[var(--hairline)] bg-[var(--background)] p-3">
                                   <p className="font-semibold text-[var(--ink)]">{subitem.title}</p>
                                   {subitem.content ? (
-                                    <p className="mt-1 text-sm leading-6 text-stone-600">{subitem.content}</p>
+                                    <p className="mt-1 text-sm leading-6 text-[var(--ink-soft)]">{subitem.content}</p>
                                   ) : null}
                                 </li>
                               ))}

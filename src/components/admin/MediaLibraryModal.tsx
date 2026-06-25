@@ -1,9 +1,15 @@
 "use client";
 
-import Image from "next/image";
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { ConfirmDeleteDialog } from "@/components/admin/ConfirmDeleteDialog";
+import { MediaAssetCard } from "@/components/admin/MediaAssetCard";
 import { useToast } from "@/components/admin/Toaster";
+import {
+  filterMediaAssets,
+  formatFolderLabel,
+  getFolderCounts,
+  getSortedFolders,
+} from "@/lib/media-library-ui";
 import {
   UploadAbortError,
   UploadNetworkError,
@@ -78,12 +84,38 @@ export function MediaLibraryModal({
   const uploadFolder = folder ?? (kind === "video" ? "video" : "general");
   const emptyLabel = kind === "video" ? "No videos in the media library yet." : "No images in the media library yet.";
   const accept = kind === "video" ? "video/*" : "image/*";
+  const [browseFolder, setBrowseFolder] = useState<string>("all");
+
+  const modalAssets = useMemo(
+    () =>
+      assets.map((asset) => ({
+        _id: asset.id,
+        title: asset.title,
+        url: asset.url,
+        alt: asset.alt,
+        folder: asset.folder,
+        mimeType: asset.mimeType,
+        size: 0,
+      })),
+    [assets],
+  );
+
+  const browseFolders = useMemo(() => getSortedFolders(modalAssets), [modalAssets]);
+  const folderCounts = useMemo(() => getFolderCounts(modalAssets), [modalAssets]);
+  const visibleAssets = useMemo(() => {
+    if (folder) {
+      return filterMediaAssets(modalAssets, { folder, type: kind });
+    }
+    return filterMediaAssets(modalAssets, { folder: browseFolder, type: kind });
+  }, [modalAssets, browseFolder, kind, folder]);
 
   useEffect(() => {
     if (!open) {
       return;
     }
 
+    setBrowseFolder("all");
+    setPendingUrl(initialSelectedUrl);
     closeRef.current?.focus();
 
     const onKeyDown = (event: KeyboardEvent) => {
@@ -94,7 +126,7 @@ export function MediaLibraryModal({
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [open, onClose]);
+  }, [open, onClose, initialSelectedUrl]);
 
   const resetUploadProgress = () => {
     setProgress(null);
@@ -294,61 +326,68 @@ export function MediaLibraryModal({
                   </button>
                 </div>
               ) : assets.length > 0 ? (
-                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                  {assets.map((asset) => {
-                    const selected = asset.url === pendingUrl;
-                    return (
-                      <div
-                        key={asset.id}
-                        className={`overflow-hidden rounded-2xl border text-left transition ${
-                          selected
-                            ? "border-[var(--gold)] bg-white shadow-sm ring-2 ring-[var(--gold-light)]/40"
-                            : "border-stone-200 bg-white hover:border-stone-300"
+                <div className="grid gap-3">
+                  {!folder && browseFolders.length > 1 && (
+                    <div className="flex flex-wrap items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() => setBrowseFolder("all")}
+                        className={`rounded-full px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] transition ${
+                          browseFolder === "all"
+                            ? "bg-stone-900 text-white"
+                            : "border border-stone-200 bg-white text-stone-600 hover:bg-stone-50"
                         }`}
                       >
+                        All
+                        <span className="ml-1.5 rounded-full bg-white/15 px-1.5 py-0.5 text-[9px]">
+                          {assets.length}
+                        </span>
+                      </button>
+                      {browseFolders.map((item) => (
                         <button
+                          key={item}
                           type="button"
-                          onClick={() => setPendingUrl(asset.url)}
-                          aria-pressed={selected}
-                          className="block w-full text-left"
+                          onClick={() => setBrowseFolder(item)}
+                          className={`rounded-full px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] transition ${
+                            browseFolder === item
+                              ? "bg-stone-900 text-white"
+                              : "border border-stone-200 bg-white text-stone-600 hover:bg-stone-50"
+                          }`}
                         >
-                          <div className="relative aspect-[16/10] bg-stone-100">
-                            {kind === "video" ? (
-                              <video
-                                src={asset.url}
-                                muted
-                                playsInline
-                                preload="metadata"
-                                className="absolute inset-0 h-full w-full object-cover"
-                              />
-                            ) : (
-                              <Image
-                                src={asset.url}
-                                alt={asset.alt || asset.title}
-                                fill
-                                sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 100vw"
-                                className="object-cover"
-                                unoptimized
-                              />
-                            )}
-                          </div>
-                          <div className="p-3">
-                            <p className="truncate text-sm font-semibold text-stone-950">{asset.title}</p>
-                            <p className="truncate text-xs text-stone-500">{asset.folder}</p>
-                          </div>
-                        </button>
-                        <div className="border-t border-stone-100 px-3 pb-3">
-                          <button
-                            type="button"
-                            onClick={() => setDeleteTarget(asset)}
-                            className="rounded-full border border-red-200 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-red-600 hover:bg-red-50"
+                          {formatFolderLabel(item)}
+                          <span
+                            className={`ml-1.5 rounded-full px-1.5 py-0.5 text-[9px] ${
+                              browseFolder === item ? "bg-white/15" : "bg-stone-100 text-stone-500"
+                            }`}
                           >
-                            Delete
-                          </button>
-                        </div>
-                      </div>
-                    );
-                  })}
+                            {folderCounts.get(item) ?? 0}
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                  <div className="grid grid-cols-3 gap-2.5 sm:grid-cols-4 lg:grid-cols-5">
+                    {visibleAssets.map((asset) => (
+                      <MediaAssetCard
+                        key={asset._id}
+                        variant="selectable"
+                        asset={asset}
+                        kind={kind}
+                        selected={asset.url === pendingUrl}
+                        onSelect={() => setPendingUrl(asset.url)}
+                        onDelete={() =>
+                          setDeleteTarget(
+                            assets.find((item) => item.id === asset._id) ?? null,
+                          )
+                        }
+                      />
+                    ))}
+                  </div>
+                  {visibleAssets.length === 0 && (
+                    <p className="rounded-2xl border border-dashed border-stone-300 bg-stone-50 px-4 py-8 text-center text-sm text-stone-500">
+                      No assets in this folder.
+                    </p>
+                  )}
                 </div>
               ) : (
                 <p className="rounded-2xl border border-dashed border-stone-300 bg-stone-50 px-4 py-8 text-center text-sm text-stone-500">
@@ -400,7 +439,7 @@ export function MediaLibraryModal({
             type="button"
             onClick={handleConfirm}
             disabled={!pendingUrl}
-            className="rounded-full bg-[var(--ink)] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-[var(--ink-soft)] disabled:cursor-not-allowed disabled:opacity-50"
+            className="rounded-full bg-stone-900 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-stone-700 disabled:cursor-not-allowed disabled:opacity-50"
           >
             Select
           </button>
